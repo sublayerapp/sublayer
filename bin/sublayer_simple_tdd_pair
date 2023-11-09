@@ -1,0 +1,32 @@
+#!/usr/bin/env ruby
+
+require "bundler/setup"
+require "colorize"
+require "sublayer"
+require "open3"
+
+include Sublayer::Agents
+
+def make_tests_pass(test_command, file_path)
+  loop do
+    stdout, stderr, status = Open3.capture3(test_command)
+
+    if status.exitstatus == 0
+      puts "Tests passed!".green
+      return
+    else
+      results = Sublayer::Agents::DangerouslyModifyFileContentsAgent.new(
+        file_path: Dir.pwd + "/" + file_path,
+        description: "Change this code so that it passes all the tests in the test file: #{File.read(test_command.split(" ")[1])}. The last tests run had these failures: #{stdout}",
+        technologies: ["ruby"]
+      ).execute
+
+      Sublayer::Agents::SaveFileContentsAgent.new(
+        file_contents: results,
+        file_path: Dir.pwd + "/" + file_path
+      ).execute
+    end
+  end
+end
+
+make_tests_pass ARGV[0], ARGV[1]

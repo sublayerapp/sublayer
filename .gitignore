@@ -1,0 +1,16 @@
+/.bundle/
+/.yardoc
+/_yardoc/
+/coverage/
+/doc/
+/pkg/
+/spec/reports/
+/tmp/
+
+/.sublayer/
+
+.rspec_status
+.idea/
+
+*.log
+*.gem
