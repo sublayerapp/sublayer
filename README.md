@@ -38,7 +38,7 @@ the FILE\_UNDER\_TEST to GPT4 and will attempt to edit FILE\_UNDER\_TEST and
 rerun the tests until they pass.
 
 To do use it like in [this
-loom] (https://www.loom.com/share/6970b51856b04a91b792f14e848e9b6d) you'll need
+loom](https://www.loom.com/share/6970b51856b04a91b792f14e848e9b6d) you'll need
 to install entr: `brew install entr`
 
 The command I'm running there is: `ls ./day3/*.rb | entr sublayer_simple_tdd_pair "rspec ./day3/santa_spec.rb" "./day3/santa.rb"`
