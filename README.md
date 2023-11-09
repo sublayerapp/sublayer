@@ -16,7 +16,8 @@ Your default editor for your environment is also used.
 
 ## Usage
 
-* Interactive CLI
+### * Interactive CLI
+
 You can use the gem by running the command `sublayer` in any project directory.
 This will open an interactive shell where all file operations are run relative
 to that root project directory.
@@ -25,7 +26,8 @@ In the interactive shell, you're able to create new agents specific to your
 project, generate code, modify existing files, and save the resulting code from
 those agent commands.
 
-* Simple TDD Pair (experimental / dangerous)
+### * Simple TDD Pair (experimental / dangerous)
+
 **Warning:** This will generate code from GPT4 and run it as called from your
 tests. Use at your own risk.
 
