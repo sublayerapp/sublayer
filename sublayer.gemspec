@@ -27,6 +27,8 @@ Gem::Specification.new do |spec|
 
   spec.executables << "sublayer"
   spec.executables << "sublayer_simple_tdd_pair"
+  spec.executables << "sublayer_rtl_pair"
+  spec.executables << "sublayer_write_tests"
   spec.require_paths = ["lib"]
 
   spec.add_dependency "ruby-openai"

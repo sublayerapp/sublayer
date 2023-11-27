@@ -1,0 +1,24 @@
+#!/usr/bin/env ruby
+
+require "bundler/setup"
+require "colorize"
+require "sublayer"
+require "open3"
+require "pry"
+
+include Sublayer::Agents
+
+def write_tests(description_file, test_file)
+  results = Sublayer::Agents::DangerouslyModifyFileContentsAgent.new(
+    file_path: Dir.pwd + "/" + test_file,
+    description: "Write comprehensive tests given the description in #{File.read(description_file)}. You can leave any tests that are already written in place if they would correctly implement the component in the description. Don't work ahead, only do just enough to satisfy the description. We'll build the description up over time. Take YAGNI in to account.",
+    technologies: ["react", "react-testing-library", "javascript"]
+  ).execute
+
+  Sublayer::Agents::SaveFileContentsAgent.new(
+    file_contents: results,
+    file_path: Dir.pwd + "/" + test_file
+  ).execute
+end
+
+write_tests ARGV[0], ARGV[1]
