@@ -9,7 +9,7 @@ module Sublayer
 
       module ClassMethods
         def llm_result_format(type:, name:, description:)
-          output_function = Sublayer::Components::OutputFunction.new(type: type, name: name, description: description)
+          output_function = Sublayer::Components::OutputFunction.create(type: type, name: name, description: description)
           const_set(:OUTPUT_FUNCTION, output_function)
         end
       end
@@ -17,7 +17,6 @@ module Sublayer
       def llm_generate
         client = OpenAI::Client.new(access_token: ENV["OPENAI_API_KEY"])
 
-        puts "Generating..."
         response = client.chat(
           parameters: {
             model: "gpt-4-1106-preview",

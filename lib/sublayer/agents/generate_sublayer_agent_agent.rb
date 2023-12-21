@@ -15,7 +15,7 @@ module Sublayer
       end
 
       def execute
-        @results = human_assistance_with(llm_generate)
+        @results = llm_generate
       end
 
       def prompt

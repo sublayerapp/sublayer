@@ -4,7 +4,7 @@ RSpec.describe Sublayer::Components::OutputFunction do
   describe "#to_hash" do
     context "type: :single_string" do
       it "formats the hash output correctly" do
-        output_function = Sublayer::Components::OutputFunction.new(type: :single_string, name: "modified_file_contents", description: "the modified file contents")
+        output_function = Sublayer::Components::OutputFunction.create(type: :single_string, name: "modified_file_contents", description: "The modified file contents")
         expect(output_function.to_hash).to eq(
           {
             name: "modified_file_contents",
@@ -25,7 +25,7 @@ RSpec.describe Sublayer::Components::OutputFunction do
 
     context "type: :list_of_objects" do
       it "formats the hash output correctly" do
-        output_function = Sublayer::Components::OutputFunction.new(
+        output_function = Sublayer::Components::OutputFunction.create(
           type: :list_of_objects,
           name: "retrieved_steps",
           description: "The retrieved steps for performing the given coding task",

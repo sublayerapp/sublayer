@@ -2,6 +2,7 @@
 
 require 'active_support'
 require 'active_support/core_ext/hash/indifferent_access'
+require 'active_support/inflector'
 require_relative "sublayer/version"
 
 if !File.directory?(File.join(Dir.pwd, ".sublayer", "agents"))
@@ -11,8 +12,9 @@ end
 
 # List of directories to load files from
 LOAD_PATHS = [
-  File.join(__dir__, 'sublayer', 'capabilities'),
   File.join(__dir__, 'sublayer', 'components'),
+  File.join(__dir__, 'sublayer', 'components', 'output_function_formats'),
+  File.join(__dir__, 'sublayer', 'capabilities'),
   File.join(__dir__, 'sublayer', 'agents'),
   File.join(Dir.pwd, '.sublayer', 'agents')
 ]

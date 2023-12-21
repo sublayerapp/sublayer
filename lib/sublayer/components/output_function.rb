@@ -1,61 +1,22 @@
 module Sublayer
   module Components
     class OutputFunction
+      include Sublayer::Components
+
       attr_reader :name
 
-      def initialize(options)
-        @name = options[:name]
-        @description = options[:description].capitalize
-        @type = options[:type]
-        @structure = options[:structure]
+      def self.create(options)
+        ("Sublayer::Components::"+options[:type].to_s.camelize).constantize.new(options)
       end
 
       def to_hash
-        case @type
-        when :single_string
-          single_string_hash
-        when :list_of_objects
-          list_of_objects_hash
-        else
-          {}
-        end
+        # Raise not implemented error
+        raise NotImplementedError
       end
 
       private
 
-      def single_string_hash
-        {
-          name: @name,
-          description: @description,
-          parameters: {
-            type: "object",
-            properties: {
-              @name => {
-                type: "string",
-                description: @description
-              }
-            }
-          }
-        }
-      end
-
       def list_of_objects_hash
-        {
-          name: @name,
-          description: @description,
-          parameters: {
-            type: "object",
-            properties: {
-              @name.to_sym => {
-                type: "array",
-                items: {
-                  type: "object",
-                  properties: @structure.transform_values { |desc| { type: "string", description: desc.capitalize } }
-                }
-              }
-            }
-          }
-        }
       end
     end
   end
