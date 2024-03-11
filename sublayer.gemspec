@@ -32,6 +32,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "ruby-openai"
   spec.add_dependency "colorize"
   spec.add_dependency "activesupport"
+  spec.add_dependency "zeitwerk"
 
   spec.add_development_dependency "rspec", "~> 3.12"
   spec.add_development_dependency "pry", " ~> 0.14"

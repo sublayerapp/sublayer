@@ -1,6 +1,6 @@
 module Sublayer
   module Components
-    class ListOfObjects < OutputFunction
+    class ListOfObjects < OutputAdapter
       def initialize(options)
         @name = options[:name]
         @description = options[:description]

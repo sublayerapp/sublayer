@@ -5,6 +5,7 @@ PATH
       activesupport
       colorize
       ruby-openai
+      zeitwerk
 
 GEM
   remote: https://rubygems.org/
@@ -65,9 +66,11 @@ GEM
     ruby2_keywords (0.0.5)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
+    zeitwerk (2.6.13)
 
 PLATFORMS
   arm64-darwin-22
+  arm64-darwin-23
   x86_64-linux
 
 DEPENDENCIES
