@@ -9,8 +9,8 @@ Gem::Specification.new do |spec|
   spec.email = ["scott@sublayer.com"]
   spec.license = "MIT"
 
-  spec.summary = "A ruby library for interacting with and orchestrating AI agents"
-  spec.description = "A command line framework for building, generating, and orchestrating AI agents."
+  spec.summary = "A model-agnostic Ruby GenerativeAI DSL and Framework"
+  spec.description = "A DSL and framework for building AI powered applications through the use of Generators, Actions, Tasks, and Agents"
   spec.homepage = "https://www.sublayer.com"
   spec.required_ruby_version = ">= 2.6.0"
 
@@ -25,8 +25,6 @@ Gem::Specification.new do |spec|
     end
   end
 
-  spec.executables << "sublayer"
-  spec.executables << "sublayer_simple_tdd_pair"
   spec.require_paths = ["lib"]
 
   spec.add_dependency "ruby-openai"

@@ -5,22 +5,7 @@ module Sublayer
   module Providers
     class Groq
       def self.call(prompt:, output_adapter:)
-        response = HTTParty.post(
-          "https://api.groq.com/openai/v1/chat/completions",
-          headers: {
-            "Authorization": "Bearer #{ENV["GROQ_API_KEY"]}",
-            "Content-Type": "application/json"
-          },
-          body: {
-            "messages": [{"role": "user", "content": "#{system_prompt(output_adapter: output_adapter)}\n#{prompt}"}],
-            "model": Sublayer.configuration.ai_model
-          }
-        )
-      end
-
-      private
-      def system_prompt(output_adapter:)
-        <<-PROMPT
+        system_prompt = <<-PROMPT
         In this environment you have access to a set of tools you can use to answer the user's question.
 
         You may call them like this:
@@ -43,6 +28,25 @@ module Sublayer
         The entire response should be wrapped in a <response> tag.
         Any additional information not inside a tool call should go in a <scratch> tag.
         PROMPT
+
+        response = HTTParty.post(
+          "https://api.groq.com/openai/v1/chat/completions",
+          headers: {
+            "Authorization": "Bearer #{ENV["GROQ_API_KEY"]}",
+            "Content-Type": "application/json"
+          },
+          body: {
+            "messages": [{"role": "user", "content": "#{system_prompt}\n#{prompt}"}],
+            "model": Sublayer.configuration.ai_model
+          }.to_json
+        )
+
+        text_containing_xml = JSON.parse(response.body).dig("choices", 0, "message", "content")
+        xml = text_containing_xml.match(/\<response\>(.*?)\<\/response\>/m).to_s
+        response_xml = ::Nokogiri::XML(xml)
+        function_output = response_xml.at_xpath("//response/function_calls/invoke/parameters/command").children.to_s
+
+        return function_output
       end
     end
   end

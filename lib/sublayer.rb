@@ -7,6 +7,7 @@ require 'active_support/inflector'
 require 'ostruct'
 require "httparty"
 require "openai"
+require "nokogiri"
 require_relative "sublayer/version"
 
 loader = Zeitwerk::Loader.for_gem
