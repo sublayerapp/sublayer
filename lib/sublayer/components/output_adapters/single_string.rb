@@ -24,6 +24,20 @@ module Sublayer
             }
           }
         end
+
+        def to_xml
+          <<-XML
+            <tool_description>
+              <tool_name>#{@name}</tool_name>
+              <tool_description>#{@description}</tool_description>
+              <parameters>
+                <name>#{@name}</name>
+                <type>string</type>
+                <description>#{@description}</description>
+              </parameters>
+            </tool_description>
+          XML
+        end
       end
     end
   end

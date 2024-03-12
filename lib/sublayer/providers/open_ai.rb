@@ -1,4 +1,5 @@
-require "openai"
+# Sublayer.configuration.ai_provider = Sublayer::Providers::OpenAI
+# Sublayer.configuration.ai_model = "gpt-4-turbo-preview"
 
 module Sublayer
   module Providers

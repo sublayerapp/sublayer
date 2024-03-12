@@ -4,6 +4,8 @@ PATH
     sublayer (0.0.1)
       activesupport
       colorize
+      httparty
+      nokogiri
       ruby-openai
       zeitwerk
 
@@ -37,15 +39,25 @@ GEM
     faraday-multipart (1.0.4)
       multipart-post (~> 2)
     faraday-net_http (3.0.2)
+    httparty (0.21.0)
+      mini_mime (>= 1.0.0)
+      multi_xml (>= 0.5.2)
     i18n (1.14.1)
       concurrent-ruby (~> 1.0)
     method_source (1.0.0)
+    mini_mime (1.1.5)
     minitest (5.20.0)
+    multi_xml (0.6.0)
     multipart-post (2.3.0)
     mutex_m (0.1.2)
+    nokogiri (1.16.2-arm64-darwin)
+      racc (~> 1.4)
+    nokogiri (1.16.2-x86_64-linux)
+      racc (~> 1.4)
     pry (0.14.1)
       coderay (~> 1.1)
       method_source (~> 1.0)
+    racc (1.7.3)
     rspec (3.12.0)
       rspec-core (~> 3.12.0)
       rspec-expectations (~> 3.12.0)

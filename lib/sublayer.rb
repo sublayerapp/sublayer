@@ -5,6 +5,8 @@ require 'active_support'
 require 'active_support/core_ext/hash/indifferent_access'
 require 'active_support/inflector'
 require 'ostruct'
+require "httparty"
+require "openai"
 require_relative "sublayer/version"
 
 loader = Zeitwerk::Loader.for_gem
