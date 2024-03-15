@@ -4,29 +4,25 @@
 module Sublayer
   module Providers
     class Local
-      def initialize(prompt:, output_adapter:)
+      def self.call(prompt:, output_adapter:)
         system_prompt = <<-PROMPT
-        In this environment you have access to a set of tools you can use to answer the user's question.
+        You are a function calling AI agent
+        You can call only one function at a time
+        You are provided with function signatures within <tools></tools> XML tags.
 
-        You may call them like this:
-        <function_calls>
-        <invoke>
-          <tool_name>$TOOL_NAME</tool_name>
-          <parameters>
-          <#{output_adapter.name}>value</#{output_adapter.name}>
-          ...
-          </parameters>
-        </invoke>
-        </function_calls>
+        Please call a function and wait for results to be provided to you in the next iteration.
+        Don't make assumptions about what values to plug into function arguments.
 
-        Here are the tools available:
+        Here are the available tools:
         <tools>
-        #{output_adapter.to_xml}
+        #{output_adapter.to_hash.to_json}
         </tools>
 
-        Respond only with valid xml.
-        The entire response should be wrapped in a <response> tag.
-        Any additional information not inside a tool call should go in a <scratch> tag.
+        For the function call, return a json object with function name and arguments within <tool_call></tool_call> XML tags as follows:
+
+        <tool_call>
+        {"arguments": <args-dict>, "name": <function-name>}
+        </tool_call>
         PROMPT
 
         response = HTTParty.post(
@@ -45,9 +41,8 @@ module Sublayer
         )
 
         text_containing_xml = JSON.parse(response.body).dig("choices", 0, "message", "content")
-        xml = text_containing_xml.match(/\<response\>(.*?)\<\/response\>/m).to_s
-        response_xml = ::Nokogiri::XML(xml)
-        function_output = response_xml.at_xpath("//parameters/#{output_adapter.name}").children.to_s
+        results = JSON.parse(::Nokogiri::XML(text_containing_xml).at_xpath("//tool_call").children.to_s.strip)
+        function_output = results["arguments"][output_adapter.name]
 
         return function_output
       end

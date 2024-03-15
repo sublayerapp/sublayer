@@ -65,14 +65,18 @@ Sublayer.configuration.ai_provider = Sublayer::Providers::Groq
 Sublayer.configuration.ai_model = "mixtral-8x7b-32768"
 ```
 
-### Local
+### Local (Experimental with Hermes2)
+
+*Tested against the latest [Hermes 2 Mistral
+Model](https://huggingface.co/NousResearch/Hermes-2-Pro-Mistral-7B-GGUF)*
 
 Support for running a local model and serving an API on https://localhost:8080
 
 The simplest way to do this is to download 
 [llamafile](https://github.com/Mozilla-Ocho/llamafile) and download one of the
-server llamafiles they provide. We've also tested with [this Mixtral
-model](https://huggingface.co/NousResearch/Nous-Hermes-2-Mixtral-8x7B-DPO-GGUF) from
+server llamafiles they provide.
+
+We've also tested with [Hermes 2 Mistral](https://huggingface.co/NousResearch/Hermes-2-Pro-Mistral-7B-GGUF) from
 [Nous
 Research](https://nousresearch.com/).
 
