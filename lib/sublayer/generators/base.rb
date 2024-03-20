@@ -1,4 +1,3 @@
-require "pry"
 module Sublayer
   module Generators
     class Base
