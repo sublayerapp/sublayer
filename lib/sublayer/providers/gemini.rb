@@ -15,6 +15,8 @@ module Sublayer
             "Content-Type" => "application/json"
           })
 
+        raise "Error generating with Gemini, error: #{response.body}" unless response.success?
+
         part = response.dig('candidates', 0, 'content', 'parts', 0)
         raise "No function called" unless part['functionCall']
 
