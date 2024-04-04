@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    sublayer (0.0.1)
+    sublayer (0.0.4)
       activesupport
       colorize
       httparty
@@ -24,6 +24,20 @@ GEM
       tzinfo (~> 2.0)
     base64 (0.1.1)
     bigdecimal (3.1.4)
+    clag (0.0.7)
+      activesupport
+      cli-kit (~> 5)
+      cli-ui (~> 2.2.3)
+      clipboard (~> 1.3)
+      httparty (~> 0.21)
+      nokogiri
+      pry
+      ruby-openai (~> 6)
+      sublayer (> 0.0.1)
+    cli-kit (5.0.0)
+      cli-ui (~> 2.0)
+    cli-ui (2.2.3)
+    clipboard (1.3.6)
     coderay (1.1.3)
     colorize (1.1.0)
     concurrent-ruby (1.2.2)
@@ -71,8 +85,8 @@ GEM
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.12.0)
     rspec-support (3.12.1)
-    ruby-openai (5.2.0)
-      event_stream_parser (>= 0.3.0, < 1.0.0)
+    ruby-openai (6.3.1)
+      event_stream_parser (>= 0.3.0, < 2.0.0)
       faraday (>= 1)
       faraday-multipart (>= 1)
     ruby2_keywords (0.0.5)
@@ -86,6 +100,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  clag
   pry (~> 0.14)
   rspec (~> 3.12)
   sublayer!
