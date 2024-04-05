@@ -6,27 +6,27 @@ module Sublayer
     class Groq
       def self.call(prompt:, output_adapter:)
         system_prompt = <<-PROMPT
-        In this environment you have access to a set of tools you can use to answer the user's question.
+        You have access to a set of tools to answer the prompt.
 
-        You may call them like this:
-        <function_calls>
-        <invoke>
-          <tool_name>$TOOL_NAME</tool_name>
-          <parameters>
-          <#{output_adapter.name}>value</#{output_adapter.name}>
-          ...
-          </parameters>
-        </invoke>
-        </function_calls>
+        You may call tools like this:
+        <tool_calls>
+          <tool_call>
+            <tool_name>$TOOL_NAME</tool_name>
+            <parameters>
+              <#{output_adapter.name}>$VALUE</#{output_adapter.name}>
+              ...
+            </parameters>
+          </tool_call>
+        </tool_calls>
 
         Here are the tools available:
         <tools>
-        #{output_adapter.to_xml}
+          #{output_adapter.to_xml}
         </tools>
 
         Respond only with valid xml.
         The entire response should be wrapped in a <response> tag.
-        Any additional information not inside a tool call should go in a <scratch> tag.
+        Your response should call a tool inside a <tool_calls> tag.
         PROMPT
 
         response = HTTParty.post(
@@ -41,12 +41,13 @@ module Sublayer
           }.to_json
         )
 
-        text_containing_xml = JSON.parse(response.body).dig("choices", 0, "message", "content")
-        xml = text_containing_xml.match(/\<response\>(.*?)\<\/response\>/m).to_s
-        response_xml = ::Nokogiri::XML(xml)
-        function_output = response_xml.at_xpath("//response/function_calls/invoke/parameters/command").children.to_s
+        text_containing_xml = response.dig("choices", 0, "message", "content")
+        # xml = text_containing_xml.match(/\<response\>(.*?)\<\/response\>/m).to_s
+        # response_xml = ::Nokogiri::XML(xml)
+        tool_output = text_containing_xml.match(/\<#{output_adapter.name}\>(.*?)\<\/#{output_adapter.name}\>/m)[1]
+        # function_output = response_xml.at_xpath("//response/function_calls/invoke/parameters/#{output_adapter.name}").children.to_s
 
-        return function_output
+        return tool_output
       end
     end
   end

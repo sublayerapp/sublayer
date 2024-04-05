@@ -44,10 +44,9 @@ module Sublayer
         raise "Error generating with Claude, error: #{response.body}" unless response.code == 200
 
         text_containing_xml = JSON.parse(response.body).dig("content", 0, "text")
-        xml = text_containing_xml.match(/\<response\>(.*?)\<\/response\>/m).to_s
-        response_xml = ::Nokogiri::XML(xml)
-        function_output = response_xml.at_xpath("//response/function_calls/invoke/parameters/#{output_adapter.name}").children.to_s
+        function_output = Nokogiri::HTML.parse(text_containing_xml.match(/\<#{output_adapter.name}\>(.*?)\<\/#{output_adapter.name}\>/m)[1]).text
 
+        raise "Claude did not format response, error: #{response.body}" unless function_output
         return function_output
       end
     end

@@ -15,13 +15,13 @@ module Sublayer
 
         Here are the available tools:
         <tools>
-        #{output_adapter.to_hash.to_json}
+        { "type": "function", "function": #{output_adapter.to_hash.to_json} }
         </tools>
 
         For the function call, return a json object with function name and arguments within <tool_call></tool_call> XML tags as follows:
 
         <tool_call>
-        {"arguments": <args-dict>, "name": <function-name>}
+        {"arguments": { "#{output_adapter.name}": value, ... }}
         </tool_call>
         PROMPT
 
@@ -34,14 +34,14 @@ module Sublayer
           body: {
             "model": Sublayer.configuration.ai_model,
             "messages": [
-              { "role": "system", "content": system_prompt },
-              { "role": "user", "content": prompt }
+              { "role": "system", "content": "#{system_prompt}" },
+              { "role": "user", "content": "#{prompt}" }
             ]
           }.to_json
         )
 
-        text_containing_xml = JSON.parse(response.body).dig("choices", 0, "message", "content")
-        results = JSON.parse(::Nokogiri::XML(text_containing_xml).at_xpath("//tool_call").children.to_s.strip)
+        text_containing_xml = response.dig("choices", 0, "message", "content")
+        results = JSON.parse(text_containing_xml.match(/\<tool_call\>(.*?)\<\/tool_call\>/m)[1])
         function_output = results["arguments"][output_adapter.name]
 
         return function_output
