@@ -6,23 +6,23 @@ module Sublayer
     class Local
       def self.call(prompt:, output_adapter:)
         system_prompt = <<-PROMPT
-        You are a function calling AI agent
-        You can call only one function at a time
-        You are provided with function signatures within <tools></tools> XML tags.
+        You have access to a set of tools to respond to the prompt.
 
-        Please call a function and wait for results to be provided to you in the next iteration.
-        Don't make assumptions about what values to plug into function arguments.
+        You may call a tool with xml like this:
+        <parameters>
+          <#{output_adapter.name}>$VALUE</#{output_adapter.name}>
+          ...
+        </parameters>
 
-        Here are the available tools:
+        Here are descriptions of the available tools:
         <tools>
-        #{output_adapter.to_hash.to_json}
+          <tool>
+            #{output_adapter.to_xml}
+          </tool>
         </tools>
 
-        For the function call, return a json object with function name and arguments within <tool_call></tool_call> XML tags as follows:
-
-        <tool_call>
-        {"arguments": <args-dict>, "name": <function-name>}
-        </tool_call>
+        Respond only with valid xml.
+        Your response should call a tool with xml inside a <parameters> tag.
         PROMPT
 
         response = HTTParty.post(
@@ -34,17 +34,16 @@ module Sublayer
           body: {
             "model": Sublayer.configuration.ai_model,
             "messages": [
-              { "role": "system", "content": system_prompt },
-              { "role": "user", "content": prompt }
+              { "role": "user", "content": "#{system_prompt}\n#{prompt}}" }
             ]
           }.to_json
         )
 
-        text_containing_xml = JSON.parse(response.body).dig("choices", 0, "message", "content")
-        results = JSON.parse(::Nokogiri::XML(text_containing_xml).at_xpath("//tool_call").children.to_s.strip)
-        function_output = results["arguments"][output_adapter.name]
+        text_containing_xml = response.dig("choices", 0, "message", "content")
+        tool_output = Nokogiri::HTML.parse(text_containing_xml.match(/\<#{output_adapter.name}\>(.*?)\<\/#{output_adapter.name}\>/m)[1]).text
+        raise "The response was not formatted correctly: #{response.body}" unless tool_output
 
-        return function_output
+        return tool_output
       end
     end
   end
