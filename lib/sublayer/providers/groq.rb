@@ -42,7 +42,7 @@ module Sublayer
         )
 
         text_containing_xml = response.dig("choices", 0, "message", "content")
-        tool_output = text_containing_xml.match(/\<#{output_adapter.name}\>(.*?)\<\/#{output_adapter.name}\>/m)[1]
+        tool_output = Nokogiri::HTML.parse(text_containing_xml.match(/\<#{output_adapter.name}\>(.*?)\<\/#{output_adapter.name}\>/m)[1]).text
         raise "Groq did not format response correctly, error: #{response.body}" unless tool_output
 
         return tool_output

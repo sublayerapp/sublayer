@@ -44,7 +44,7 @@ module Sublayer
         raise "Error generating with Gemini, error: #{response.body}" unless response.success?
 
         text_containing_xml = response.dig('candidates', 0, 'content', 'parts', 0, 'text')
-        tool_output = text_containing_xml.match(/\<#{output_adapter.name}\>(.*?)\<\/#{output_adapter.name}\>/m)[1]
+        tool_output = Nokogiri::HTML.parse(text_containing_xml.match(/\<#{output_adapter.name}\>(.*?)\<\/#{output_adapter.name}\>/m)[1]).text
 
         raise "Gemini did not format response, error: #{response.body}" unless tool_output
         return tool_output
