@@ -11,10 +11,12 @@ Gem::Specification.new do |spec|
 
   spec.summary = "A model-agnostic Ruby GenerativeAI DSL and Framework"
   spec.description = "A DSL and framework for building AI powered applications through the use of Generators, Actions, Tasks, and Agents"
-  spec.homepage = "https://www.sublayer.com"
+  spec.homepage = "https://docs.sublayer.com"
   spec.required_ruby_version = ">= 2.6.0"
 
-  spec.metadata["homepage_uri"] = spec.homepage
+  spec.metadata["homepage_uri"] = "https://docs.sublayer.com"
+  spec.metadata["documentation_uri"] = "https://docs.sublayer.com"
+  spec.metadata["bug_tracker_uri"] = "https://github.com/sublayerapp/sublayer/issues"
 
   # Specify which files should be added to the gem when it is released.
   # The `git ls-files -z` loads the files in the RubyGem that have been added into git.

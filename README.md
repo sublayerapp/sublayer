@@ -1,16 +1,22 @@
 # Sublayer
 
-A model-agnostic Ruby Generative AI DSL and framework. Provides base classes for
+A model-agnostic Ruby AI Agent framework. Provides base classes for
 building Generators, Actions, Tasks, and Agents that can be used to build AI
 powered applications in Ruby.
+
+For more detailed documentation visit our documentation site: [https://docs.sublayer.com](https://docs.sublayer.com).
 
 ## Installation
 
 Install the gem by running the following commands:
 
-    $ bundle
-    $ gem build sublayer.gemspec
-    $ gem install sublayer-0.0.1.gem
+    $ gem install sublayer
+
+Or add this line to your application's Gemfile:
+
+```ruby
+gem 'sublayer'
+```
 
 ## Choose your AI Model
 
