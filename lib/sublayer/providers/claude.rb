@@ -4,7 +4,7 @@
 module Sublayer
   module Providers
     class Claude
-      def self.call(prompt:, output_adapter:)
+      def self.call(prompt:, output_adapter:, images: [])
         system_prompt = <<-PROMPT
         In this environment you have access to a set of tools you can use to answer the user's question.
 

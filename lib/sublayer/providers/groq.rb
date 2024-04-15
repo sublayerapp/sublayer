@@ -4,7 +4,7 @@
 module Sublayer
   module Providers
     class Groq
-      def self.call(prompt:, output_adapter:)
+      def self.call(prompt:, output_adapter:, images: [])
         system_prompt = <<-PROMPT
         You have access to a set of tools to answer the prompt.
 
