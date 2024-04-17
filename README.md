@@ -26,7 +26,7 @@ Sublayer is model-agnostic and can be used with any AI model. Below are the
 
 Expects you to have an OpenAI API key set in the `OPENAI_API_KEY` environment variable.
 
-Visit [OpenAI](https://openai.com/product) to get an API key. 
+Visit [OpenAI](https://openai.com/product) to get an API key.
 
 Usage:
 ```ruby
@@ -133,12 +133,12 @@ Generators are responsible for generating specific outputs based on input data.
 They focus on a single generation task and do not perform any actions or complex
 decision-making. Generators are the building blocks of the Sublayer framework.
 
-Examples (in the /examples/ directory):
-- CodeFromDescriptionGenerator: Generates code based on a description and the
+Examples (in the `/lib/sublayer/generators/examples` directory):
+- `CodeFromDescriptionGenerator`: Generates code based on a description and the
   technologies used.
-- DescriptionFromCodeGenerator: Generates a description of the code passed in to
+- `DescriptionFromCodeGenerator`: Generates a description of the code passed in to
   it.
-- CodeFromBlueprintGenerator: Generates code based on a blueprint, a blueprint
+- `CodeFromBlueprintGenerator`: Generates code based on a blueprint, a blueprint
   description, and a description of the desired code.
 
 
