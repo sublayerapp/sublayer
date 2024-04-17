@@ -1,0 +1,93 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.anthropic.com/v1/messages
+    body:
+      encoding: UTF-8
+      string: '{"model":"claude-3-haiku-20240307","max_tokens":4096,"system":"        In
+        this environment you have access to a set of tools you can use to answer the
+        user''s question.\n\n        You may call them like this:\n        <function_calls>\n        <invoke>\n          <tool_name>$TOOL_NAME</tool_name>\n          <parameters>\n          <$PARAMETER_NAME>$PARAMETER_VALUE</$PARAMETER_NAME>\n          ...\n          </parameters>\n        </invoke>\n        </function_calls>\n\n        Here
+        are the tools available:\n        <tools>\n                    <tool_description>\n              <tool_name>generated_code</tool_name>\n              <tool_description>The
+        generated code in the requested language</tool_description>\n              <parameters>\n                <name>generated_code</name>\n                <type>string</type>\n                <description>The
+        generated code in the requested language</description>\n              </parameters>\n            </tool_description>\n\n        </tools>\n\n        Respond
+        only with valid xml. The entire response should be wrapped in a <response>
+        tag. Any additional information not inside a tool call should go in a <scratch>
+        tag.\n","messages":[{"role":"user","content":"        You are an expert programmer
+        in ruby.\n\n        You are tasked with writing code using the following technologies:
+        ruby.\n\n        The description of the task is a hello world app where I
+        pass --who argument to set the ''world'' value using optparser\n\n        Take
+        a deep breath and think step by step before you start coding.\n"}]}'
+    headers:
+      X-Api-Key:
+      - "<ANTHROPIC_API_KEY>"
+      Anthropic-Version:
+      - '2023-06-01'
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 17 Apr 2024 07:46:29 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Anthropic-Ratelimit-Requests-Limit:
+      - '5'
+      Anthropic-Ratelimit-Requests-Remaining:
+      - '4'
+      Anthropic-Ratelimit-Requests-Reset:
+      - '2024-04-17T07:47:17Z'
+      Anthropic-Ratelimit-Tokens-Limit:
+      - '25000'
+      Anthropic-Ratelimit-Tokens-Remaining:
+      - '28000'
+      Anthropic-Ratelimit-Tokens-Reset:
+      - '2024-04-17T07:47:17Z'
+      Request-Id:
+      - req_01RUU9V4gzxcuYodiCfP1LiB
+      X-Cloud-Trace-Context:
+      - ad44df78b085c24745aaffe813684c1b
+      Via:
+      - 1.1 google
+      Cf-Cache-Status:
+      - DYNAMIC
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 875acd0eabcb7820-BNE
+    body:
+      encoding: ASCII-8BIT
+      string: '{"id":"msg_01GgNk2gv35JJvWQ3g8kXWXp","type":"message","role":"assistant","model":"claude-3-haiku-20240307","stop_sequence":null,"usage":{"input_tokens":333,"output_tokens":454},"content":[{"type":"text","text":"<response>\n<scratch>\nOkay,
+        let''s break this down step-by-step:\n\n1. We need to create a Ruby script
+        that implements a \"hello world\" program.\n2. We want to allow the user to
+        pass in a --who argument to set the \"world\" value.\n3. We''ll use the OptionParser
+        library in Ruby to handle the command-line arguments.\n</scratch>\n\n<invoke>\n  <tool_name>generated_code</tool_name>\n  <parameters>\n    <generated_code>\n#!/usr/bin/env
+        ruby\n\nrequire ''optparse''\n\noptions = {}\nOptionParser.new do |opts|\n  opts.banner
+        = \"Usage: hello.rb [options]\"\n\n  opts.on(\"-w\", \"--who PERSON\", \"Name
+        of the person to greet\") do |person|\n    options[:who] = person\n  end\nend.parse!\n\nwho
+        = options[:who] || \"world\"\nputs \"Hello, #{who}!\"\n    </generated_code>\n  </parameters>\n</invoke>\n</response>\n\nHere''s
+        how the code works:\n\n1. We start by requiring the ''optparse'' library,
+        which will help us handle the command-line arguments.\n2. We create an empty
+        `options` hash to store the parsed arguments.\n3. We create a new `OptionParser`
+        object and configure it to accept a `-w` or `--who` option, which will store
+        the value in the `:who` key of the `options` hash.\n4. We then parse the command-line
+        arguments using `OptionParser.parse!`, which will populate the `options` hash.\n5.
+        Finally, we construct the greeting message, using the value of `:who` if it
+        was provided, or defaulting to \"world\" if not.\n\nYou can run this script
+        like:\n\n```\nruby hello.rb --who Alice\n# Output: Hello, Alice!\n\nruby hello.rb\n#
+        Output: Hello, world!\n```"}],"stop_reason":"end_turn"}'
+  recorded_at: Wed, 17 Apr 2024 07:46:29 GMT
+recorded_with: VCR 6.2.0
