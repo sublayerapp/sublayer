@@ -1,0 +1,75 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.anthropic.com/v1/messages
+    body:
+      encoding: UTF-8
+      string: '{"model":"claude-3-haiku-20240307","max_tokens":4096,"system":"        In
+        this environment you have access to a set of tools you can use to answer the
+        user''s question.\n\n        You may call them like this:\n        <function_calls>\n        <invoke>\n          <tool_name>$TOOL_NAME</tool_name>\n          <parameters>\n          <$PARAMETER_NAME>$PARAMETER_VALUE</$PARAMETER_NAME>\n          ...\n          </parameters>\n        </invoke>\n        </function_calls>\n\n        Here
+        are the tools available:\n        <tools>\n                    <tool_description>\n              <tool_name>valid_json</tool_name>\n              <tool_description>The
+        valid JSON string</tool_description>\n              <parameters>\n                <name>valid_json</name>\n                <type>string</type>\n                <description>The
+        valid JSON string</description>\n              </parameters>\n            </tool_description>\n\n        </tools>\n\n        Respond
+        only with valid xml. The entire response should be wrapped in a <response>
+        tag. Any additional information not inside a tool call should go in a <scratch>
+        tag.\n","messages":[{"role":"user","content":"    You are an expert in JSON
+        parsing.\n\n    The given string is not a valid JSON: {\"valid\": \"json\"}\n\n    Please
+        fix this and produce a valid JSON.\n"}]}'
+    headers:
+      X-Api-Key:
+      - "<ANTHROPIC_API_KEY>"
+      Anthropic-Version:
+      - '2023-06-01'
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 17 Apr 2024 09:38:57 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Anthropic-Ratelimit-Requests-Limit:
+      - '5'
+      Anthropic-Ratelimit-Requests-Remaining:
+      - '4'
+      Anthropic-Ratelimit-Requests-Reset:
+      - '2024-04-17T09:39:17Z'
+      Anthropic-Ratelimit-Tokens-Limit:
+      - '25000'
+      Anthropic-Ratelimit-Tokens-Remaining:
+      - '25000'
+      Anthropic-Ratelimit-Tokens-Reset:
+      - '2024-04-17T09:39:17Z'
+      Request-Id:
+      - req_01Ww4uBRYtEorT98nSq3joqf
+      X-Cloud-Trace-Context:
+      - 8839facf88c21be0de093b41351fe70c
+      Via:
+      - 1.1 google
+      Cf-Cache-Status:
+      - DYNAMIC
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 875b71ee8f474877-BNE
+    body:
+      encoding: ASCII-8BIT
+      string: '{"id":"msg_013QwFfzSs3LghVehVPokyTU","type":"message","role":"assistant","model":"claude-3-haiku-20240307","stop_sequence":null,"usage":{"input_tokens":294,"output_tokens":97},"content":[{"type":"text","text":"<response>\n<function_calls>\n<invoke>\n  <tool_name>valid_json</tool_name>\n  <parameters>\n  <valid_json>{\"valid\":
+        \"json\"}</valid_json>\n  </parameters>\n</invoke>\n</function_calls>\n\n<scratch>\nThe
+        provided string is already a valid JSON, no further action is required.\n</scratch>\n</response>"}],"stop_reason":"end_turn"}'
+  recorded_at: Wed, 17 Apr 2024 09:38:57 GMT
+recorded_with: VCR 6.2.0
