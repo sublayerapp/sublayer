@@ -30,7 +30,7 @@ module Sublayer
         response = HTTParty.post(
           "https://api.anthropic.com/v1/messages",
           headers: {
-            "x-api-key": ENV["ANTHROPIC_API_KEY"],
+            "x-api-key": ENV.fetch("ANTHROPIC_API_KEY"),
             "anthropic-version": "2023-06-01",
             "content-type": "application/json"
           },

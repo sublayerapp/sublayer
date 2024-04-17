@@ -5,7 +5,7 @@ module Sublayer
   module Providers
     class OpenAI
       def self.call(prompt:, output_adapter:)
-        client = ::OpenAI::Client.new(access_token: ENV["OPENAI_API_KEY"])
+        client = ::OpenAI::Client.new(access_token: ENV.fetch("OPENAI_API_KEY"))
 
         response = client.chat(
           parameters: {

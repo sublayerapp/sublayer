@@ -1,0 +1,110 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.openai.com/v1/chat/completions
+    body:
+      encoding: UTF-8
+      string: '{"model":"gpt-3.5-turbo","messages":[{"role":"user","content":"What
+        is the meaning of life? Give it to me as a number. Just a number. You can
+        do it."}],"function_call":{"name":"openai_response"},"functions":[{"name":"openai_response","description":"The
+        response from OpenAI","parameters":{"type":"object","properties":{"openai_response":{"type":"string","description":"The
+        response from OpenAI"}}}}]}'
+    headers:
+      Content-Type:
+      - application/json
+      Authorization:
+      - Bearer <OPENAI_API_KEY>
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 17 Apr 2024 05:02:21 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Origin:
+      - "*"
+      Cache-Control:
+      - no-cache, must-revalidate
+      Openai-Model:
+      - gpt-3.5-turbo-0125
+      Openai-Organization:
+      - user-ujpyqwcjd0dls5k3amdh1vei
+      Openai-Processing-Ms:
+      - '318'
+      Openai-Version:
+      - '2020-10-01'
+      Strict-Transport-Security:
+      - max-age=15724800; includeSubDomains
+      X-Ratelimit-Limit-Requests:
+      - '5000'
+      X-Ratelimit-Limit-Tokens:
+      - '160000'
+      X-Ratelimit-Remaining-Requests:
+      - '4999'
+      X-Ratelimit-Remaining-Tokens:
+      - '159961'
+      X-Ratelimit-Reset-Requests:
+      - 12ms
+      X-Ratelimit-Reset-Tokens:
+      - 14ms
+      X-Request-Id:
+      - req_30761c9e246d78a84c8e2e3196fe360a
+      Cf-Cache-Status:
+      - DYNAMIC
+      Set-Cookie:
+      - __cf_bm=8lPtRSJyaUG66kfxZaSYQFOJXwM8PmBgr8VLQCpkYqI-1713330141-1.0.1.1-ZVeD_rRGAEHyDbJlKLPQIN20mA.7VOnvUlngvmGqZ9Fsj0ON3tpokUDBtNUyrdKZzzD7xjkqSkAMoLT5vNcrZQ;
+        path=/; expires=Wed, 17-Apr-24 05:32:21 GMT; domain=.api.openai.com; HttpOnly;
+        Secure; SameSite=None
+      - _cfuvid=DGN4u5gc_JtpSMUJzy7a3ak1napGOzHzabnHjHACTyM-1713330141686-0.0.1.1-604800000;
+        path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 8759dcc5fbfca826-SYD
+      Alt-Svc:
+      - h3=":443"; ma=86400
+    body:
+      encoding: ASCII-8BIT
+      string: |
+        {
+          "id": "chatcmpl-9Erj3CjI3Zll4trmTUx3Zm7jkrp0p",
+          "object": "chat.completion",
+          "created": 1713330141,
+          "model": "gpt-3.5-turbo-0125",
+          "choices": [
+            {
+              "index": 0,
+              "message": {
+                "role": "assistant",
+                "content": null,
+                "function_call": {
+                  "name": "openai_response",
+                  "arguments": "{\"openai_response\":\"42\"}"
+                }
+              },
+              "logprobs": null,
+              "finish_reason": "stop"
+            }
+          ],
+          "usage": {
+            "prompt_tokens": 89,
+            "completion_tokens": 7,
+            "total_tokens": 96
+          },
+          "system_fingerprint": "fp_c2295e73ad"
+        }
+  recorded_at: Wed, 17 Apr 2024 05:02:21 GMT
+recorded_with: VCR 6.2.0
