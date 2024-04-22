@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    sublayer (0.0.6)
+    sublayer (0.0.7)
       activesupport
       colorize
       httparty
