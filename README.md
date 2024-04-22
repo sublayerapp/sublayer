@@ -6,6 +6,20 @@ powered applications in Ruby.
 
 For more detailed documentation visit our documentation site: [https://docs.sublayer.com](https://docs.sublayer.com).
 
+## Note on Versioning
+
+Pre-1.0 we anticipate many breaking changes to the API. Our current plan is to
+keep breaking changes to minor, 0.x releases, and patch releases (0.x.y) will be used
+for new features and bug fixes.
+
+To maintain stability in your application, we recommend pinning the version of
+Sublayer in your Gemfile to a specific minor version. For example, to pin to
+version 0.0.x, you would add the following line to your Gemfile:
+
+```ruby
+gem 'sublayer', '~> 0.0'
+```
+
 ## Installation
 
 Install the gem by running the following commands:
@@ -15,7 +29,7 @@ Install the gem by running the following commands:
 Or add this line to your application's Gemfile:
 
 ```ruby
-gem 'sublayer'
+gem 'sublayer', '~> 0.0'
 ```
 
 ## Choose your AI Model
