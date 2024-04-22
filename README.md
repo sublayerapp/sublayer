@@ -14,10 +14,10 @@ for new features and bug fixes.
 
 To maintain stability in your application, we recommend pinning the version of
 Sublayer in your Gemfile to a specific minor version. For example, to pin to
-version 0.0.x, you would add the following line to your Gemfile:
+version 0.1.x, you would add the following line to your Gemfile:
 
 ```ruby
-gem 'sublayer', '~> 0.0'
+gem 'sublayer', '~> 0.1'
 ```
 
 ## Installation
@@ -29,7 +29,7 @@ Install the gem by running the following commands:
 Or add this line to your application's Gemfile:
 
 ```ruby
-gem 'sublayer', '~> 0.0'
+gem 'sublayer', '~> 0.1'
 ```
 
 ## Choose your AI Model
