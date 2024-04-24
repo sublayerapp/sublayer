@@ -5,10 +5,11 @@ http_interactions:
     uri: https://api.openai.com/v1/chat/completions
     body:
       encoding: UTF-8
-      string: '{"model":"gpt-4-turbo","messages":[{"role":"user","content":"What is
-        the meaning of life, the universe, and everything?"}],"tool_choice":{"type":"function","function":{"name":"the_answer"}},"tools":[{"type":"function","function":{"name":"the_answer","description":"The
-        answer to the given question","parameters":{"type":"object","properties":{"the_answer":{"type":"string","description":"The
-        answer to the given question"}}},"required":[["the_answer"]]}}]}'
+      string: '{"model":"gpt-4-turbo","messages":[{"role":"user","content":"    You
+        are an expert in JSON parsing.\n\n    The given string is not a valid JSON:
+        {\"valid\": \"json\"}\n\n    Please fix this and produce a valid JSON.\n"}],"tool_choice":{"type":"function","function":{"name":"valid_json"}},"tools":[{"type":"function","function":{"name":"valid_json","description":"The
+        valid JSON string","parameters":{"type":"object","properties":{"valid_json":{"type":"string","description":"The
+        valid JSON string"}}},"required":[["valid_json"]]}}]}'
     headers:
       Content-Type:
       - application/json
@@ -26,7 +27,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Wed, 24 Apr 2024 01:50:55 GMT
+      - Wed, 24 Apr 2024 01:36:11 GMT
       Content-Type:
       - application/json
       Transfer-Encoding:
@@ -36,7 +37,7 @@ http_interactions:
       Openai-Organization:
       - sublayer
       Openai-Processing-Ms:
-      - '720'
+      - '1144'
       Openai-Version:
       - '2020-10-01'
       Strict-Transport-Security:
@@ -48,34 +49,34 @@ http_interactions:
       X-Ratelimit-Remaining-Requests:
       - '9999'
       X-Ratelimit-Remaining-Tokens:
-      - '799968'
+      - '799945'
       X-Ratelimit-Reset-Requests:
       - 6ms
       X-Ratelimit-Reset-Tokens:
-      - 2ms
+      - 4ms
       X-Request-Id:
-      - req_3b22f484ef645d8ca3314f18aed6acaf
+      - req_ff1750096f7183e1076f106637b81e21
       Cf-Cache-Status:
       - DYNAMIC
       Set-Cookie:
-      - __cf_bm=szh1p8P0sR6PLsWWlFDfwJd34hoe1BENJCJJGmvVqpo-1713923455-1.0.1.1-pa_hB1CW55PxE1gx7cUzricFxZPwBhOA0tQBCZANoAlI2b_8sjfGP36f7kGV4.ZYMdeJ43cqcVCgg4wbAcLTIg;
-        path=/; expires=Wed, 24-Apr-24 02:20:55 GMT; domain=.api.openai.com; HttpOnly;
+      - __cf_bm=0CgCuMzvE_ijgJVQR1z6urUBwamnRHeFx.KaYgxgexo-1713922571-1.0.1.1-6x0hgEUyZMmCqQYoYHtroWtWR5K54BMo_Zd_.AxQBFIFdINZ8fE3YZrDfR3q4RsLtpTdZH2BGaSz0Wr7yK097g;
+        path=/; expires=Wed, 24-Apr-24 02:06:11 GMT; domain=.api.openai.com; HttpOnly;
         Secure; SameSite=None
-      - _cfuvid=ieBXW2MtSjLGzAwJ6xLN70z3ojMybwxfxlIdevsugNI-1713923455079-0.0.1.1-604800000;
+      - _cfuvid=Wr4Qs_.fCSXqLzdy.H2sAEAbpoCIvQ3YXzGvWqXSy8w-1713922571664-0.0.1.1-604800000;
         path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None
       Server:
       - cloudflare
       Cf-Ray:
-      - 879271f4f90c4234-EWR
+      - 87925c60eee75e7f-EWR
       Alt-Svc:
       - h3=":443"; ma=86400
     body:
       encoding: ASCII-8BIT
       string: |
         {
-          "id": "chatcmpl-9HM4cEEcdopZR54EkLxsXGO21kkP8",
+          "id": "chatcmpl-9HLqMq05LRbNlS5Id40FAzsI2CXEH",
           "object": "chat.completion",
-          "created": 1713923454,
+          "created": 1713922570,
           "model": "gpt-4-turbo-2024-04-09",
           "choices": [
             {
@@ -85,11 +86,11 @@ http_interactions:
                 "content": null,
                 "tool_calls": [
                   {
-                    "id": "call_CQGDhDUnFSc4cxpifKnDZree",
+                    "id": "call_J8dn6jXRnudrFDLITkBIT63G",
                     "type": "function",
                     "function": {
-                      "name": "the_answer",
-                      "arguments": "{\"the_answer\":\"42\"}"
+                      "name": "valid_json",
+                      "arguments": "{\"valid_json\":\"{\\\"valid\\\": \\\"json\\\"}\"}"
                     }
                   }
                 ]
@@ -99,11 +100,11 @@ http_interactions:
             }
           ],
           "usage": {
-            "prompt_tokens": 77,
-            "completion_tokens": 6,
-            "total_tokens": 83
+            "prompt_tokens": 95,
+            "completion_tokens": 12,
+            "total_tokens": 107
           },
           "system_fingerprint": "fp_76f018034d"
         }
-  recorded_at: Wed, 24 Apr 2024 01:50:55 GMT
+  recorded_at: Wed, 24 Apr 2024 01:36:11 GMT
 recorded_with: VCR 6.2.0
