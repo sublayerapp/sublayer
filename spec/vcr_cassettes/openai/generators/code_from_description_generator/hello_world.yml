@@ -1,0 +1,113 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.openai.com/v1/chat/completions
+    body:
+      encoding: UTF-8
+      string: '{"model":"gpt-4-turbo","messages":[{"role":"user","content":"        You
+        are an expert programmer in ruby.\n\n        You are tasked with writing code
+        using the following technologies: ruby.\n\n        The description of the
+        task is a hello world app where I pass --who argument to set the ''world''
+        value using optparser\n\n        Take a deep breath and think step by step
+        before you start coding.\n"}],"tool_choice":{"type":"function","function":{"name":"generated_code"}},"tools":[{"type":"function","function":{"name":"generated_code","description":"The
+        generated code in the requested language","parameters":{"type":"object","properties":{"generated_code":{"type":"string","description":"The
+        generated code in the requested language"}}},"required":[["generated_code"]]}}]}'
+    headers:
+      Content-Type:
+      - application/json
+      Authorization:
+      - Bearer <OPENAI_API_KEY>
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 24 Apr 2024 01:05:23 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Openai-Organization:
+      - sublayer
+      Openai-Processing-Ms:
+      - '4748'
+      Openai-Version:
+      - '2020-10-01'
+      Strict-Transport-Security:
+      - max-age=15724800; includeSubDomains
+      X-Ratelimit-Limit-Requests:
+      - '10000'
+      X-Ratelimit-Limit-Tokens:
+      - '800000'
+      X-Ratelimit-Remaining-Requests:
+      - '9999'
+      X-Ratelimit-Remaining-Tokens:
+      - '799900'
+      X-Ratelimit-Reset-Requests:
+      - 6ms
+      X-Ratelimit-Reset-Tokens:
+      - 7ms
+      X-Request-Id:
+      - req_43a35cab959b4817cf8a6ef3e2bed455
+      Cf-Cache-Status:
+      - DYNAMIC
+      Set-Cookie:
+      - __cf_bm=Hxk8l2FdX3nbaWt_pVRfeXic81XQb_HTt9WR0s3TvoQ-1713920723-1.0.1.1-oy8Jg6OdKmldDnbWnNooetHeznEA_dNBXUBqFNdjl.EZ3A8zQWYMOVMeeEsapU3Dr.dqfCSCimjn49nTshPl.g;
+        path=/; expires=Wed, 24-Apr-24 01:35:23 GMT; domain=.api.openai.com; HttpOnly;
+        Secure; SameSite=None
+      - _cfuvid=SVk8zzMr5nbxP_4X_NycKeS0gVSuvEuejq6JdBz0ZYA-1713920723098-0.0.1.1-604800000;
+        path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 87922f28ef5841f8-EWR
+      Alt-Svc:
+      - h3=":443"; ma=86400
+    body:
+      encoding: ASCII-8BIT
+      string: |
+        {
+          "id": "chatcmpl-9HLMUbSK5U39Gs3j0fCIpzjsr2gNO",
+          "object": "chat.completion",
+          "created": 1713920718,
+          "model": "gpt-4-turbo-2024-04-09",
+          "choices": [
+            {
+              "index": 0,
+              "message": {
+                "role": "assistant",
+                "content": null,
+                "tool_calls": [
+                  {
+                    "id": "call_yoLMolJsBp2nFV7Tc29JLfPw",
+                    "type": "function",
+                    "function": {
+                      "name": "generated_code",
+                      "arguments": "{\"generated_code\":\"require 'optparse'\\n\\n# Define the options\\noptions = {}\\nOptionParser.new do |parser|\\n  parser.banner = \\\"Usage: example.rb [options]\\\"\\n\\n  parser.on(\\\"-w\\\", \\\"--who WHO\\\", \\\"Who to greet\\\") do |v|\\n    options[:who] = v\\n  end\\nend.parse!\\n\\n# Greeting\\nwho_to_greet = options[:who] || \\\"World\\\"\\nputs \\\"Hello, #{who_to_greet}!\\\"\"}"
+                    }
+                  }
+                ]
+              },
+              "logprobs": null,
+              "finish_reason": "stop"
+            }
+          ],
+          "usage": {
+            "prompt_tokens": 132,
+            "completion_tokens": 112,
+            "total_tokens": 244
+          },
+          "system_fingerprint": "fp_76f018034d"
+        }
+  recorded_at: Wed, 24 Apr 2024 01:05:23 GMT
+recorded_with: VCR 6.2.0

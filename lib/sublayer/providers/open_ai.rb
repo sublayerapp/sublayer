@@ -16,18 +16,41 @@ module Sublayer
                 "content": prompt
               }
             ],
-            function_call: { name: output_adapter.name },
-            functions: [
-              output_adapter.to_hash
+            tool_choice: { type: "function", function: { name: output_adapter.name }},
+            tools: [
+              {
+                type: "function",
+                function: {
+                  name: output_adapter.name,
+                  description: output_adapter.description,
+                  parameters: {
+                    type: "object",
+                    properties: OpenAI.format_properties(output_adapter)
+                  },
+                  required: [output_adapter.properties.select(&:required).map(&:name)]
+                }
+              }
             ]
+
           })
 
         message = response.dig("choices", 0, "message")
-        raise "No function called" unless message["function_call"]
 
-        function_name = message.dig("function_call", output_adapter.name)
-        args_from_llm = message.dig("function_call", "arguments")
-        JSON.parse(args_from_llm)[output_adapter.name]
+        raise "No function called" unless message["tool_calls"].length > 0
+
+        function_body = message.dig("tool_calls", 0, "function", "arguments")
+        JSON.parse(function_body)[output_adapter.name]
+      end
+
+      private
+      def self.format_properties(output_adapter)
+        # format output adapter properties as json
+        output_adapter.properties.each_with_object({}) do |property, hash|
+          hash[property.name] = {
+            type: property.type,
+            description: property.description
+          }
+        end
       end
     end
   end
