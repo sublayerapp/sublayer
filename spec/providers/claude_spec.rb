@@ -11,11 +11,11 @@ RSpec.describe Sublayer::Providers::Claude do
       VCR.use_cassette("claude/42") do
         output_adapter = Sublayer::Components::OutputAdapters.create(
           type: :single_string,
-          name: "claude_response",
-          description: "The response from Claude"
+          name: "the_answer",
+          description: "The answer to the given question"
         )
         response = described_class.call(
-          prompt: "What is the meaning of life? Give it to me as a number.",
+          prompt: "What is the meaning of life, the universe, and everything?",
           output_adapter: output_adapter
         )
 

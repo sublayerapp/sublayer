@@ -1,0 +1,116 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.openai.com/v1/chat/completions
+    body:
+      encoding: UTF-8
+      string: '{"model":"gpt-4-turbo","messages":[{"role":"user","content":"        You
+        are an experienced software engineer. Below is a chunk of code:\n\n        #!/usr/bin/env
+        ruby\n\n        require ''optparse''\n\n        options = {}\n        OptionParser.new
+        do |opts|\n          opts.banner = \"Usage: hello.rb [options]\"\n\n          opts.on(\"-w\",
+        \"--who PERSON\", \"Name of the person to greet\") do |person|\n            options[:who]
+        = person\n          end\n        end.parse!\n\n        who = options[:who]
+        || \"world\"\n        puts \"Hello, #{who}!\"\n\n        Please read the code
+        carefully and provide a high-level description of what this code does, including
+        its purpose, functionalities, and any noteworthy details.\n"}],"tool_choice":{"type":"function","function":{"name":"code_description"}},"tools":[{"type":"function","function":{"name":"code_description","description":"A
+        description of what the code in the file does","parameters":{"type":"object","properties":{"code_description":{"type":"string","description":"A
+        description of what the code in the file does"}}},"required":[["code_description"]]}}]}'
+    headers:
+      Content-Type:
+      - application/json
+      Authorization:
+      - Bearer <OPENAI_API_KEY>
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 24 Apr 2024 01:33:13 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Openai-Organization:
+      - sublayer
+      Openai-Processing-Ms:
+      - '5704'
+      Openai-Version:
+      - '2020-10-01'
+      Strict-Transport-Security:
+      - max-age=15724800; includeSubDomains
+      X-Ratelimit-Limit-Requests:
+      - '10000'
+      X-Ratelimit-Limit-Tokens:
+      - '800000'
+      X-Ratelimit-Remaining-Requests:
+      - '9999'
+      X-Ratelimit-Remaining-Tokens:
+      - '799824'
+      X-Ratelimit-Reset-Requests:
+      - 6ms
+      X-Ratelimit-Reset-Tokens:
+      - 13ms
+      X-Request-Id:
+      - req_667dd2db0a1ede30f099e159beff6535
+      Cf-Cache-Status:
+      - DYNAMIC
+      Set-Cookie:
+      - __cf_bm=wB4811e7FoLh4S5Z7LO8BoFaqEImJ4IBLrbQjFqW7wg-1713922393-1.0.1.1-GdhFoOQJJ6pEAeJY3t_aESTy2Vt25HresaufvhF_EUPXCLIlmn5mjaWUGUFpiqAw9uYgBWF68YdEtoghnZuB_w;
+        path=/; expires=Wed, 24-Apr-24 02:03:13 GMT; domain=.api.openai.com; HttpOnly;
+        Secure; SameSite=None
+      - _cfuvid=DMeUv6He0i0FGQyzKKr88Q8xyxArjrqnhdcPL8RsKPA-1713922393786-0.0.1.1-604800000;
+        path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 879257eccf8a42df-EWR
+      Alt-Svc:
+      - h3=":443"; ma=86400
+    body:
+      encoding: ASCII-8BIT
+      string: |
+        {
+          "id": "chatcmpl-9HLnQfbcvQoooLUcoOhSQnJEwIDhV",
+          "object": "chat.completion",
+          "created": 1713922388,
+          "model": "gpt-4-turbo-2024-04-09",
+          "choices": [
+            {
+              "index": 0,
+              "message": {
+                "role": "assistant",
+                "content": null,
+                "tool_calls": [
+                  {
+                    "id": "call_FGoL7tn6bnYV1NzaComhHl1a",
+                    "type": "function",
+                    "function": {
+                      "name": "code_description",
+                      "arguments": "{\"code_description\":\"The provided Ruby script is a simple command-line application that greets a user. It starts by including the option parser library, then sets up command-line options allowing the user to specify a name with the '-w' or '--who' switch. In absence of this switch, it defaults to greeting 'world'. Finally, it outputs a greeting message to the terminal, addressing either the specified name or 'world' if no name was given.\"}"
+                    }
+                  }
+                ]
+              },
+              "logprobs": null,
+              "finish_reason": "stop"
+            }
+          ],
+          "usage": {
+            "prompt_tokens": 212,
+            "completion_tokens": 93,
+            "total_tokens": 305
+          },
+          "system_fingerprint": "fp_76f018034d"
+        }
+  recorded_at: Wed, 24 Apr 2024 01:33:13 GMT
+recorded_with: VCR 6.2.0
