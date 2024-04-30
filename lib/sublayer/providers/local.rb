@@ -14,6 +14,8 @@ module Sublayer
           ...
         </parameters>
 
+        $VALUE should be replaced with the corresponding value you want to pass to the tool described below.
+
         Here are descriptions of the available tools:
         <tools>
           <tool>
