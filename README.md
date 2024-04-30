@@ -73,72 +73,6 @@ Sublayer.configuration.ai_provider = Sublayer::Providers::Claude
 Sublayer.configuration.ai_model ="claude-3-opus-20240229"
 ```
 
-### Groq
-
-Expects you to have a Groq API key set in the `GROQ_API_KEY` environment variable.
-
-Visit [Groq Console](https://console.groq.com/) to get an API key.
-
-Usage:
-```ruby
-Sublayer.configuration.ai_provider = Sublayer::Providers::Groq
-Sublayer.configuration.ai_model = "mixtral-8x7b-32768"
-```
-
-### Local
-
-If you've never run a local model before see the [Local Model Quickstart](#local-model-quickstart) below. Know that local models take several GB of space.
-
-The model you use must have the ChatML formatted v1/chat/completions endpoint to work with sublayer (many models do by default)
-
-Usage:
-
-Run your local model on http://localhost:8080 and then set:
-```ruby
-Sublayer.configuration.ai_provider = Sublayer::Providers::Local
-Sublayer.configuration.ai_model = "LLaMA_CPP"
-```
-
-#### Local Model Quickstart:
-
-Instructions to run a local model
-
-1. Setting up Llamafile
-
-  ```bash
-  cd where/you/keep/your/projects
-  git clone git@github.com:Mozilla-Ocho/llamafile.git
-  cd llamafile
-  ```
-
-  Download: https://cosmo.zip/pub/cosmos/bin/make (windows users need this too: https://justine.lol/cosmo3/)
-
-  ```bash
-  # within llamafile directory
-  chmod +x path/to/the/downloaded/make
-  path/to/the/downloaded/make -j8
-  sudo path/to/the/downloaded/make install PREFIX=/usr/local
-  ```
-  You can now run llamfile
-
-2. Downloading Model
-
-  click [here](https://huggingface.co/NousResearch/Hermes-2-Pro-Mistral-7B-GGUF/resolve/main/Hermes-2-Pro-Mistral-7B.Q5_K_M.gguf?download=true) to download Mistral_7b.Q5_K_M (5.13 GB)
-
-3. Running Llamafile with a model
-
-  ```bash
-  llamafile -ngl 9999 -m path/to/the/downloaded/Hermes-2-Pro-Mistral-7B.Q5_K_M.gguf --host 0.0.0.0 -c 4096
-  ```
-
-  You are now running a local model on http://localhost:8080
-
-#### Recommended Settings for Apple M1 users:
-```bash
-llamafile -ngl 9999 -m Hermes-2-Pro-Mistral-7B.Q5_K_M.gguf --host 0.0.0.0 --nobrowser -c 2048 --gpu APPLE -t 12
-```
-run `sysctl -n hw.logicalcpu` to see what number to give the `-t` threads option
-
 ## Concepts
 
 ### Generators
@@ -203,11 +137,3 @@ base for generating new code.
 
 - [Clag](https://github.com/sublayerapp/clag) - A ruby gem that generates
   command line commands from a simple description right in your terminal.
-
-## Development
-
-TBD
-
-## Contributing
-
-TBD
