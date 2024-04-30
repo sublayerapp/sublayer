@@ -21,9 +21,13 @@ module Sublayer
 
         Here are the tools available:
         <tools>
-          <tool>
-            #{output_adapter.to_xml}
-          </tool>
+          <tool_description>
+            <tool_name>#{output_adapter.name}</tool_name>
+            <tool_description>#{output_adapter.description}</tool_description>
+            <parameters>
+              #{format_properties(output_adapter)}
+            </parameters>
+          </tool_description>
         </tools>
 
         Respond only with valid xml.
@@ -48,6 +52,15 @@ module Sublayer
 
         raise "Gemini did not format response, error: #{response.body}" unless tool_output
         return tool_output
+      end
+
+      private
+      def self.format_properties(output_adapter)
+        output_adapter.properties.each_with_object("") do |property, xml|
+          xml << "<name>#{property.name}</name>"
+          xml << "<type>#{property.type}</type>"
+          xml << "<description>#{property.description}</description>"
+        end
       end
     end
   end
