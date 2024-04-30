@@ -66,5 +66,30 @@ puts "Hello, #{who_to_greet}!")
       end
 
     end
+
+    context "Gemini" do
+      before do
+        Sublayer.configuration.ai_provider = Sublayer::Providers::Gemini
+        Sublayer.configuration.ai_model = "gemini-pro"
+      end
+
+      it "generates code from description" do
+        VCR.use_cassette("gemini/generators/code_from_description_generator/hello_world") do
+          code = generate(description: "a hello world app where I pass --who argument to set the 'world' value using optparser")
+          expect(code.strip).to eq %q(#!/usr/bin/env ruby
+
+require 'optparse'
+
+options = {}
+OptionParser.new do |opts|
+  opts.on('--who WHO', 'Who to greet (default: World)') do |who|
+    options[:who] = who
+  end
+end.parse!
+
+puts "Hello, #{options[:who]}!")
+        end
+      end
+    end
   end
 end
