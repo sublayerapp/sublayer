@@ -1,4 +1,4 @@
-# Sublayer.configuration.ai_provider = Sublayer::Providers::Local
+# Sublayer.configuration.ai_provider = Sublayer::Providers::LocalLlama3
 # Sublayer.configuration.ai_model = "Llama3"
 
 module Sublayer
