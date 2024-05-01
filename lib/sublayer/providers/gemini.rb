@@ -4,7 +4,8 @@
 module Sublayer
   module Providers
     class Gemini
-      def self.call(prompt:, output_adapter:)
+      class << self
+      def call(prompt:, output_adapter:)
         system_prompt = <<-PROMPT
         You have access to a set of tools to answer the prompt.
 
@@ -55,12 +56,14 @@ module Sublayer
       end
 
       private
-      def self.format_properties(output_adapter)
+
+      def format_properties(output_adapter)
         output_adapter.properties.each_with_object("") do |property, xml|
           xml << "<name>#{property.name}</name>"
           xml << "<type>#{property.type}</type>"
           xml << "<description>#{property.description}</description>"
         end
+      end
       end
     end
   end

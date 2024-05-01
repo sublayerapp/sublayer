@@ -4,7 +4,8 @@
 module Sublayer
   module Providers
     class OpenAI
-      def self.call(prompt:, output_adapter:)
+      class << self
+      def call(prompt:, output_adapter:)
         client = ::OpenAI::Client.new(access_token: ENV.fetch("OPENAI_API_KEY"))
 
         response = client.chat(
@@ -25,7 +26,7 @@ module Sublayer
                   description: output_adapter.description,
                   parameters: {
                     type: "object",
-                    properties: OpenAI.format_properties(output_adapter)
+                    properties: format_properties(output_adapter)
                   },
                   required: [output_adapter.properties.select(&:required).map(&:name)]
                 }
@@ -43,7 +44,7 @@ module Sublayer
       end
 
       private
-      def self.format_properties(output_adapter)
+      def format_properties(output_adapter)
         # format output adapter properties as json
         output_adapter.properties.each_with_object({}) do |property, hash|
           hash[property.name] = {
@@ -51,6 +52,7 @@ module Sublayer
             description: property.description
           }
         end
+      end
       end
     end
   end

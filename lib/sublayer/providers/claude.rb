@@ -4,7 +4,8 @@
 module Sublayer
   module Providers
     class Claude
-      def self.call(prompt:, output_adapter:)
+      class << self
+      def call(prompt:, output_adapter:)
         system_prompt = <<-PROMPT
         In this environment you have access to a set of tools you can use to answer the user's question.
 
@@ -25,7 +26,7 @@ module Sublayer
             <tool_name>#{output_adapter.name}</tool_name>
             <tool_description>#{output_adapter.description}</tool_description>
             <parameters>
-              #{Claude.format_properties(output_adapter)}
+              #{format_properties(output_adapter)}
             </parameters>
           </tool_description>
         </tools>
@@ -57,12 +58,13 @@ module Sublayer
       end
 
       private
-      def self.format_properties(output_adapter)
+      def format_properties(output_adapter)
         output_adapter.properties.each_with_object("") do |property, xml|
           xml << "<name>#{property.name}</name>"
           xml << "<type>#{property.type}</type>"
           xml << "<description>#{property.description}</description>"
         end
+      end
       end
     end
   end
