@@ -48,11 +48,11 @@ module Sublayer
         private
         def format_properties(output_adapter)
           output_adapter.properties.each_with_object("") do |property, xml|
-            xml << "<tool>"
+            xml << "<parameter>"
             xml << "<name>#{property.name}</name>"
             xml << "<type>#{property.type}</type>"
             xml << "<description>#{property.description}</description>"
-            xml << "</tool>"
+            xml << "</parameter>"
           end
         end
       end

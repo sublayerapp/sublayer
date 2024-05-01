@@ -1,0 +1,48 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: http://localhost:8080/v1/chat/completions
+    body:
+      encoding: UTF-8
+      string: '{"model":"Llama3","messages":[{"role":"user","content":"          You
+        have access to a set of tools to respond to the prompt.\n          You may
+        call a tool with xml like this:\n          <parameters>\n            <the_answer>$VALUE</the_answer>\n            ...\n          </parameters>\n          $VALUE
+        should be replaced with the corresponding value you want to pass to the tool
+        described below.\n          Here are descriptions of the available tools:\n          <tools>\n            <tool_description>\n              <tool_name>the_answer</tool_name>\n              <tool_description>The
+        answer to the given question</tool_description>\n              <parameters>\n                <parameter><name>the_answer</name><type>string</type><description>The
+        answer to the given question</description></parameter>\n              </parameters>\n            </tool_description>\n          </tools>\n          Respond
+        only with valid xml.\n          Your response should call a tool with xml
+        inside a <parameters> tag.\n\nWhat is the meaning of life, the universe, and
+        everything?}"}]}'
+    headers:
+      Authorization:
+      - Bearer no-key
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Access-Control-Allow-Origin:
+      - ''
+      Content-Length:
+      - '346'
+      Content-Type:
+      - application/json; charset=utf-8
+      Keep-Alive:
+      - timeout=5, max=5
+      Server:
+      - llama.cpp
+    body:
+      encoding: UTF-8
+      string: '{"choices":[{"finish_reason":"stop","index":0,"message":{"content":"<parameters>\n  <the_answer>42</the_answer>\n</parameters><|eot_id|>","role":"assistant"}}],"created":1714605562,"id":"chatcmpl-MXOwcrVpJj9ZyTwtdwUNEInCzJYVVoEp","model":"Llama3","object":"chat.completion","usage":{"completion_tokens":17,"prompt_tokens":204,"total_tokens":221}}'
+  recorded_at: Wed, 01 May 2024 23:19:22 GMT
+recorded_with: VCR 6.2.0
