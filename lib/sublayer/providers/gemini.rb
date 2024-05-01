@@ -36,7 +36,7 @@ module Sublayer
         PROMPT
 
         response = HTTParty.post(
-          "https://generativelanguage.googleapis.com/v1beta/models/#{Sublayer.configuration.ai_model}:generateContent?key=#{ENV['GEMINI_API_KEY']}",
+          "https://generativelanguage.googleapis.com/v1beta/models/#{Sublayer.configuration.ai_model}:generateContent?key=#{ENV.fetch('GEMINI_API_KEY')}",
           body: {
             contents: { role: "user", parts: { text: "#{system_prompt}\n#{prompt}" } }
           }.to_json,
@@ -57,9 +57,11 @@ module Sublayer
       private
       def self.format_properties(output_adapter)
         output_adapter.properties.each_with_object("") do |property, xml|
+          xml << "<parameter>"
           xml << "<name>#{property.name}</name>"
           xml << "<type>#{property.type}</type>"
           xml << "<description>#{property.description}</description>"
+          xml << "</parameter>"
         end
       end
     end

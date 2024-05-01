@@ -73,6 +73,31 @@ Sublayer.configuration.ai_provider = Sublayer::Providers::Claude
 Sublayer.configuration.ai_model ="claude-3-opus-20240229"
 ```
 
+### Local Llama3
+
+Install Llamafile
+```bash
+git clone git@github.com:Mozilla-Ocho/llamafile.git
+cd llamafile
+brew install make
+gmake -j8
+sudo gmake install PREFIX=/usr/local
+```
+
+[Download Llama3](https://huggingface.co/QuantFactory/Meta-Llama-3-8B-Instruct-GGUF/resolve/main/Meta-Llama-3-8B-Instruct.Q5_K_M.gguf?download=true)
+
+
+Run Llama3
+```bash
+llamafile -ngl 9999 -m path/to/Meta-Llama-3-8B-Instruct.Q5_K_M.gguf --host 0.0.0.0 --nobrowser -c 4096
+```
+
+Usage:
+```ruby
+Sublayer.configuration.ai_provider = Sublayer::Providers::LocalLlama3
+Sublayer.configuration.ai_model ="Llama3"
+```
+
 ## Concepts
 
 ### Generators
