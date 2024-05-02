@@ -53,7 +53,7 @@ module Sublayer
         function_output = Nokogiri::HTML.parse(text_containing_xml.match(/\<#{output_adapter.name}\>(.*?)\<\/#{output_adapter.name}\>/m)[1]).text
 
         raise "Claude did not format response, error: #{response.body}" unless function_output
-        return function_output
+        return output_adapter.format(function_output)
       end
 
       private

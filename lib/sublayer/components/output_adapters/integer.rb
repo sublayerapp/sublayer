@@ -1,7 +1,7 @@
 module Sublayer
   module Components
     module OutputAdapters
-      class SingleString
+      class Integer
         attr_reader :name, :description
 
         def initialize(options)
@@ -10,11 +10,11 @@ module Sublayer
         end
 
         def properties
-          [OpenStruct.new(name: @name, type: 'string', description: @description, required: true)]
+          [OpenStruct.new(name: @name, type: 'integer', description: @description, required: true)]
         end
 
         def format(value)
-          value
+          value.to_i
         end
       end
     end

@@ -39,7 +39,8 @@ module Sublayer
         raise "No function called" unless message["tool_calls"].length > 0
 
         function_body = message.dig("tool_calls", 0, "function", "arguments")
-        JSON.parse(function_body)[output_adapter.name]
+        value = JSON.parse(function_body)[output_adapter.name]
+        output_adapter.format(value)
       end
 
       private

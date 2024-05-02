@@ -1,0 +1,110 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.openai.com/v1/chat/completions
+    body:
+      encoding: UTF-8
+      string: '{"model":"gpt-4-turbo","messages":[{"role":"user","content":"      You
+        are a great mathmatician.\n\n      You are tasked with finding a prime number.\n\n      Provide
+        that prime number.\n"}],"tool_choice":{"type":"function","function":{"name":"prime_number"}},"tools":[{"type":"function","function":{"name":"prime_number","description":"a
+        prime number integer","parameters":{"type":"object","properties":{"prime_number":{"type":"string","description":"a
+        prime number integer"}}},"required":[["prime_number"]]}}]}'
+    headers:
+      Content-Type:
+      - application/json
+      Authorization:
+      - Bearer <OPENAI_API_KEY>
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 02 May 2024 19:34:18 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Openai-Organization:
+      - sublayer
+      Openai-Processing-Ms:
+      - '666'
+      Openai-Version:
+      - '2020-10-01'
+      Strict-Transport-Security:
+      - max-age=15724800; includeSubDomains
+      X-Ratelimit-Limit-Requests:
+      - '10000'
+      X-Ratelimit-Limit-Tokens:
+      - '800000'
+      X-Ratelimit-Remaining-Requests:
+      - '9999'
+      X-Ratelimit-Remaining-Tokens:
+      - '799952'
+      X-Ratelimit-Reset-Requests:
+      - 6ms
+      X-Ratelimit-Reset-Tokens:
+      - 3ms
+      X-Request-Id:
+      - req_e0ec5aff6331314c1dc129ddec237e60
+      Cf-Cache-Status:
+      - DYNAMIC
+      Set-Cookie:
+      - __cf_bm=9ljgsrOGL_FcB3.b1T.tL7QAaJfUWF7YtXpap8LXbB4-1714678458-1.0.1.1-CLJuhN1kMb2fphIfh7Y937MmS0O6JCiMu_uyyT0UT.cAwDXt8.No6PPLgUXXYUX88RhlgKi.fLScEfTXNJBkcQ;
+        path=/; expires=Thu, 02-May-24 20:04:18 GMT; domain=.api.openai.com; HttpOnly;
+        Secure; SameSite=None
+      - _cfuvid=.DR4gKzygb40ww2nEHiE9.2uKUFM3bjJInUUmaPZEHM-1714678458666-0.0.1.1-604800000;
+        path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 87da72a9dcec69e6-LAS
+      Alt-Svc:
+      - h3=":443"; ma=86400
+    body:
+      encoding: ASCII-8BIT
+      string: |
+        {
+          "id": "chatcmpl-9KWU6kMgVqX1rD6hbZXhMZaoGMM9x",
+          "object": "chat.completion",
+          "created": 1714678458,
+          "model": "gpt-4-turbo-2024-04-09",
+          "choices": [
+            {
+              "index": 0,
+              "message": {
+                "role": "assistant",
+                "content": null,
+                "tool_calls": [
+                  {
+                    "id": "call_C3NBricbZz1N402NSPQ85NrA",
+                    "type": "function",
+                    "function": {
+                      "name": "prime_number",
+                      "arguments": "{JSON}"
+                    }
+                  }
+                ]
+              },
+              "logprobs": null,
+              "finish_reason": "stop"
+            }
+          ],
+          "usage": {
+            "prompt_tokens": 86,
+            "completion_tokens": 1,
+            "total_tokens": 87
+          },
+          "system_fingerprint": "fp_ea6eb70039"
+        }
+  recorded_at: Thu, 02 May 2024 19:34:18 GMT
+recorded_with: VCR 6.2.0

@@ -51,7 +51,7 @@ module Sublayer
         tool_output = Nokogiri::HTML.parse(text_containing_xml.match(/\<#{output_adapter.name}\>(.*?)\<\/#{output_adapter.name}\>/m)[1]).text
 
         raise "Gemini did not format response, error: #{response.body}" unless tool_output
-        return tool_output
+        return output_adapter.format(tool_output)
       end
 
       private
