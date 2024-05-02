@@ -12,6 +12,10 @@ module Sublayer
         def properties
           [OpenStruct.new(name: @name, type: 'integer', description: @description, required: true)]
         end
+
+        def format(value)
+          value.to_i
+        end
       end
     end
   end
