@@ -5,16 +5,10 @@ http_interactions:
     uri: https://api.anthropic.com/v1/messages
     body:
       encoding: UTF-8
-      string: '{"model":"claude-3-haiku-20240307","max_tokens":4096,"system":"        In
-        this environment you have access to a set of tools you can use to answer the
-        user''s question.\n\n        You may call them like this:\n        <function_calls>\n        <invoke>\n          <tool_name>$TOOL_NAME</tool_name>\n          <parameters>\n          <$PARAMETER_NAME>$PARAMETER_VALUE</$PARAMETER_NAME>\n          ...\n          </parameters>\n        </invoke>\n        </function_calls>\n\n        Here
-        are the tools available:\n        <tools>\n          <tool_description>\n            <tool_name>the_answer</tool_name>\n            <tool_description>The
-        answer to the given question</tool_description>\n            <parameters>\n              <name>the_answer</name><type>string</type><description>The
-        answer to the given question</description>\n            </parameters>\n          </tool_description>\n        </tools>\n\n        Respond
-        only with valid xml. The entire response should be wrapped in a <response>
-        tag. Any additional information not inside a tool call should go in a <scratch>
-        tag.\n","messages":[{"role":"user","content":"What is the meaning of life,
-        the universe, and everything?"}]}'
+      string: '{"model":"claude-3-haiku-20240307","max_tokens":4096,"tools":[{"name":"the_answer","description":"The
+        answer to the given question","input_schema":{"type":"object","properties":{"the_answer":{"type":"string","description":"The
+        answer to the given question"}},"required":["the_answer"]}}],"messages":[{"role":"user","content":"What
+        is the meaning of life, the universe, and everything?"}]}'
     headers:
       X-Api-Key:
       - "<ANTHROPIC_API_KEY>"
@@ -22,6 +16,8 @@ http_interactions:
       - '2023-06-01'
       Content-Type:
       - application/json
+      Anthropic-Beta:
+      - tools-2024-04-04
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
@@ -34,7 +30,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Wed, 24 Apr 2024 01:51:43 GMT
+      - Thu, 02 May 2024 23:16:58 GMT
       Content-Type:
       - application/json
       Transfer-Encoding:
@@ -44,19 +40,19 @@ http_interactions:
       Anthropic-Ratelimit-Requests-Limit:
       - '1000'
       Anthropic-Ratelimit-Requests-Remaining:
-      - '999'
+      - '995'
       Anthropic-Ratelimit-Requests-Reset:
-      - '2024-04-24T01:52:34Z'
+      - '2024-05-02T23:17:34Z'
       Anthropic-Ratelimit-Tokens-Limit:
       - '100000'
       Anthropic-Ratelimit-Tokens-Remaining:
-      - '99000'
+      - '97000'
       Anthropic-Ratelimit-Tokens-Reset:
-      - '2024-04-24T01:52:34Z'
+      - '2024-05-02T23:17:34Z'
       Request-Id:
-      - req_014achZkoCR9gLzh6BBxkKP4
+      - req_017YpJw6E6UAM6bFXxReCZrW
       X-Cloud-Trace-Context:
-      - c6d730a8674091263a03987de9b56b1b;o=1
+      - 0f987b66254f87647c80335efd7e6f76
       Via:
       - 1.1 google
       Cf-Cache-Status:
@@ -64,22 +60,9 @@ http_interactions:
       Server:
       - cloudflare
       Cf-Ray:
-      - 879273137f7d440c-EWR
+      - 87dbb8d3593652a7-LAX
     body:
       encoding: ASCII-8BIT
-      string: '{"id":"msg_01NvfX6A8dTExaQkwsTqcAG7","type":"message","role":"assistant","model":"claude-3-haiku-20240307","stop_sequence":null,"usage":{"input_tokens":267,"output_tokens":265},"content":[{"type":"text","text":"Here
-        is my attempt at answering your question:\n<response>\n<invoke>\n  <tool_name>the_answer</tool_name>\n  <parameters>\n    <the_answer>42</the_answer>\n  </parameters>\n</invoke>\n<scratch>\nAccording
-        to the classic science fiction novel \"The Hitchhiker''s Guide to the Galaxy\"
-        by Douglas Adams, the answer to \"the ultimate question of life, the universe,
-        and everything\" is 42. The book explains that this answer was computed by
-        a giant supercomputer after 7.5 million years of calculations, but the problem
-        was that the beings who commissioned the computer had forgotten to include
-        the actual question. So now we know the answer, but not the question!\n\nIn
-        a more serious sense, the meaning of life, the universe, and everything is
-        a deep philosophical and existential question that has puzzled humanity for
-        millennia. There is no single agreed-upon answer, but many religions, philosophies,
-        and belief systems offer their own perspectives on the purpose of existence
-        and the nature of the cosmos. Ultimately, the meaning of it all may be something
-        each individual has to discover and define for themselves.\n</scratch>\n</response>"}],"stop_reason":"end_turn"}'
-  recorded_at: Wed, 24 Apr 2024 01:51:43 GMT
+      string: '{"id":"msg_01XqtvW7DyzhvJqsgK9uCU3m","type":"message","role":"assistant","model":"claude-3-haiku-20240307","stop_sequence":null,"usage":{"input_tokens":353,"output_tokens":70},"content":[{"type":"tool_use","id":"toolu_013d41AjfSpWd1S2aANDA4RR","name":"the_answer","input":{"the_answer":"42"}}],"stop_reason":"tool_use"}'
+  recorded_at: Thu, 02 May 2024 23:16:58 GMT
 recorded_with: VCR 6.2.0

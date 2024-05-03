@@ -5,22 +5,17 @@ http_interactions:
     uri: https://api.anthropic.com/v1/messages
     body:
       encoding: UTF-8
-      string: '{"model":"claude-3-haiku-20240307","max_tokens":4096,"system":"        In
-        this environment you have access to a set of tools you can use to answer the
-        user''s question.\n\n        You may call them like this:\n        <function_calls>\n        <invoke>\n          <tool_name>$TOOL_NAME</tool_name>\n          <parameters>\n          <$PARAMETER_NAME>$PARAMETER_VALUE</$PARAMETER_NAME>\n          ...\n          </parameters>\n        </invoke>\n        </function_calls>\n\n        Here
-        are the tools available:\n        <tools>\n                    <tool_description>\n              <tool_name>code_description</tool_name>\n              <tool_description>A
-        description of what the code in the file does</tool_description>\n              <parameters>\n                <name>code_description</name>\n                <type>string</type>\n                <description>A
-        description of what the code in the file does</description>\n              </parameters>\n            </tool_description>\n\n        </tools>\n\n        Respond
-        only with valid xml. The entire response should be wrapped in a <response>
-        tag. Any additional information not inside a tool call should go in a <scratch>
-        tag.\n","messages":[{"role":"user","content":"        You are an experienced
-        software engineer. Below is a chunk of code:\n\n        #!/usr/bin/env ruby\n\n      require
-        ''optparse''\n\n      options = {}\n      OptionParser.new do |opts|\n        opts.banner
-        = \"Usage: hello.rb [options]\"\n\n        opts.on(\"-w\", \"--who PERSON\",
-        \"Name of the person to greet\") do |person|\n          options[:who] = person\n        end\n      end.parse!\n\n      who
-        = options[:who] || \"world\"\n      puts \"Hello, #{who}!\"\n\n        Please
-        read the code carefully and provide a high-level description of what this
-        code does, including its purpose, functionalities, and any noteworthy details.\n"}]}'
+      string: '{"model":"claude-3-haiku-20240307","max_tokens":4096,"tools":[{"name":"code_description","description":"A
+        description of what the code in the file does","input_schema":{"type":"object","properties":{"code_description":{"type":"string","description":"A
+        description of what the code in the file does"}},"required":["code_description"]}}],"messages":[{"role":"user","content":"        You
+        are an experienced software engineer. Below is a chunk of code:\n\n        #!/usr/bin/env
+        ruby\n\n        require ''optparse''\n\n        options = {}\n        OptionParser.new
+        do |opts|\n          opts.banner = \"Usage: hello.rb [options]\"\n\n          opts.on(\"-w\",
+        \"--who PERSON\", \"Name of the person to greet\") do |person|\n            options[:who]
+        = person\n          end\n        end.parse!\n\n        who = options[:who]
+        || \"world\"\n        puts \"Hello, #{who}!\"\n\n        Please read the code
+        carefully and provide a high-level description of what this code does, including
+        its purpose, functionalities, and any noteworthy details.\n"}]}'
     headers:
       X-Api-Key:
       - "<ANTHROPIC_API_KEY>"
@@ -28,6 +23,8 @@ http_interactions:
       - '2023-06-01'
       Content-Type:
       - application/json
+      Anthropic-Beta:
+      - tools-2024-04-04
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
@@ -40,7 +37,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Wed, 17 Apr 2024 09:34:28 GMT
+      - Thu, 02 May 2024 23:16:55 GMT
       Content-Type:
       - application/json
       Transfer-Encoding:
@@ -48,21 +45,21 @@ http_interactions:
       Connection:
       - keep-alive
       Anthropic-Ratelimit-Requests-Limit:
-      - '5'
+      - '1000'
       Anthropic-Ratelimit-Requests-Remaining:
-      - '4'
+      - '998'
       Anthropic-Ratelimit-Requests-Reset:
-      - '2024-04-17T09:35:17Z'
+      - '2024-05-02T23:17:34Z'
       Anthropic-Ratelimit-Tokens-Limit:
-      - '25000'
+      - '100000'
       Anthropic-Ratelimit-Tokens-Remaining:
-      - '24000'
+      - '99000'
       Anthropic-Ratelimit-Tokens-Reset:
-      - '2024-04-17T09:35:17Z'
+      - '2024-05-02T23:17:34Z'
       Request-Id:
-      - req_01GugQ1Ehs1z7UvWHM4MhWjy
+      - req_01P922uuTZeiZr6pKQhf5RSd
       X-Cloud-Trace-Context:
-      - 60cbfc591cfeedba09257b6da897a307
+      - 9d3588f06a58ba2e250527eab40b8de2
       Via:
       - 1.1 google
       Cf-Cache-Status:
@@ -70,24 +67,23 @@ http_interactions:
       Server:
       - cloudflare
       Cf-Ray:
-      - 875b6b4b8eef5e8c-BNE
+      - 87dbb8b57d670fb5-LAX
     body:
       encoding: ASCII-8BIT
-      string: '{"id":"msg_016vX9TBkeLsSrALS5yfYJcm","type":"message","role":"assistant","model":"claude-3-haiku-20240307","stop_sequence":null,"usage":{"input_tokens":433,"output_tokens":314},"content":[{"type":"text","text":"<response>\n<invoke>\n  <tool_name>code_description</tool_name>\n  <parameters>\n    <code_description>\nThis
-        Ruby script is a simple command-line application that prints a greeting message.
-        It uses the `optparse` library to handle command-line arguments.\n\nThe script
-        defines an `options` hash to store any command-line arguments passed to it.
-        It then creates an `OptionParser` object and configures it to accept a single
-        optional argument `-w` or `--who`, which allows the user to specify the name
-        of the person to greet.\n\nIf the `--who` option is provided, the script stores
-        the supplied value in the `options[:who]` hash. If no `--who` option is provided,
-        the script defaults to using the word \"world\" as the person to greet.\n\nFinally,
-        the script prints the greeting message \"Hello, [person]!\" using the value
-        stored in the `who` variable.\n    </code_description>\n  </parameters>\n</invoke>\n</response>\n\n<scratch>\nIn
-        summary, this Ruby script is a simple command-line application that allows
-        the user to pass an optional command-line argument to specify the name of
-        the person to greet. If no argument is provided, it defaults to greeting \"world\".
-        The script demonstrates the use of the `optparse` library to handle command-line
-        arguments in a Ruby program.\n</scratch>"}],"stop_reason":"end_turn"}'
-  recorded_at: Wed, 17 Apr 2024 09:34:28 GMT
+      string: '{"id":"msg_01Kp4iQSJEQckmpMTTK4FR62","type":"message","role":"assistant","model":"claude-3-haiku-20240307","stop_sequence":null,"usage":{"input_tokens":512,"output_tokens":301},"content":[{"type":"tool_use","id":"toolu_01ViYahRDBoApGoUb9LN5TkT","name":"code_description","input":{"code_description":"This
+        Ruby script provides a simple command-line interface (CLI) for greeting a
+        user. The script uses the `optparse` library to parse command-line arguments
+        and handle an optional `--who` flag to specify the name of the person to greet.\n\nThe
+        key functionality of this script is:\n\n1. It defines a hash called `options`
+        to store any command-line arguments passed to the script.\n2. It creates an
+        `OptionParser` object and configures it to accept the `--who` flag, which
+        takes a `PERSON` argument. If the `--who` flag is provided, the script stores
+        the value in the `options[:who]` key.\n3. The script then checks if the `options[:who]`
+        key has a value. If it does, it uses that value to construct the greeting
+        message. If not, it defaults to greeting \"world\".\n4. Finally, the script
+        prints the greeting message to the console.\n\nThis script demonstrates a
+        common pattern in Ruby command-line tools, where the `optparse` library is
+        used to handle command-line arguments and provide a user-friendly interface
+        for the script''s functionality."}}],"stop_reason":"tool_use"}'
+  recorded_at: Thu, 02 May 2024 23:16:55 GMT
 recorded_with: VCR 6.2.0
