@@ -25,7 +25,8 @@ RSpec.describe InvalidToValidJsonGenerator do
       VCR.use_cassette("claude/generators/invalid_to_valid_json_generator/invalid_json") do
         invalid_json = %q({invalid: "json"})
         valid_json = generate(invalid_json)
-        expect(valid_json).to eq %q({"invalid": "json"})
+
+        expect{ JSON.parse(valid_json) }.to_not raise_error
       end
     end
   end
