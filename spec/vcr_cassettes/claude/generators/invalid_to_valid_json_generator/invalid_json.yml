@@ -5,17 +5,11 @@ http_interactions:
     uri: https://api.anthropic.com/v1/messages
     body:
       encoding: UTF-8
-      string: '{"model":"claude-3-haiku-20240307","max_tokens":4096,"system":"        In
-        this environment you have access to a set of tools you can use to answer the
-        user''s question.\n\n        You may call them like this:\n        <function_calls>\n        <invoke>\n          <tool_name>$TOOL_NAME</tool_name>\n          <parameters>\n          <$PARAMETER_NAME>$PARAMETER_VALUE</$PARAMETER_NAME>\n          ...\n          </parameters>\n        </invoke>\n        </function_calls>\n\n        Here
-        are the tools available:\n        <tools>\n                    <tool_description>\n              <tool_name>valid_json</tool_name>\n              <tool_description>The
-        valid JSON string</tool_description>\n              <parameters>\n                <name>valid_json</name>\n                <type>string</type>\n                <description>The
-        valid JSON string</description>\n              </parameters>\n            </tool_description>\n\n        </tools>\n\n        Respond
-        only with valid xml. The entire response should be wrapped in a <response>
-        tag. Any additional information not inside a tool call should go in a <scratch>
-        tag.\n","messages":[{"role":"user","content":"    You are an expert in JSON
-        parsing.\n\n    The given string is not a valid JSON: {invalid: \"json\"}\n\n    Please
-        fix this and produce a valid JSON.\n"}]}'
+      string: '{"model":"claude-3-haiku-20240307","max_tokens":4096,"tools":[{"name":"valid_json","description":"The
+        valid JSON string","input_schema":{"type":"object","properties":{"valid_json":{"type":"string","description":"The
+        valid JSON string"}},"required":["valid_json"]}}],"messages":[{"role":"user","content":"    You
+        are an expert in JSON parsing.\n\n    The given string is not a valid JSON:
+        {invalid: \"json\"}\n\n    Please fix this and produce a valid JSON.\n"}]}'
     headers:
       X-Api-Key:
       - "<ANTHROPIC_API_KEY>"
@@ -23,6 +17,8 @@ http_interactions:
       - '2023-06-01'
       Content-Type:
       - application/json
+      Anthropic-Beta:
+      - tools-2024-04-04
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
@@ -35,7 +31,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Wed, 17 Apr 2024 09:39:25 GMT
+      - Fri, 03 May 2024 16:51:16 GMT
       Content-Type:
       - application/json
       Transfer-Encoding:
@@ -43,21 +39,21 @@ http_interactions:
       Connection:
       - keep-alive
       Anthropic-Ratelimit-Requests-Limit:
-      - '5'
+      - '1000'
       Anthropic-Ratelimit-Requests-Remaining:
-      - '4'
+      - '999'
       Anthropic-Ratelimit-Requests-Reset:
-      - '2024-04-17T09:40:17Z'
+      - '2024-05-03T16:52:34Z'
       Anthropic-Ratelimit-Tokens-Limit:
-      - '25000'
+      - '100000'
       Anthropic-Ratelimit-Tokens-Remaining:
-      - '25000'
+      - '100000'
       Anthropic-Ratelimit-Tokens-Reset:
-      - '2024-04-17T09:40:17Z'
+      - '2024-05-03T16:52:34Z'
       Request-Id:
-      - req_017vHs1wm1tYGr2U2QucWV2X
+      - req_01B23dcS5BRRmPS13wrdrMeD
       X-Cloud-Trace-Context:
-      - 9234c948e7f30f7cb2611a33a818f0d1
+      - ffe4da8c84486c5f6519d3c979d5f69d
       Via:
       - 1.1 google
       Cf-Cache-Status:
@@ -65,12 +61,11 @@ http_interactions:
       Server:
       - cloudflare
       Cf-Ray:
-      - 875b7297c9514879-BNE
+      - 87e1c13739512ed0-LAX
     body:
       encoding: ASCII-8BIT
-      string: '{"id":"msg_0144LgBkek1X2ghwa1hbGgfA","type":"message","role":"assistant","model":"claude-3-haiku-20240307","stop_sequence":null,"usage":{"input_tokens":294,"output_tokens":106},"content":[{"type":"text","text":"<response>\n<invoke>\n  <tool_name>valid_json</tool_name>\n  <parameters>\n  <valid_json>{\"invalid\":
-        \"json\"}</valid_json>\n  </parameters>\n</invoke>\n<scratch>\nThe original
-        input string was not valid JSON. To fix it, I have simply enclosed the key-value
-        pair in curly braces, as required for a valid JSON object.\n</scratch>\n</response>"}],"stop_reason":"end_turn"}'
-  recorded_at: Wed, 17 Apr 2024 09:39:25 GMT
+      string: '{"id":"msg_01GGLVs6Hw8BBMfdhf7BamZW","type":"message","role":"assistant","model":"claude-3-haiku-20240307","stop_sequence":null,"usage":{"input_tokens":373,"output_tokens":84},"content":[{"type":"text","text":"Okay,
+        let''s fix the invalid JSON string using the `valid_json` tool."},{"type":"tool_use","id":"toolu_01Np2cFxsjtQJ65X9MQptDw1","name":"valid_json","input":{"valid_json":"{\n  \"invalid\":
+        \"json\"\n}"}}],"stop_reason":"tool_use"}'
+  recorded_at: Fri, 03 May 2024 16:51:16 GMT
 recorded_with: VCR 6.2.0
