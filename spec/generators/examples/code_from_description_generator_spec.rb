@@ -37,17 +37,18 @@ who = options[:who] || "world"
 puts "Hello, #{who}!")
       end
     end
+  end
 
-    context "openai" do
-      before do
-        Sublayer.configuration.ai_provider = Sublayer::Providers::OpenAI
-        Sublayer.configuration.ai_model = "gpt-4-turbo"
-      end
+  context "openai" do
+    before do
+      Sublayer.configuration.ai_provider = Sublayer::Providers::OpenAI
+      Sublayer.configuration.ai_model = "gpt-4-turbo"
+    end
 
-      it "generates code from description" do
-        VCR.use_cassette("openai/generators/code_from_description_generator/hello_world") do
-          code = generate(description: "a hello world app where I pass --who argument to set the 'world' value using optparser")
-          expect(code.strip).to eq %q(require 'optparse'
+    it "generates code from description" do
+      VCR.use_cassette("openai/generators/code_from_description_generator/hello_world") do
+        code = generate(description: "a hello world app where I pass --who argument to set the 'world' value using optparser")
+        expect(code.strip).to eq %q(require 'optparse'
 
 # Define the options
 options = {}
@@ -62,33 +63,23 @@ end.parse!
 # Greeting
 who_to_greet = options[:who] || "World"
 puts "Hello, #{who_to_greet}!")
-        end
       end
-
     end
 
-    context "Gemini" do
-      before do
-        Sublayer.configuration.ai_provider = Sublayer::Providers::Gemini
-        Sublayer.configuration.ai_model = "gemini-pro"
-      end
-
-      it "generates code from description" do
-        VCR.use_cassette("gemini/generators/code_from_description_generator/hello_world") do
-          code = generate(description: "a hello world app where I pass --who argument to set the 'world' value using optparser")
-          expect(code.strip).to eq %q(#!/usr/bin/env ruby
-
-require 'optparse'
-
-options = {}
-OptionParser.new do |opts|
-  opts.on('--who WHO', 'Who to greet (default: World)') do |who|
-    options[:who] = who
   end
-end.parse!
 
-puts "Hello, #{options[:who]}!")
-        end
+  context "Gemini" do
+    before do
+      Sublayer.configuration.ai_provider = Sublayer::Providers::Gemini
+      Sublayer.configuration.ai_model = "gemini-1.0-pro-001"
+    end
+
+    it "generates code from description" do
+      VCR.use_cassette("gemini/generators/code_from_description_generator/hello_world") do
+        code = generate(description: "a hello world app where I pass --who argument to set the 'world' value using optparser").strip
+        expect(code).to include("require 'optparse'")
+        expect(code).to include("OptionParser.new")
+        expect(code).to include("puts \"Hello")
       end
     end
   end

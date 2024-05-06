@@ -5,22 +5,14 @@ http_interactions:
     uri: https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=<GEMINI_API_KEY>
     body:
       encoding: UTF-8
-      string: '{"contents":{"role":"user","parts":{"text":"        You have access
-        to a set of tools to answer the prompt.\n\n        You may call tools like
-        this:\n        <tool_calls>\n          <tool_call>\n            <tool_name>$TOOL_NAME</tool_name>\n            <parameters>\n              <$PARAMETER_NAME>$VALUE</$PARAMETER_NAME>\n              ...\n            </parameters>\n          </tool_call>\n        </tool_calls>\n\n        Here
-        are the tools available:\n        <tools>\n          <tool_description>\n            <tool_name>code_description</tool_name>\n            <tool_description>A
-        description of what the code in the file does</tool_description>\n            <parameters>\n              <name>code_description</name><type>string</type><description>A
-        description of what the code in the file does</description>\n            </parameters>\n          </tool_description>\n        </tools>\n\n        Respond
-        only with valid xml.\n        The entire response should be wrapped in a <response>
-        tag.\n        Your response should call a tool inside a <tool_calls> tag.\n\n        You
-        are an experienced software engineer. Below is a chunk of code:\n\n        #!/usr/bin/env
-        ruby\n\n        require ''optparse''\n\n        options = {}\n        OptionParser.new
-        do |opts|\n          opts.banner = \"Usage: hello.rb [options]\"\n\n          opts.on(\"-w\",
-        \"--who PERSON\", \"Name of the person to greet\") do |person|\n            options[:who]
-        = person\n          end\n        end.parse!\n\n        who = options[:who]
-        || \"world\"\n        puts \"Hello, #{who}!\"\n\n        Please read the code
-        carefully and provide a high-level description of what this code does, including
-        its purpose, functionalities, and any noteworthy details.\n"}}}'
+      string: '{"contents":{"role":"user","parts":{"text":"        You are an experienced
+        software engineer. Below is a chunk of code:\n\n        #!/usr/bin/env ruby\n\n        require
+        ''optparse''\n\n        options = {}\n        OptionParser.new do |opts|\n          opts.banner
+        = \"Usage: hello.rb [options]\"\n\n          opts.on(\"-w\", \"--who PERSON\",
+        \"Name of the person to greet\") do |person|\n            options[:who] =
+        person\n          end\n        end.parse!\n\n        who = options[:who] ||
+        \"world\"\n        puts \"Hello, #{who}!\"\n\n        what does the code do?\n"}},"tools":[{"function_declarations":[{"name":"my_function","parameters":{"type":"object","properties":{"code_description":{"type":"string","description":"A
+        high-level description of code and what the code does"}},"required":["code_description"]}}]}],"tool_config":{"function_calling_config":{"mode":"ANY"}}}'
     headers:
       Content-Type:
       - application/json
@@ -42,7 +34,7 @@ http_interactions:
       - Referer
       - X-Origin
       Date:
-      - Tue, 30 Apr 2024 17:41:29 GMT
+      - Mon, 06 May 2024 18:11:19 GMT
       Server:
       - scaffolding on HTTPServer2
       Cache-Control:
@@ -54,7 +46,7 @@ http_interactions:
       X-Content-Type-Options:
       - nosniff
       Server-Timing:
-      - gfet4t7; dur=2840
+      - gfet4t7; dur=5484
       Alt-Svc:
       - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
       Transfer-Encoding:
@@ -68,7 +60,7 @@ http_interactions:
               "content": {
                 "parts": [
                   {
-                    "text": "\u003cresponse\u003e\n  \u003ctool_calls\u003e\n    \u003ctool_call\u003e\n      \u003ctool_name\u003ecode_description\u003c/tool_name\u003e\n      \u003cparameters\u003e\n        \u003ccode_description\u003eThis code is a simple command-line script that greets a person by name. It takes an optional argument, `--who`, to specify the name of the person to greet, and defaults to \"world\" if no name is provided. The script then prints a greeting to the specified person.\u003c/code_description\u003e\n      \u003c/parameters\u003e\n    \u003c/tool_call\u003e\n  \u003c/tool_calls\u003e\n\u003c/response\u003e"
+                    "text": "The code processes optional arguments from the command line, and prints them in the given format.\n\nIn this case, it prints a message like:\n```\nHello, [name provided in the command line]!\n```\nIf no name is provided, it prints:\n```\nHello, world!\n```\n\nThe program expects two options to be provided in the command line, a long option with the format `--who`, or a short option with the format `-w`.\nFollowing either of these keywords the user has to provide a name, so the command would look like any of these:\n```\nhello.rb --who Alice\nhello.rb -w Alice\n```\nThe option is parsed using the `optparse` library, which allows to easily define custom options to be processed.\nIn this case the option `opts.on` is used to define a new option `--who`, that expects a parameter.\nThe parameter is made available via the block that is passed to the `on` method, in this case the block assigns the value of the parameter to the variable `person` which is then stored in the dictionary `options`.\nThis dictionary is later processed to extract the value of the `who` option, if it is not defined the default value is `world`.\nFinally, the value of `who` is used as a placeholder in the string `Hello, #{who}!`, which is then printed to the standard output."
                   }
                 ],
                 "role": "model"
@@ -96,5 +88,5 @@ http_interactions:
             }
           ]
         }
-  recorded_at: Tue, 30 Apr 2024 17:41:29 GMT
+  recorded_at: Mon, 06 May 2024 18:11:19 GMT
 recorded_with: VCR 6.2.0

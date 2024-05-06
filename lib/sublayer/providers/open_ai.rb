@@ -21,13 +21,13 @@ module Sublayer
               {
                 type: "function",
                 function: {
-                  name: output_adapter.name,
-                  description: output_adapter.description,
+                  name: 'my_function',
+                  description: 'custom function',
                   parameters: {
                     type: "object",
                     properties: OpenAI.format_properties(output_adapter)
                   },
-                  required: [output_adapter.properties.select(&:required).map(&:name)]
+                  required: output_adapter.properties.select(&:required).map(&:name)
                 }
               }
             ]

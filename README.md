@@ -57,7 +57,7 @@ Visit [Google AI Studio](https://ai.google.dev/) to get an API key.
 Usage:
 ```ruby
 Sublayer.configuration.ai_provider = Sublayer::Providers::Gemini
-Sublayer.configuration.ai_model = "gemini-pro"
+Sublayer.configuration.ai_model = "gemini-1.0-pro-001"
 ```
 
 ### Claude

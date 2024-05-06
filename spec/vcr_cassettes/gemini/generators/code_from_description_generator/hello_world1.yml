@@ -34,7 +34,7 @@ http_interactions:
       - Referer
       - X-Origin
       Date:
-      - Mon, 06 May 2024 15:59:42 GMT
+      - Fri, 03 May 2024 23:06:56 GMT
       Server:
       - scaffolding on HTTPServer2
       Cache-Control:
@@ -46,7 +46,7 @@ http_interactions:
       X-Content-Type-Options:
       - nosniff
       Server-Timing:
-      - gfet4t7; dur=2367
+      - gfet4t7; dur=1993
       Alt-Svc:
       - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
       Transfer-Encoding:
@@ -63,7 +63,7 @@ http_interactions:
                     "functionCall": {
                       "name": "generated_code",
                       "args": {
-                        "generated_code": "require 'optparse'\n\n  options = {}\n  OptionParser.new do |opts|\n    opts.on(\"-w\", \"--who NAME\", \"Name to greet\") do |n|\n      options[:name] = n\n    end\n  end.parse!\n\n  if options[:name]\n    puts \"Hello \" + options[:name]\n  else\n    puts \"Hello world\"\n  end"
+                        "generated_code": "\nrequire \\\"optparse\\\"\n\noptions = {}\nOptionParser.new do |opts|\n  opts.on(\\\"--who who\\\", \\\"Who to say hello to\\\") do |v|\n    options[:who] = v\n  end\nend.parse!\n\nputs \\\"Hello \\\" + (options[:who] || \\\"World\\\")\n"
                       }
                     }
                   }
@@ -74,7 +74,11 @@ http_interactions:
               "index": 0,
               "safetyRatings": [
                 {
-                  "category": "HARM_CATEGORY_HARASSMENT",
+                  "category": "HARM_CATEGORY_HATE_SPEECH",
+                  "probability": "NEGLIGIBLE"
+                },
+                {
+                  "category": "HARM_CATEGORY_SEXUALLY_EXPLICIT",
                   "probability": "NEGLIGIBLE"
                 },
                 {
@@ -82,16 +86,12 @@ http_interactions:
                   "probability": "NEGLIGIBLE"
                 },
                 {
-                  "category": "HARM_CATEGORY_HATE_SPEECH",
-                  "probability": "NEGLIGIBLE"
-                },
-                {
-                  "category": "HARM_CATEGORY_SEXUALLY_EXPLICIT",
+                  "category": "HARM_CATEGORY_HARASSMENT",
                   "probability": "NEGLIGIBLE"
                 }
               ]
             }
           ]
         }
-  recorded_at: Mon, 06 May 2024 15:59:42 GMT
+  recorded_at: Fri, 03 May 2024 23:06:56 GMT
 recorded_with: VCR 6.2.0

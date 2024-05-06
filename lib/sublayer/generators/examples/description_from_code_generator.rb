@@ -1,7 +1,7 @@
 class DescriptionFromCodeGenerator < Sublayer::Generators::Base
   llm_output_adapter type: :single_string,
     name: "code_description",
-    description: "A description of what the code in the file does"
+    description: "A high-level description of code and what the code does"
 
   def initialize(code:)
     @code = code
@@ -17,7 +17,7 @@ class DescriptionFromCodeGenerator < Sublayer::Generators::Base
 
         #{@code}
 
-        Please read the code carefully and provide a high-level description of what this code does, including its purpose, functionalities, and any noteworthy details.
+        what does the code do?
     PROMPT
   end
 end
