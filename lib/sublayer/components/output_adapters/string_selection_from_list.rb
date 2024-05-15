@@ -13,6 +13,17 @@ module Sublayer
         def properties
           [OpenStruct.new(name: @name, type: 'string', description: @description, required: true, enum: @list)]
         end
+
+        def load_instance_data(generator)
+          case @list
+          when Proc
+            @list = generator.instance_exec(&@list)
+          when Symbol
+            @list = generator.send(@list)
+          else
+            @list
+          end
+        end
       end
     end
   end

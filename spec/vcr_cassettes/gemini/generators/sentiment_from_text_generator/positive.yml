@@ -38,7 +38,7 @@ http_interactions:
       - Referer
       - X-Origin
       Date:
-      - Thu, 02 May 2024 18:16:08 GMT
+      - Wed, 15 May 2024 21:27:46 GMT
       Server:
       - scaffolding on HTTPServer2
       Cache-Control:
@@ -50,7 +50,7 @@ http_interactions:
       X-Content-Type-Options:
       - nosniff
       Server-Timing:
-      - gfet4t7; dur=1738
+      - gfet4t7; dur=1777
       Alt-Svc:
       - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
       Transfer-Encoding:
@@ -90,7 +90,12 @@ http_interactions:
                 }
               ]
             }
-          ]
+          ],
+          "usageMetadata": {
+            "promptTokenCount": 302,
+            "candidatesTokenCount": 73,
+            "totalTokenCount": 375
+          }
         }
-  recorded_at: Thu, 02 May 2024 18:16:08 GMT
+  recorded_at: Wed, 15 May 2024 21:27:46 GMT
 recorded_with: VCR 6.2.0
