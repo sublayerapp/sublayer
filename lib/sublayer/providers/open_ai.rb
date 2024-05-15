@@ -44,12 +44,15 @@ module Sublayer
 
       private
       def self.format_properties(output_adapter)
-        # format output adapter properties as json
         output_adapter.properties.each_with_object({}) do |property, hash|
           hash[property.name] = {
             type: property.type,
             description: property.description
           }
+
+          if property.enum
+            hash[property.name][:enum] = property.enum
+          end
         end
       end
     end
