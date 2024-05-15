@@ -1,0 +1,111 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.openai.com/v1/chat/completions
+    body:
+      encoding: UTF-8
+      string: '{"model":"gpt-4-turbo","messages":[{"role":"user","content":"        You
+        are an expert at determining sentiment from text.\n\n        You are tasked
+        with analyzing the following text and determining its sentiment value.\n\n        The
+        text is:\n        Matz is nice so we are nice\n"}],"tool_choice":{"type":"function","function":{"name":"sentiment_value"}},"tools":[{"type":"function","function":{"name":"sentiment_value","description":"A
+        sentiment value from the list","parameters":{"type":"object","properties":{"sentiment_value":{"type":"string","description":"A
+        sentiment value from the list","enum":["positive","negative","neutral"]}}},"required":[["sentiment_value"]]}}]}'
+    headers:
+      Content-Type:
+      - application/json
+      Authorization:
+      - Bearer <OPENAI_API_KEY>
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 15 May 2024 01:03:27 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Openai-Organization:
+      - sublayer
+      Openai-Processing-Ms:
+      - '683'
+      Openai-Version:
+      - '2020-10-01'
+      Strict-Transport-Security:
+      - max-age=15724800; includeSubDomains
+      X-Ratelimit-Limit-Requests:
+      - '10000'
+      X-Ratelimit-Limit-Tokens:
+      - '800000'
+      X-Ratelimit-Remaining-Requests:
+      - '9999'
+      X-Ratelimit-Remaining-Tokens:
+      - '799929'
+      X-Ratelimit-Reset-Requests:
+      - 6ms
+      X-Ratelimit-Reset-Tokens:
+      - 5ms
+      X-Request-Id:
+      - req_db09191e4ff0125bb1c1d21aac688d85
+      Cf-Cache-Status:
+      - DYNAMIC
+      Set-Cookie:
+      - __cf_bm=0DMYB.TxRK8iHa7DZ1CwPObgpTbt_zUgnc1p8cMGvFw-1715735007-1.0.1.1-gf8evmwmlQm9FYn0FKRJBk_06KaPclAAljA7yMxHJyxrOYip3d67Rft.rNHoCVXUq9F166ynOQbco1hxD0wKQw;
+        path=/; expires=Wed, 15-May-24 01:33:27 GMT; domain=.api.openai.com; HttpOnly;
+        Secure; SameSite=None
+      - _cfuvid=ZhiLg9a9qmCBOkLeK27nSKkTMDqQm1jMS1GlN7hLghs-1715735007342-0.0.1.1-604800000;
+        path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 883f354eecbd7ced-EWR
+      Alt-Svc:
+      - h3=":443"; ma=86400
+    body:
+      encoding: ASCII-8BIT
+      string: |
+        {
+          "id": "chatcmpl-9OxLC74yxT8WVRXXuhtkTDHSovyCf",
+          "object": "chat.completion",
+          "created": 1715735006,
+          "model": "gpt-4-turbo-2024-04-09",
+          "choices": [
+            {
+              "index": 0,
+              "message": {
+                "role": "assistant",
+                "content": null,
+                "tool_calls": [
+                  {
+                    "id": "call_mG00LXPfi1KYQqUFvx168uWA",
+                    "type": "function",
+                    "function": {
+                      "name": "sentiment_value",
+                      "arguments": "{\"sentiment_value\":\"positive\"}"
+                    }
+                  }
+                ]
+              },
+              "logprobs": null,
+              "finish_reason": "stop"
+            }
+          ],
+          "usage": {
+            "prompt_tokens": 116,
+            "completion_tokens": 7,
+            "total_tokens": 123
+          },
+          "system_fingerprint": "fp_e9446dc58f"
+        }
+  recorded_at: Wed, 15 May 2024 01:03:27 GMT
+recorded_with: VCR 6.2.0
