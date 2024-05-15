@@ -43,6 +43,10 @@ module Sublayer
             type: property.type,
             description: property.description
           }
+
+          if property.enum
+            hash[property.name][:enum] = property.enum
+          end
         end
       end
     end

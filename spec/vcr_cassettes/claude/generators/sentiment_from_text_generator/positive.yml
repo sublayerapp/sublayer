@@ -1,0 +1,78 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.anthropic.com/v1/messages
+    body:
+      encoding: UTF-8
+      string: '{"model":"claude-3-haiku-20240307","max_tokens":4096,"system":"        In
+        this environment you have access to a set of tools you can use to answer the
+        user''s question.\n\n        You may call them like this:\n        <function_calls>\n        <invoke>\n          <tool_name>$TOOL_NAME</tool_name>\n          <parameters>\n          <$PARAMETER_NAME>$PARAMETER_VALUE</$PARAMETER_NAME>\n          ...\n          </parameters>\n        </invoke>\n        </function_calls>\n\n        Here
+        are the tools available:\n        <tools>\n          <tool_description>\n            <tool_name>sentiment_value</tool_name>\n            <tool_description>A
+        sentiment value from the list</tool_description>\n            <parameters>\n              <name>sentiment_value</name><type>string</type><description>A
+        sentiment value from the list</description><required>true</required><enum>[\"positive\",
+        \"negative\", \"neutral\"]</enum>\n            </parameters>\n          </tool_description>\n        </tools>\n\n        Respond
+        only with valid xml. The entire response should be wrapped in a <response>
+        tag. Any additional information not inside a tool call should go in a <scratch>
+        tag.\n","messages":[{"role":"user","content":"        You are an expert at
+        determining sentiment from text.\n\n        You are tasked with analyzing
+        the following text and determining its sentiment value.\n\n        The text
+        is:\n        Matz is nice so we are nice\n"}]}'
+    headers:
+      X-Api-Key:
+      - "<ANTHROPIC_API_KEY>"
+      Anthropic-Version:
+      - '2023-06-01'
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 02 May 2024 18:16:09 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Anthropic-Ratelimit-Requests-Limit:
+      - '1000'
+      Anthropic-Ratelimit-Requests-Remaining:
+      - '999'
+      Anthropic-Ratelimit-Requests-Reset:
+      - '2024-05-02T18:17:34Z'
+      Anthropic-Ratelimit-Tokens-Limit:
+      - '100000'
+      Anthropic-Ratelimit-Tokens-Remaining:
+      - '100000'
+      Anthropic-Ratelimit-Tokens-Reset:
+      - '2024-05-02T18:17:34Z'
+      Request-Id:
+      - req_01B3bLwoFrheepWZ3xfdk7Bc
+      X-Cloud-Trace-Context:
+      - 6848d5642ba308d1ee4c9cdf219a89f7
+      Via:
+      - 1.1 google
+      Cf-Cache-Status:
+      - DYNAMIC
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 87da002ddd508cda-EWR
+    body:
+      encoding: ASCII-8BIT
+      string: '{"id":"msg_016LXHnXvcCFHxYe7EmrP6dN","type":"message","role":"assistant","model":"claude-3-haiku-20240307","stop_sequence":null,"usage":{"input_tokens":319,"output_tokens":103},"content":[{"type":"text","text":"<response>\n<invoke>\n  <tool_name>sentiment_value</tool_name>\n  <parameters>\n    <sentiment_value>positive</sentiment_value>\n  </parameters>\n</invoke>\n<scratch>\nThe
+        given text \"Matz is nice so we are nice\" has a positive sentiment. The language
+        used is very positive and upbeat, indicating the text has an overall positive
+        feeling.\n</scratch>\n</response>"}],"stop_reason":"end_turn"}'
+  recorded_at: Thu, 02 May 2024 18:16:09 GMT
+recorded_with: VCR 6.2.0

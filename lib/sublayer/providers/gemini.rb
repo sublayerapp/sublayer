@@ -60,6 +60,8 @@ module Sublayer
           xml << "<name>#{property.name}</name>"
           xml << "<type>#{property.type}</type>"
           xml << "<description>#{property.description}</description>"
+          xml << "<required>#{property.required}</required>"
+          xml << "<enum>#{property.enum}</enum>" if property.enum
         end
       end
     end
