@@ -2,7 +2,7 @@ class SentimentFromTextGenerator < Sublayer::Generators::Base
   llm_output_adapter type: :string_selection_from_list,
     name: "sentiment_value",
     description: "A sentiment value from the list",
-    options: ["positive", "negative", "neutral"]
+    options: -> { @sentiment_options }
 
   def initialize(text:, sentiment_options:)
     @text = text

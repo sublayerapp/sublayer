@@ -28,7 +28,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Wed, 15 May 2024 01:03:27 GMT
+      - Wed, 15 May 2024 21:27:48 GMT
       Content-Type:
       - application/json
       Transfer-Encoding:
@@ -38,7 +38,7 @@ http_interactions:
       Openai-Organization:
       - sublayer
       Openai-Processing-Ms:
-      - '683'
+      - '677'
       Openai-Version:
       - '2020-10-01'
       Strict-Transport-Security:
@@ -56,28 +56,28 @@ http_interactions:
       X-Ratelimit-Reset-Tokens:
       - 5ms
       X-Request-Id:
-      - req_db09191e4ff0125bb1c1d21aac688d85
+      - req_e8fcdd3cfe69ff43ce0640189eef6192
       Cf-Cache-Status:
       - DYNAMIC
       Set-Cookie:
-      - __cf_bm=0DMYB.TxRK8iHa7DZ1CwPObgpTbt_zUgnc1p8cMGvFw-1715735007-1.0.1.1-gf8evmwmlQm9FYn0FKRJBk_06KaPclAAljA7yMxHJyxrOYip3d67Rft.rNHoCVXUq9F166ynOQbco1hxD0wKQw;
-        path=/; expires=Wed, 15-May-24 01:33:27 GMT; domain=.api.openai.com; HttpOnly;
+      - __cf_bm=uWRx3bm4U0b8.QwnYUrqtgN7UrdIwYuK78JMr7RPovc-1715808468-1.0.1.1-kEdswLEr.KnVJGKey3IDp0C2QHdyqrCpygAEjfASgALYN1u0aj1hGRG3C7kuUn1SDUu8..3fvdQLOpv6bIr_zw;
+        path=/; expires=Wed, 15-May-24 21:57:48 GMT; domain=.api.openai.com; HttpOnly;
         Secure; SameSite=None
-      - _cfuvid=ZhiLg9a9qmCBOkLeK27nSKkTMDqQm1jMS1GlN7hLghs-1715735007342-0.0.1.1-604800000;
+      - _cfuvid=FqNnXSvRpAbc2VFHg6GEEWTo1uHtWwOLTe65_TB2OwE-1715808468926-0.0.1.1-604800000;
         path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None
       Server:
       - cloudflare
       Cf-Ray:
-      - 883f354eecbd7ced-EWR
+      - 884636cdaea672a1-EWR
       Alt-Svc:
       - h3=":443"; ma=86400
     body:
       encoding: ASCII-8BIT
       string: |
         {
-          "id": "chatcmpl-9OxLC74yxT8WVRXXuhtkTDHSovyCf",
+          "id": "chatcmpl-9PGS4nzE430WylsAgtlLoLZ29Xxvs",
           "object": "chat.completion",
-          "created": 1715735006,
+          "created": 1715808468,
           "model": "gpt-4-turbo-2024-04-09",
           "choices": [
             {
@@ -87,7 +87,7 @@ http_interactions:
                 "content": null,
                 "tool_calls": [
                   {
-                    "id": "call_mG00LXPfi1KYQqUFvx168uWA",
+                    "id": "call_WcdJ519uHXiKrxPBuat25mWi",
                     "type": "function",
                     "function": {
                       "name": "sentiment_value",
@@ -105,7 +105,7 @@ http_interactions:
             "completion_tokens": 7,
             "total_tokens": 123
           },
-          "system_fingerprint": "fp_e9446dc58f"
+          "system_fingerprint": "fp_294de9593d"
         }
-  recorded_at: Wed, 15 May 2024 01:03:27 GMT
+  recorded_at: Wed, 15 May 2024 21:27:48 GMT
 recorded_with: VCR 6.2.0
