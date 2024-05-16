@@ -36,6 +36,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "zeitwerk"
   spec.add_dependency "nokogiri", "~> 1.16.5"
   spec.add_dependency "httparty"
+  spec.add_dependency "listen"
 
   spec.add_development_dependency "rspec", "~> 3.12"
   spec.add_development_dependency "pry", "~> 0.14"

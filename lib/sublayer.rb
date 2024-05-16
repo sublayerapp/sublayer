@@ -8,6 +8,8 @@ require 'ostruct'
 require "httparty"
 require "openai"
 require "nokogiri"
+require "listen"
+
 require_relative "sublayer/version"
 
 loader = Zeitwerk::Loader.for_gem
