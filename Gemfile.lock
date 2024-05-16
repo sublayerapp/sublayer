@@ -5,7 +5,7 @@ PATH
       activesupport
       colorize
       httparty
-      nokogiri
+      nokogiri (~> 1.16.5)
       ruby-openai
       zeitwerk
 
@@ -70,9 +70,9 @@ GEM
     multi_xml (0.6.0)
     multipart-post (2.3.0)
     mutex_m (0.1.2)
-    nokogiri (1.16.2-arm64-darwin)
+    nokogiri (1.16.5-arm64-darwin)
       racc (~> 1.4)
-    nokogiri (1.16.2-x86_64-linux)
+    nokogiri (1.16.5-x86_64-linux)
       racc (~> 1.4)
     pry (0.14.1)
       coderay (~> 1.1)
