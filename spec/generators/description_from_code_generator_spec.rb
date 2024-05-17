@@ -1,6 +1,6 @@
 require "spec_helper"
 
-require "sublayer/generators/examples/description_from_code_generator"
+require "generators/examples/description_from_code_generator"
 
 RSpec.describe DescriptionFromCodeGenerator do
   before do
