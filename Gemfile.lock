@@ -5,6 +5,7 @@ PATH
       activesupport
       colorize
       httparty
+      listen
       nokogiri (~> 1.16.5)
       ruby-openai
       zeitwerk
@@ -58,12 +59,16 @@ GEM
     faraday-multipart (1.0.4)
       multipart-post (~> 2)
     faraday-net_http (3.0.2)
+    ffi (1.16.3)
     hashdiff (1.1.0)
     httparty (0.21.0)
       mini_mime (>= 1.0.0)
       multi_xml (>= 0.5.2)
     i18n (1.14.1)
       concurrent-ruby (~> 1.0)
+    listen (3.9.0)
+      rb-fsevent (~> 0.10, >= 0.10.3)
+      rb-inotify (~> 0.9, >= 0.9.10)
     method_source (1.0.0)
     mini_mime (1.1.5)
     minitest (5.20.0)
@@ -79,6 +84,9 @@ GEM
       method_source (~> 1.0)
     public_suffix (5.0.5)
     racc (1.7.3)
+    rb-fsevent (0.11.2)
+    rb-inotify (0.10.1)
+      ffi (~> 1.0)
     rexml (3.2.6)
     rspec (3.12.0)
       rspec-core (~> 3.12.0)
