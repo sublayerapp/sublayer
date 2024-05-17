@@ -1,7 +1,7 @@
 require "pry"
 require "spec_helper"
 
-require "sublayer/generators/examples/code_from_description_generator"
+require "generators/examples/code_from_description_generator"
 
 RSpec.describe CodeFromDescriptionGenerator do
   def generate(description:, technologies: ["ruby"])
