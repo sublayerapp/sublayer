@@ -16,3 +16,5 @@
 *.gem
 
 /TAGS
+
+*.DS_Store

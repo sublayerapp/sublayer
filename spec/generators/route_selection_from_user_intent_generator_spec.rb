@@ -1,6 +1,6 @@
 require "spec_helper"
 
-require "sublayer/generators/examples/route_selection_from_user_intent_generator"
+require "generators/examples/route_selection_from_user_intent_generator"
 
 RSpec.describe RouteSelectionFromUserIntentGenerator do
   def generate(text)

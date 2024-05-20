@@ -1,6 +1,6 @@
 require "spec_helper"
 
-require "sublayer/generators/examples/invalid_to_valid_json_generator"
+require "generators/examples/invalid_to_valid_json_generator"
 
 RSpec.describe InvalidToValidJsonGenerator do
   def generate(json)

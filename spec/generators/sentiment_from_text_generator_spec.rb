@@ -1,6 +1,6 @@
 require "spec_helper"
 
-require "sublayer/generators/examples/sentiment_from_text_generator"
+require "generators/examples/sentiment_from_text_generator"
 
 RSpec.describe SentimentFromTextGenerator do
   def generate(text)
