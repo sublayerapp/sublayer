@@ -18,6 +18,9 @@ module Sublayer
         else
           raise "Output adapter must be specified with :class or :type"
         end
+
+        options[:name] = options[:name].to_s if options[:name].is_a?(Symbol)
+
         klass.new(options)
       end
     end
