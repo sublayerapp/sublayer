@@ -5,13 +5,14 @@ http_interactions:
     uri: https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=<GEMINI_API_KEY>
     body:
       encoding: UTF-8
-      string: '{"contents":{"role":"user","parts":{"text":"        You are skilled
-        at selecting routes based on user intent.\n\n        Your task is to choose
-        a route based on the following intent:\n\n        The user''s intent is:\n        I
-        want to get all the users\n"}},"tools":{"functionDeclarations":[{"name":"route","description":"A
-        route selected from the list","parameters":{"type":"OBJECT","properties":{"route":{"type":"STRING","description":"A
-        route selected from the list","enum":["GET /","GET /users","GET /users/:id","POST
-        /users","PUT /users/:id","DELETE /users/:id"]}},"required":["route"]}}]}}'
+      string: '{"contents":{"role":"user","parts":{"text":"    You are an SEO expect
+        tasked with suggesting keywords for a blog post.\n\n    The blog post topic
+        is: Artificial Intelligence in Healthcare\n\n    Please suggest relevant  keywords
+        or key phrases for this post''s topic.\n    Each keyword or phrase should
+        be concise and directly related to the topic.\n\n    Provide your suggestions
+        as a list of strings.\n"}},"tools":{"functionDeclarations":[{"name":"suggestions","description":"List
+        of keyword suggestions","parameters":{"type":"OBJECT","properties":{"suggestions":{"type":"ARRAY","description":"List
+        of keyword suggestions","items":{"type":"string"}}},"required":["suggestions"]}}]}}'
     headers:
       Content-Type:
       - application/json
@@ -33,7 +34,7 @@ http_interactions:
       - Referer
       - X-Origin
       Date:
-      - Mon, 22 Jul 2024 21:35:07 GMT
+      - Mon, 22 Jul 2024 21:29:06 GMT
       Server:
       - scaffolding on HTTPServer2
       Cache-Control:
@@ -45,7 +46,7 @@ http_interactions:
       X-Content-Type-Options:
       - nosniff
       Server-Timing:
-      - gfet4t7; dur=857
+      - gfet4t7; dur=1195
       Alt-Svc:
       - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
       Transfer-Encoding:
@@ -60,9 +61,13 @@ http_interactions:
                 "parts": [
                   {
                     "functionCall": {
-                      "name": "route",
+                      "name": "suggestions",
                       "args": {
-                        "route": "GET /users"
+                        "suggestions": [
+                          "Artificial Intelligence in Healthcare",
+                          "cancer",
+                          "disease"
+                        ]
                       }
                     }
                   }
@@ -73,11 +78,7 @@ http_interactions:
               "index": 0,
               "safetyRatings": [
                 {
-                  "category": "HARM_CATEGORY_SEXUALLY_EXPLICIT",
-                  "probability": "NEGLIGIBLE"
-                },
-                {
-                  "category": "HARM_CATEGORY_HATE_SPEECH",
+                  "category": "HARM_CATEGORY_HARASSMENT",
                   "probability": "NEGLIGIBLE"
                 },
                 {
@@ -85,17 +86,21 @@ http_interactions:
                   "probability": "NEGLIGIBLE"
                 },
                 {
-                  "category": "HARM_CATEGORY_HARASSMENT",
+                  "category": "HARM_CATEGORY_HATE_SPEECH",
+                  "probability": "NEGLIGIBLE"
+                },
+                {
+                  "category": "HARM_CATEGORY_SEXUALLY_EXPLICIT",
                   "probability": "NEGLIGIBLE"
                 }
               ]
             }
           ],
           "usageMetadata": {
-            "promptTokenCount": 122,
-            "candidatesTokenCount": 15,
-            "totalTokenCount": 137
+            "promptTokenCount": 112,
+            "candidatesTokenCount": 22,
+            "totalTokenCount": 134
           }
         }
-  recorded_at: Mon, 22 Jul 2024 21:35:07 GMT
+  recorded_at: Mon, 22 Jul 2024 21:29:06 GMT
 recorded_with: VCR 6.2.0

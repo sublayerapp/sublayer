@@ -1,0 +1,81 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.anthropic.com/v1/messages
+    body:
+      encoding: UTF-8
+      string: '{"model":"claude-3-5-sonnet-20240620","max_tokens":4096,"tools":[{"name":"suggestions","description":"List
+        of keyword suggestions","input_schema":{"type":"object","properties":{"suggestions":{"type":"array","description":"List
+        of keyword suggestions"}},"required":["suggestions"]}}],"messages":[{"role":"user","content":"    You
+        are an SEO expect tasked with suggesting keywords for a blog post.\n\n    The
+        blog post topic is: Artificial Intelligence in Healthcare\n\n    Please suggest
+        relevant  keywords or key phrases for this post''s topic.\n    Each keyword
+        or phrase should be concise and directly related to the topic.\n\n    Provide
+        your suggestions as a list of strings.\n"}]}'
+    headers:
+      X-Api-Key:
+      - "<ANTHROPIC_API_KEY>"
+      Anthropic-Version:
+      - '2023-06-01'
+      Content-Type:
+      - application/json
+      Anthropic-Beta:
+      - tools-2024-04-04
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Mon, 22 Jul 2024 20:48:35 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Anthropic-Ratelimit-Requests-Limit:
+      - '1000'
+      Anthropic-Ratelimit-Requests-Remaining:
+      - '1000'
+      Anthropic-Ratelimit-Requests-Reset:
+      - '2024-07-22T20:49:34Z'
+      Anthropic-Ratelimit-Tokens-Limit:
+      - '80000'
+      Anthropic-Ratelimit-Tokens-Remaining:
+      - '80000'
+      Anthropic-Ratelimit-Tokens-Reset:
+      - '2024-07-22T20:48:35Z'
+      Request-Id:
+      - req_01Fef9iyNDDjYMbrZpXDiHYa
+      X-Cloud-Trace-Context:
+      - 667a997add66741ea898f264c8bd534f
+      Via:
+      - 1.1 google
+      Cf-Cache-Status:
+      - DYNAMIC
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 8a764ac5e95cc324-EWR
+    body:
+      encoding: ASCII-8BIT
+      string: '{"id":"msg_01LuPH8dGCEdLkZHaK7rDLkz","type":"message","role":"assistant","model":"claude-3-5-sonnet-20240620","content":[{"type":"text","text":"Certainly!
+        As an SEO expert, I''d be happy to suggest relevant keywords and key phrases
+        for a blog post about Artificial Intelligence in Healthcare. To provide you
+        with the most accurate and useful suggestions, I''ll use the \"suggestions\"
+        function to generate a list of keywords. Let me do that for you now."},{"type":"tool_use","id":"toolu_01A7Vm7bVWpQsTPSwpEasnJE","name":"suggestions","input":{"suggestions":["AI
+        in healthcare","medical AI applications","machine learning in medicine","healthcare
+        automation","AI diagnosis","predictive healthcare","AI-powered medical imaging","robotic
+        surgery","AI drug discovery","personalized medicine AI","healthcare data analytics","AI
+        patient monitoring","electronic health records AI","AI in telemedicine","medical
+        chatbots","AI-assisted clinical decision making"]}}],"stop_reason":"tool_use","stop_sequence":null,"usage":{"input_tokens":435,"output_tokens":204}}'
+  recorded_at: Mon, 22 Jul 2024 20:48:35 GMT
+recorded_with: VCR 6.2.0
