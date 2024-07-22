@@ -5,19 +5,14 @@ http_interactions:
     uri: https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=<GEMINI_API_KEY>
     body:
       encoding: UTF-8
-      string: '{"contents":{"role":"user","parts":{"text":"        You have access
-        to a set of tools to answer the prompt.\n\n        You may call tools like
-        this:\n        <tool_calls>\n          <tool_call>\n            <tool_name>$TOOL_NAME</tool_name>\n            <parameters>\n              <$PARAMETER_NAME>$VALUE</$PARAMETER_NAME>\n              ...\n            </parameters>\n          </tool_call>\n        </tool_calls>\n\n        Here
-        are the tools available:\n        <tools>\n          <tool_description>\n            <tool_name>generated_code</tool_name>\n            <tool_description>The
-        generated code in the requested language</tool_description>\n            <parameters>\n              <name>generated_code</name><type>string</type><description>The
-        generated code in the requested language</description>\n            </parameters>\n          </tool_description>\n        </tools>\n\n        Respond
-        only with valid xml.\n        The entire response should be wrapped in a <response>
-        tag.\n        Your response should call a tool inside a <tool_calls> tag.\n\n        You
-        are an expert programmer in ruby.\n\n        You are tasked with writing code
-        using the following technologies: ruby.\n\n        The description of the
-        task is a hello world app where I pass --who argument to set the ''world''
-        value using optparser\n\n        Take a deep breath and think step by step
-        before you start coding.\n"}}}'
+      string: '{"contents":{"role":"user","parts":{"text":"        You are an expert
+        programmer in ruby.\n\n        You are tasked with writing code using the
+        following technologies: ruby.\n\n        The description of the task is a
+        hello world app where I pass --who argument to set the ''world'' value using
+        optparser\n\n        Take a deep breath and think step by step before you
+        start coding.\n"}},"tools":{"functionDeclarations":[{"name":"generated_code","description":"The
+        generated code in the requested language","parameters":{"type":"OBJECT","properties":{"generated_code":{"type":"STRING","description":"The
+        generated code in the requested language"}},"required":["generated_code"]}}]},"tool_config":{"function_calling_config":{"mode":"ANY","allowed_function_names":["generated_code"]}}}'
     headers:
       Content-Type:
       - application/json
@@ -39,7 +34,7 @@ http_interactions:
       - Referer
       - X-Origin
       Date:
-      - Tue, 30 Apr 2024 17:33:56 GMT
+      - Mon, 22 Jul 2024 21:55:02 GMT
       Server:
       - scaffolding on HTTPServer2
       Cache-Control:
@@ -51,7 +46,7 @@ http_interactions:
       X-Content-Type-Options:
       - nosniff
       Server-Timing:
-      - gfet4t7; dur=3071
+      - gfet4t7; dur=2536
       Alt-Svc:
       - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
       Transfer-Encoding:
@@ -65,7 +60,7 @@ http_interactions:
               "content": {
                 "parts": [
                   {
-                    "text": "```xml\n\u003cresponse\u003e\n  \u003ctool_calls\u003e\n    \u003ctool_call\u003e\n      \u003ctool_name\u003egenerated_code\u003c/tool_name\u003e\n      \u003cparameters\u003e\n        \u003cgenerated_code\u003e#!/usr/bin/env ruby\n\nrequire 'optparse'\n\noptions = {}\nOptionParser.new do |opts|\n  opts.on('--who WHO', 'Who to greet (default: World)') do |who|\n    options[:who] = who\n  end\nend.parse!\n\nputs \"Hello, #{options[:who]}!\"\u003c/generated_code\u003e\n      \u003c/parameters\u003e\n    \u003c/tool_call\u003e\n  \u003c/tool_calls\u003e\n\u003c/response\u003e\n```"
+                    "text": "```ruby  \n  require \"optparse\"\n\n  # Define the options for the script\n  options = {}\n  OptionParser.new do |opts|\n    opts.on(\"-w\", \"--who NAME\", \"Who to say hello to (default: World)\") do |who|\n      options[:who] = who\n    end\n  end.parse!\n\n  # Set the default value for the `who` option\n  options[:who] ||= \"World\"\n\n  # Print the greeting\n  puts \"Hello, #{options[:who]}!\"  \n```"
                   }
                 ],
                 "role": "model"
@@ -91,7 +86,12 @@ http_interactions:
                 }
               ]
             }
-          ]
+          ],
+          "usageMetadata": {
+            "promptTokenCount": 119,
+            "candidatesTokenCount": 122,
+            "totalTokenCount": 241
+          }
         }
-  recorded_at: Tue, 30 Apr 2024 17:33:56 GMT
+  recorded_at: Mon, 22 Jul 2024 21:55:02 GMT
 recorded_with: VCR 6.2.0

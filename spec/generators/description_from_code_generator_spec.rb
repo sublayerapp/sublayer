@@ -76,7 +76,7 @@ RSpec.describe DescriptionFromCodeGenerator do
   context "Gemini" do
     before do
       Sublayer.configuration.ai_provider = Sublayer::Providers::Gemini
-      Sublayer.configuration.ai_model = "gemini-pro"
+      Sublayer.configuration.ai_model = "gemini-1.5-pro-latest"
     end
 
     it "generates description from hello world code" do
@@ -99,7 +99,7 @@ RSpec.describe DescriptionFromCodeGenerator do
 
         description = generate(code)
         expect(description.strip).to eq <<~DESCRIPTION.strip
-          This code is a simple command-line script that greets a person by name. It takes an optional argument, `--who`, to specify the name of the person to greet, and defaults to \"world\" if no name is provided. The script then prints a greeting to the specified person.
+        This Ruby code is a simple command-line program that greets a person by name. \\n\\nHere is a breakdown of the code:\\n\\n1. **Requires the `optparse` library:** This line includes the `optparse` library, which is used for parsing command-line options.\\n2. **Initializes an options hash:** `options = {}` creates an empty hash called `options` to store command-line arguments.\\n3. **Defines command-line options:**\\n   - `OptionParser.new do |opts| ... end.parse!` creates a new OptionParser object and defines the command-line options.\\n   - `opts.banner = \"Usage: hello.rb [options]\"` sets the banner message displayed at the top of the help text.\\n   - `opts.on(\"-w\", \"--who PERSON\", \"Name of the person to greet\") do |person| ... end` defines an option `-w` or `--who` that takes a `PERSON` argument. The value of the argument is stored in the `options[:who]` hash.\\n4. **Gets the name to greet:**\\n   - `who = options[:who] || \"world\"` retrieves the value of the `:who` option from the `options` hash. If the option is not provided, it defaults to \"world\".\\n5. **Prints the greeting:**\\n   - `puts \"Hello, \#{who}!\"` prints the greeting message with the name of the person being greeted.
         DESCRIPTION
       end
     end

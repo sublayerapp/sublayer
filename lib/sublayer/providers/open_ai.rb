@@ -53,6 +53,10 @@ module Sublayer
           if property.enum
             hash[property.name][:enum] = property.enum
           end
+
+          if property.items
+            hash[property.name][:items] = property.items
+          end
         end
       end
     end

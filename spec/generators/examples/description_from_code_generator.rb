@@ -1,7 +1,7 @@
 class DescriptionFromCodeGenerator < Sublayer::Generators::Base
   llm_output_adapter type: :single_string,
     name: "code_description",
-    description: "A description of what the code in the file does"
+    description: "A description of what the code does, its purpose,functionality, and any noteworthy details"
 
   def initialize(code:)
     @code = code

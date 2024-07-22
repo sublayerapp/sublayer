@@ -2,25 +2,22 @@
 http_interactions:
 - request:
     method: post
-    uri: https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=<GEMINI_API_KEY>
+    uri: https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-pro-latest:generateContent?key=<GEMINI_API_KEY>
     body:
       encoding: UTF-8
-      string: '{"contents":{"role":"user","parts":{"text":"        You have access
-        to a set of tools to answer the prompt.\n\n        You may call tools like
-        this:\n        <tool_calls>\n          <tool_call>\n            <tool_name>$TOOL_NAME</tool_name>\n            <parameters>\n              <$PARAMETER_NAME>$VALUE</$PARAMETER_NAME>\n              ...\n            </parameters>\n          </tool_call>\n        </tool_calls>\n\n        Here
-        are the tools available:\n        <tools>\n          <tool_description>\n            <tool_name>code_description</tool_name>\n            <tool_description>A
-        description of what the code in the file does</tool_description>\n            <parameters>\n              <name>code_description</name><type>string</type><description>A
-        description of what the code in the file does</description>\n            </parameters>\n          </tool_description>\n        </tools>\n\n        Respond
-        only with valid xml.\n        The entire response should be wrapped in a <response>
-        tag.\n        Your response should call a tool inside a <tool_calls> tag.\n\n        You
-        are an experienced software engineer. Below is a chunk of code:\n\n        #!/usr/bin/env
-        ruby\n\n        require ''optparse''\n\n        options = {}\n        OptionParser.new
-        do |opts|\n          opts.banner = \"Usage: hello.rb [options]\"\n\n          opts.on(\"-w\",
-        \"--who PERSON\", \"Name of the person to greet\") do |person|\n            options[:who]
-        = person\n          end\n        end.parse!\n\n        who = options[:who]
-        || \"world\"\n        puts \"Hello, #{who}!\"\n\n        Please read the code
+      string: '{"contents":{"role":"user","parts":{"text":"        You are an experienced
+        software engineer. Below is a chunk of code:\n\n        #!/usr/bin/env ruby\n\n        require
+        ''optparse''\n\n        options = {}\n        OptionParser.new do |opts|\n          opts.banner
+        = \"Usage: hello.rb [options]\"\n\n          opts.on(\"-w\", \"--who PERSON\",
+        \"Name of the person to greet\") do |person|\n            options[:who] =
+        person\n          end\n        end.parse!\n\n        who = options[:who] ||
+        \"world\"\n        puts \"Hello, #{who}!\"\n\n        Please read the code
         carefully and provide a high-level description of what this code does, including
-        its purpose, functionalities, and any noteworthy details.\n"}}}'
+        its purpose, functionalities, and any noteworthy details.\n"}},"tools":{"functionDeclarations":[{"name":"code_description","description":"A
+        description of what the code does, its purpose,functionality, and any noteworthy
+        details","parameters":{"type":"OBJECT","properties":{"code_description":{"type":"STRING","description":"A
+        description of what the code does, its purpose,functionality, and any noteworthy
+        details"}},"required":["code_description"]}}]},"tool_config":{"function_calling_config":{"mode":"ANY","allowed_function_names":["code_description"]}}}'
     headers:
       Content-Type:
       - application/json
@@ -42,7 +39,7 @@ http_interactions:
       - Referer
       - X-Origin
       Date:
-      - Tue, 30 Apr 2024 17:41:29 GMT
+      - Mon, 22 Jul 2024 21:43:47 GMT
       Server:
       - scaffolding on HTTPServer2
       Cache-Control:
@@ -54,7 +51,7 @@ http_interactions:
       X-Content-Type-Options:
       - nosniff
       Server-Timing:
-      - gfet4t7; dur=2840
+      - gfet4t7; dur=7267
       Alt-Svc:
       - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
       Transfer-Encoding:
@@ -68,7 +65,12 @@ http_interactions:
               "content": {
                 "parts": [
                   {
-                    "text": "\u003cresponse\u003e\n  \u003ctool_calls\u003e\n    \u003ctool_call\u003e\n      \u003ctool_name\u003ecode_description\u003c/tool_name\u003e\n      \u003cparameters\u003e\n        \u003ccode_description\u003eThis code is a simple command-line script that greets a person by name. It takes an optional argument, `--who`, to specify the name of the person to greet, and defaults to \"world\" if no name is provided. The script then prints a greeting to the specified person.\u003c/code_description\u003e\n      \u003c/parameters\u003e\n    \u003c/tool_call\u003e\n  \u003c/tool_calls\u003e\n\u003c/response\u003e"
+                    "functionCall": {
+                      "name": "code_description",
+                      "args": {
+                        "code_description": "This Ruby code is a simple command-line program that greets a person by name. \\n\\nHere is a breakdown of the code:\\n\\n1. **Requires the `optparse` library:** This line includes the `optparse` library, which is used for parsing command-line options.\\n2. **Initializes an options hash:** `options = {}` creates an empty hash called `options` to store command-line arguments.\\n3. **Defines command-line options:**\\n   - `OptionParser.new do |opts| ... end.parse!` creates a new OptionParser object and defines the command-line options.\\n   - `opts.banner = \"Usage: hello.rb [options]\"` sets the banner message displayed at the top of the help text.\\n   - `opts.on(\"-w\", \"--who PERSON\", \"Name of the person to greet\") do |person| ... end` defines an option `-w` or `--who` that takes a `PERSON` argument. The value of the argument is stored in the `options[:who]` hash.\\n4. **Gets the name to greet:**\\n   - `who = options[:who] || \"world\"` retrieves the value of the `:who` option from the `options` hash. If the option is not provided, it defaults to \"world\".\\n5. **Prints the greeting:**\\n   - `puts \"Hello, #{who}!\"` prints the greeting message with the name of the person being greeted."
+                      }
+                    }
                   }
                 ],
                 "role": "model"
@@ -77,11 +79,11 @@ http_interactions:
               "index": 0,
               "safetyRatings": [
                 {
-                  "category": "HARM_CATEGORY_SEXUALLY_EXPLICIT",
+                  "category": "HARM_CATEGORY_DANGEROUS_CONTENT",
                   "probability": "NEGLIGIBLE"
                 },
                 {
-                  "category": "HARM_CATEGORY_HATE_SPEECH",
+                  "category": "HARM_CATEGORY_SEXUALLY_EXPLICIT",
                   "probability": "NEGLIGIBLE"
                 },
                 {
@@ -89,12 +91,17 @@ http_interactions:
                   "probability": "NEGLIGIBLE"
                 },
                 {
-                  "category": "HARM_CATEGORY_DANGEROUS_CONTENT",
+                  "category": "HARM_CATEGORY_HATE_SPEECH",
                   "probability": "NEGLIGIBLE"
                 }
               ]
             }
-          ]
+          ],
+          "usageMetadata": {
+            "promptTokenCount": 228,
+            "candidatesTokenCount": 346,
+            "totalTokenCount": 574
+          }
         }
-  recorded_at: Tue, 30 Apr 2024 17:41:29 GMT
+  recorded_at: Mon, 22 Jul 2024 21:43:47 GMT
 recorded_with: VCR 6.2.0
