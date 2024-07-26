@@ -25,7 +25,7 @@ module Sublayer
                   description: output_adapter.description,
                   parameters: {
                     type: "object",
-                    properties: OpenAI.format_properties(output_adapter)
+                    properties: output_adapter.json_formatted_properties
                   },
                   required: [output_adapter.properties.select(&:required).map(&:name)]
                 }
