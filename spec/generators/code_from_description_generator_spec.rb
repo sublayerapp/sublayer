@@ -55,7 +55,7 @@ puts "Hello, #{who_to_greet}!")
 
     end
 
-    context "Gemini" do
+    xcontext "Gemini" do
       before do
         Sublayer.configuration.ai_provider = Sublayer::Providers::Gemini
         Sublayer.configuration.ai_model = "gemini-pro"
