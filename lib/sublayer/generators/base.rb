@@ -4,7 +4,7 @@ module Sublayer
       attr_reader :results
 
       def self.llm_output_adapter(options)
-        output_adapter = Sublayer::Components::OutputAdapters.create(options)
+        output_adapter = Sublayer::Components::OutputAdapters.create(options).extend(Sublayer::Components::OutputAdapters::Formattable)
         const_set(:OUTPUT_ADAPTER, output_adapter)
       end
 

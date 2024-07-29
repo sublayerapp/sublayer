@@ -1,7 +1,7 @@
 module Sublayer
   module Components
     module OutputAdapters
-      class Base
+      module Formattable
         def format_properties
           formatted_properties = {}
           self.properties.each do |prop|
@@ -22,10 +22,6 @@ module Sublayer
 
         def format_required
           self.properties.select(&:required).map(&:name)
-        end
-
-        def properties
-          raise NotImplementedError, "#{self.class} must implement properties method"
         end
       end
     end

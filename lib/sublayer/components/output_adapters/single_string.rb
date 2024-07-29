@@ -1,7 +1,7 @@
 module Sublayer
   module Components
     module OutputAdapters
-      class SingleString < Base
+      class SingleString
         attr_reader :name, :description
 
         def initialize(options)

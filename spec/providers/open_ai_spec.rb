@@ -13,7 +13,7 @@ RSpec.describe Sublayer::Providers::OpenAI do
           type: :single_string,
           name: "the_answer",
           description: "The answer to the given question"
-        )
+        ).extend(Sublayer::Components::OutputAdapters::Formattable)
         response = described_class.call(
           prompt: "What is the meaning of life, the universe, and everything?",
           output_adapter: output_adapter
