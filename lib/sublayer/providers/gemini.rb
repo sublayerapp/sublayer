@@ -43,24 +43,6 @@ module Sublayer
 
         argument = response.dig("candidates", 0, "content", "parts", 0, "functionCall", "args", output_adapter.name)
       end
-
-      private
-      def self.format_properties(output_adapter)
-        output_adapter.properties.each_with_object({}) do |property, hash|
-          hash[property.name] = {
-            type: property.type.upcase,
-            description: property.description
-          }
-
-          if property.enum
-            hash[property.name][:enum] = property.enum
-          end
-
-          if property.items
-            hash[property.name][:items] = property.items
-          end
-        end
-      end
     end
   end
 end
