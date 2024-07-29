@@ -22,8 +22,8 @@ module Sublayer
                 description: output_adapter.description,
                 input_schema: {
                   type: "object",
-                  properties: output_adapter.json_formatted_properties,
-                  required: output_adapter.properties.select(&:required).map(&:name)
+                  properties: output_adapter.format_properties,
+                  required: output_adapter.format_required
                 }
               }
             ],
