@@ -24,28 +24,6 @@ module Sublayer
             @list
           end
         end
-
-        def json_formatted_properties
-          {
-            "#{@name}": {
-              type: 'string',
-              description: @description,
-              enum: @list
-            }
-          }
-        end
-
-        def xml_formatted_properties
-          <<-XML
-            <parameter>
-              <name>#{@name}</name>
-              <type>string</type>
-              <description>#{@description}</description>
-              <enum>#{@list}</enum>
-              <required>true</required>
-            </parameter>
-          XML
-        end
       end
     end
   end
