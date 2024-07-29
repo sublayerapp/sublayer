@@ -22,8 +22,8 @@ module Sublayer
                 description: output_adapter.description,
                 input_schema: {
                   type: "object",
-                  properties: format_properties(output_adapter),
-                  required: output_adapter.properties.select(&:required).map(&:name)
+                  properties: output_adapter.format_properties,
+                  required: output_adapter.format_required
                 }
               }
             ],
@@ -34,20 +34,6 @@ module Sublayer
 
         function_input = JSON.parse(response.body).dig("content").find {|content| content['type'] == 'tool_use'}.dig("input")
         function_input[output_adapter.name]
-      end
-
-      private
-      def self.format_properties(output_adapter)
-        output_adapter.properties.each_with_object({}) do |property, hash|
-          hash[property.name] = {
-            type: property.type,
-            description: property.description
-          }
-
-          if property.enum
-            hash[property.name][:enum] = property.enum
-          end
-        end
       end
     end
   end
