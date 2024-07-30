@@ -23,6 +23,7 @@ gem 'sublayer', '~> 0.2'
 ## Notes on 0.2
 
 New default model update: gpt 4 turbo -> gpt 4o
+
 Gemini: Updates include the use of beta API function calling features. Experimental and unstable.
 
 ## Installation
@@ -54,7 +55,8 @@ Sublayer.configuration.ai_model = "gpt-4o"
 ```
 
 ### Gemini [UNSTABLE]
-*UNSTABLE* Gemini's function calling API is in beta. Provider is not recommended until Gemini API update.
+
+(Gemini's function calling API is in beta. Not recommended for production use.)
 
 Expects you to have a Gemini API key set in the `GEMINI_API_KEY` environment variable.
 
@@ -98,8 +100,8 @@ Examples (in the `/spec/generators/examples` directory):
 
 ### Actions
 
-Actions perform specific operations that do not involve complex decision making
-to either get inputs for a Generator or use the generated output from a Generator.
+Actions perform specific operations to either get inputs for a Generator or use
+the generated output from a Generator. Actions do not involve complex decision making.
 
 Examples:
 - [WriteFileAction](https://github.com/sublayerapp/tddbot/blob/43297c5da9445bd6c8882d5e3876cff5fc6b2650/lib/tddbot/sublayer/actions/write_file_action.rb):
@@ -109,7 +111,7 @@ Examples:
 
 ### Agents
 
-Sublayer Agents are autonomous units of execution designed to perform specific
+Sublayer Agents are autonomous entities designed to perform specific
 tasks or monitor systems.
 
 Examples:
