@@ -34,7 +34,7 @@ gem 'sublayer', '~> 0.1'
 
 ## Choose your AI Model
 
-Sublayer is model-agnostic and can be used with any AI model. Below are the
+Sublayer is model-agnostic and can be used with any AI model. Below are the supported LLM Providers. Check out our [docs](https://docs.sublayer.com) to add your own custom Provider.
 
 ### OpenAI (Default)
 
@@ -45,10 +45,11 @@ Visit [OpenAI](https://openai.com/product) to get an API key.
 Usage:
 ```ruby
 Sublayer.configuration.ai_provider = Sublayer::Providers::OpenAI
-Sublayer.configuration.ai_model = "gpt-4-turbo-preview"
+Sublayer.configuration.ai_model = "gpt-4o"
 ```
 
-### Gemini
+### Gemini [UNSTABLE]
+*UNSTABLE* Gemini's function calling API is in beta. Provider is not recommended until Gemini API update.
 
 Expects you to have a Gemini API key set in the `GEMINI_API_KEY` environment variable.
 
@@ -57,7 +58,7 @@ Visit [Google AI Studio](https://ai.google.dev/) to get an API key.
 Usage:
 ```ruby
 Sublayer.configuration.ai_provider = Sublayer::Providers::Gemini
-Sublayer.configuration.ai_model = "gemini-pro"
+Sublayer.configuration.ai_model = "gemini-1.5-pro"
 ```
 
 ### Claude
@@ -70,7 +71,7 @@ Visit [Anthropic](https://anthropic.com/) to get an API key.
 Usage:
 ```ruby
 Sublayer.configuration.ai_provider = Sublayer::Providers::Claude
-Sublayer.configuration.ai_model ="claude-3-opus-20240229"
+Sublayer.configuration.ai_model ="claude-3-5-sonnet-20240620"
 ```
 
 ## Concepts
