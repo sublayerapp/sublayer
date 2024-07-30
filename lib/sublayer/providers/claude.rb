@@ -1,5 +1,5 @@
 # Sublayer.configuration.ai_provider = Sublayer::Providers::Claude
-# Sublayer.configuration.ai_model ="claude-3-opus-20240229"
+# Sublayer.configuration.ai_model ="claude-3-5-sonnet-20240620"
 
 module Sublayer
   module Providers

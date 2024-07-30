@@ -1,5 +1,8 @@
+# *UNSTABLE* Gemini function calling API is in beta.
+#            Provider is not recommended until API update.
+
 # Sublayer.configuration.ai_provider = Sublayer::Providers::Gemini
-# Sublayer.configuration.ai_model = "gemini-pro"
+# Sublayer.configuration.ai_model = "gemini-1.5-pro"
 
 module Sublayer
   module Providers
