@@ -14,11 +14,16 @@ for new features and bug fixes.
 
 To maintain stability in your application, we recommend pinning the version of
 Sublayer in your Gemfile to a specific minor version. For example, to pin to
-version 0.1.x, you would add the following line to your Gemfile:
+version 0.2.x, you would add the following line to your Gemfile:
 
 ```ruby
-gem 'sublayer', '~> 0.1'
+gem 'sublayer', '~> 0.2'
 ```
+
+## Notes on 0.2
+
+New default model update: gpt 4 turbo -> gpt 4o
+Gemini: Updates include the use of beta API function calling features. Experimental and unstable.
 
 ## Installation
 
@@ -29,7 +34,7 @@ Install the gem by running the following commands:
 Or add this line to your application's Gemfile:
 
 ```ruby
-gem 'sublayer', '~> 0.1'
+gem 'sublayer', '~> 0.2'
 ```
 
 ## Choose your AI Model
@@ -82,49 +87,46 @@ Generators are responsible for generating specific outputs based on input data.
 They focus on a single generation task and do not perform any actions or complex
 decision-making. Generators are the building blocks of the Sublayer framework.
 
-Examples (in the `/lib/sublayer/generators/examples` directory):
-- `CodeFromDescriptionGenerator`: Generates code based on a description and the
-  technologies used.
-- `DescriptionFromCodeGenerator`: Generates a description of the code passed in to
-  it.
-- `CodeFromBlueprintGenerator`: Generates code based on a blueprint, a blueprint
-  description, and a description of the desired code.
+Examples (in the `/spec/generators/examples` directory):
+- [CodeFromDescriptionGenerator](https://github.com/sublayerapp/sublayer/blob/main/spec/generators/examples/code_from_description_generator.rb):
+  Generates code based on a description and the technologies used.
+- [DescriptionFromCodeGenerator](https://github.com/sublayerapp/sublayer/blob/main/spec/generators/description_from_code_generator_spec.rb):
+  Generates a description of the code passed in to it.
+- [CodeFromBlueprintGenerator](https://github.com/sublayerapp/sublayer/blob/main/spec/generators/examples/code_from_blueprint_generator.rb):
+  Generates code based on a blueprint, a blueprint description, and a description of the desired code.
 
 
-### Actions (Coming Soon)
+### Actions
 
-Actions are responsible for performing specific operations to get inputs for a
-Generator or based on the generated output from a Generator. They encapsulate a
-single action and do not involve complex decision-making. Actions are  the
-executable units that bring the generated inputs to life.
+Actions perform specific operations that do not involve complex decision making
+to either get inputs for a Generator or use the generated output from a Generator.
 
 Examples:
-- SaveToFileAction: Saves generated output to a file.
-- RunCommandLineCommandAction: Runs a generated command line command.
+- [WriteFileAction](https://github.com/sublayerapp/tddbot/blob/43297c5da9445bd6c8882d5e3876cff5fc6b2650/lib/tddbot/sublayer/actions/write_file_action.rb):
+  Saves generated output to a file.
+- [RunTestCommandAction](https://github.com/sublayerapp/tddbot/blob/43297c5da9445bd6c8882d5e3876cff5fc6b2650/lib/tddbot/sublayer/actions/run_test_command_action.rb):
+  Runs a generated command line command.
 
-### Tasks (Coming Soon)
+### Agents
 
-Tasks combine Generators and Actions to accomplish a specific goal. They involve
-a sequence of generation and action steps that may include basic decision-making
-and flow control. Tasks are the high-level building blocks that define the
-desired outcome.
-
-Examples:
-- ModifyFileContentsTask: Generates new file contents based on the existing
-  contents and a set of rules, and then saves the new contents to the file.
-
-### Agents (Coming Soon)
-
-Agents are high-level entities that coordinate and orchestrate multiple Tasks to
-achieve a broader goal. They involve complex decision-making, monitoring, and
-adaptation based on the outcomes of the Tasks. Agents are the intelligent
-supervisors that manage the overall workflow.
+Sublayer Agents are autonomous units of execution designed to perform specific
+tasks or monitor systems.
 
 Examples:
-- CustomerSupportAgent: Handles customer support inquiries by using various
-  Tasks such as understanding the customer's issue, generating appropriate
-responses, and performing actions like sending emails or creating support
-tickets.
+- [RSpecAgent](https://github.com/sublayerapp/sublayer/blob/main/spec/agents/examples/rspec_agent.rb):
+  Runs tests whenever a file is changed. If the tests fail the code is changed
+  by the agent to pass the tests.
+
+### Triggers
+
+Sublayer Triggers are used in agents. Triggers decide when an agent is activated
+and performs its task
+
+Examples:
+- [FileChange](https://github.com/sublayerapp/sublayer/blob/main/lib/sublayer/triggers/file_change.rb):
+  This built in sublayer trigger, listens for file changes
+- [TimeInterval](https://docs.sublayer.com/docs/guides/build-a-custom-trigger)
+  This custom trigger tutorial shows how to create your own trigger, this one activates on a time interval
 
 ## Usage Examples
 
