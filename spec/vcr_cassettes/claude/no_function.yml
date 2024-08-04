@@ -1,0 +1,68 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.anthropic.com/v1/messages
+    body:
+      encoding: UTF-8
+      string: '{"model":"claude-3-haiku-20240307","max_tokens":4096,"tools":[{"name":"the_answer","description":"The
+        answer to the given question","input_schema":{"type":"object","properties":{"the_answer":{"type":"string","description":"The
+        answer to the given question"}},"required":["the_answer"]}}],"messages":[{"role":"user","content":"What
+        is the meaning of life, the universe, and everything?"}]}'
+    headers:
+      X-Api-Key:
+      - "<ANTHROPIC_API_KEY>"
+      Anthropic-Version:
+      - '2023-06-01'
+      Content-Type:
+      - application/json
+      Anthropic-Beta:
+      - tools-2024-04-04
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Sun, 04 Aug 2024 18:16:36 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Anthropic-Ratelimit-Requests-Limit:
+      - '1000'
+      Anthropic-Ratelimit-Requests-Remaining:
+      - '999'
+      Anthropic-Ratelimit-Requests-Reset:
+      - '2024-08-04T18:17:34Z'
+      Anthropic-Ratelimit-Tokens-Limit:
+      - '100000'
+      Anthropic-Ratelimit-Tokens-Remaining:
+      - '100000'
+      Anthropic-Ratelimit-Tokens-Reset:
+      - '2024-08-04T18:16:36Z'
+      Request-Id:
+      - req_01Qf2LEGKN3ULRNVq9sJfb2U
+      X-Cloud-Trace-Context:
+      - 2d986f920b449e58f24aa7050bd07001
+      Via:
+      - 1.1 google
+      Cf-Cache-Status:
+      - DYNAMIC
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 8ae08a105a298ccd-EWR
+    body:
+      encoding: ASCII-8BIT
+      string: '{"id":"msg_01JgumH23YHwKfeNL4usg4bv","type":"message","role":"assistant","model":"claude-3-haiku-20240307","content":[{"type":"text","text":"the answer to the meaning of life, the universe and everything is 42."}],"stop_reason":"end_turn","stop_sequence":null,"usage":{"input_tokens":353,"output_tokens":191}}'
+  recorded_at: Sun, 04 Aug 2024 18:16:36 GMT
+recorded_with: VCR 6.2.0

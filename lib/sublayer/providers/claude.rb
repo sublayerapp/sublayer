@@ -30,10 +30,14 @@ module Sublayer
             messages: [{ "role": "user", "content": prompt }]
           }.to_json
         )
+
         raise "Error generating with Claude, error: #{response.body}" unless response.code == 200
 
-        function_input = JSON.parse(response.body).dig("content").find {|content| content['type'] == 'tool_use'}.dig("input")
-        function_input[output_adapter.name]
+        tool_use = JSON.parse(response.body).dig("content").find { |content| content['type'] == 'tool_use' && content['name'] == output_adapter.name }
+
+        raise "Error generating with Claude, error: No function called. If the answer is in the response, try rewording your prompt or output adapter name to be from the perspective of the model. Response: #{response.body}" unless tool_use
+
+        tool_use.dig("input")[output_adapter.name]
       end
     end
   end
