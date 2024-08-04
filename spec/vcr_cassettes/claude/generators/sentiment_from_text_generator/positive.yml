@@ -7,7 +7,7 @@ http_interactions:
       encoding: UTF-8
       string: '{"model":"claude-3-haiku-20240307","max_tokens":4096,"tools":[{"name":"sentiment_value","description":"A
         sentiment value from the list","input_schema":{"type":"object","properties":{"sentiment_value":{"type":"string","description":"A
-        sentiment value from the list","enum":["positive","negative","neutral"]}},"required":["sentiment_value"]}}],"messages":[{"role":"user","content":"        You
+        sentiment value from the list","enum":["positive","negative","neutral"]}},"required":["sentiment_value"]}}],"tool_choice":{"type":"tool","name":"sentiment_value"},"messages":[{"role":"user","content":"        You
         are an expert at determining sentiment from text.\n\n        You are tasked
         with analyzing the following text and determining its sentiment value.\n\n        The
         text is:\n        Matz is nice so we are nice\n"}]}'
@@ -32,7 +32,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Wed, 15 May 2024 21:27:47 GMT
+      - Sun, 04 Aug 2024 19:33:12 GMT
       Content-Type:
       - application/json
       Transfer-Encoding:
@@ -44,17 +44,17 @@ http_interactions:
       Anthropic-Ratelimit-Requests-Remaining:
       - '999'
       Anthropic-Ratelimit-Requests-Reset:
-      - '2024-05-15T21:28:34Z'
+      - '2024-08-04T19:33:34Z'
       Anthropic-Ratelimit-Tokens-Limit:
       - '100000'
       Anthropic-Ratelimit-Tokens-Remaining:
       - '100000'
       Anthropic-Ratelimit-Tokens-Reset:
-      - '2024-05-15T21:28:34Z'
+      - '2024-08-04T19:33:12Z'
       Request-Id:
-      - req_01A7tv5773kpDwUCWNo7Fqy9
+      - req_012Dd8vLjHzN5SscB6PCGude
       X-Cloud-Trace-Context:
-      - a345b42b340101d4e0925fb4369c2e59
+      - fb56c4a63b941b7d499afd552c933e7e
       Via:
       - 1.1 google
       Cf-Cache-Status:
@@ -62,9 +62,9 @@ http_interactions:
       Server:
       - cloudflare
       Cf-Ray:
-      - 884636c77b3e1a0b-EWR
+      - 8ae0fa4b3f360c8a-EWR
     body:
       encoding: ASCII-8BIT
-      string: '{"id":"msg_01GQFagJPAzpiV7d8ouPiQrj","type":"message","role":"assistant","model":"claude-3-haiku-20240307","stop_sequence":null,"usage":{"input_tokens":397,"output_tokens":55},"content":[{"type":"tool_use","id":"toolu_01M6ypsvoVcWi94DPosbi1re","name":"sentiment_value","input":{"sentiment_value":"positive"}}],"stop_reason":"tool_use"}'
-  recorded_at: Wed, 15 May 2024 21:27:47 GMT
+      string: '{"id":"msg_016mrB54uiPEAwMBy9CF8d1k","type":"message","role":"assistant","model":"claude-3-haiku-20240307","content":[{"type":"tool_use","id":"toolu_01FFcNKh8AdZe1pZhbMV9qXw","name":"sentiment_value","input":{"sentiment_value":"positive"}}],"stop_reason":"tool_use","stop_sequence":null,"usage":{"input_tokens":493,"output_tokens":35}}'
+  recorded_at: Sun, 04 Aug 2024 19:33:12 GMT
 recorded_with: VCR 6.2.0

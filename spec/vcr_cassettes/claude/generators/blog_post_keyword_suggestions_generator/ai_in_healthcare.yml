@@ -7,7 +7,7 @@ http_interactions:
       encoding: UTF-8
       string: '{"model":"claude-3-5-sonnet-20240620","max_tokens":4096,"tools":[{"name":"suggestions","description":"List
         of keyword suggestions","input_schema":{"type":"object","properties":{"suggestions":{"type":"array","description":"List
-        of keyword suggestions"}},"required":["suggestions"]}}],"messages":[{"role":"user","content":"    You
+        of keyword suggestions","items":{"type":"string"}}},"required":["suggestions"]}}],"tool_choice":{"type":"tool","name":"suggestions"},"messages":[{"role":"user","content":"    You
         are an SEO expect tasked with suggesting keywords for a blog post.\n\n    The
         blog post topic is: Artificial Intelligence in Healthcare\n\n    Please suggest
         relevant  keywords or key phrases for this post''s topic.\n    Each keyword
@@ -34,7 +34,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Mon, 22 Jul 2024 20:48:35 GMT
+      - Sun, 04 Aug 2024 19:33:10 GMT
       Content-Type:
       - application/json
       Transfer-Encoding:
@@ -44,19 +44,19 @@ http_interactions:
       Anthropic-Ratelimit-Requests-Limit:
       - '1000'
       Anthropic-Ratelimit-Requests-Remaining:
-      - '1000'
+      - '999'
       Anthropic-Ratelimit-Requests-Reset:
-      - '2024-07-22T20:49:34Z'
+      - '2024-08-04T19:33:34Z'
       Anthropic-Ratelimit-Tokens-Limit:
       - '80000'
       Anthropic-Ratelimit-Tokens-Remaining:
       - '80000'
       Anthropic-Ratelimit-Tokens-Reset:
-      - '2024-07-22T20:48:35Z'
+      - '2024-08-04T19:33:10Z'
       Request-Id:
-      - req_01Fef9iyNDDjYMbrZpXDiHYa
+      - req_01JGRHGbpF5REqcgdSpAoe2c
       X-Cloud-Trace-Context:
-      - 667a997add66741ea898f264c8bd534f
+      - e5518c6c0c14f27fca305a19c1ccfb58
       Via:
       - 1.1 google
       Cf-Cache-Status:
@@ -64,18 +64,16 @@ http_interactions:
       Server:
       - cloudflare
       Cf-Ray:
-      - 8a764ac5e95cc324-EWR
+      - 8ae0fa2d2d6a438b-EWR
     body:
       encoding: ASCII-8BIT
-      string: '{"id":"msg_01LuPH8dGCEdLkZHaK7rDLkz","type":"message","role":"assistant","model":"claude-3-5-sonnet-20240620","content":[{"type":"text","text":"Certainly!
-        As an SEO expert, I''d be happy to suggest relevant keywords and key phrases
-        for a blog post about Artificial Intelligence in Healthcare. To provide you
-        with the most accurate and useful suggestions, I''ll use the \"suggestions\"
-        function to generate a list of keywords. Let me do that for you now."},{"type":"tool_use","id":"toolu_01A7Vm7bVWpQsTPSwpEasnJE","name":"suggestions","input":{"suggestions":["AI
-        in healthcare","medical AI applications","machine learning in medicine","healthcare
-        automation","AI diagnosis","predictive healthcare","AI-powered medical imaging","robotic
-        surgery","AI drug discovery","personalized medicine AI","healthcare data analytics","AI
-        patient monitoring","electronic health records AI","AI in telemedicine","medical
-        chatbots","AI-assisted clinical decision making"]}}],"stop_reason":"tool_use","stop_sequence":null,"usage":{"input_tokens":435,"output_tokens":204}}'
-  recorded_at: Mon, 22 Jul 2024 20:48:35 GMT
+      string: '{"id":"msg_015yAHnScvRUHJDbrfTnTHKg","type":"message","role":"assistant","model":"claude-3-5-sonnet-20240620","content":[{"type":"tool_use","id":"toolu_013bEzN6oGYm18vQEugxRNNe","name":"suggestions","input":{"suggestions":["AI
+        in healthcare","Machine learning in medicine","Healthcare automation","Medical
+        diagnosis AI","Predictive analytics in healthcare","AI-powered medical imaging","Personalized
+        medicine AI","Healthcare robotics","AI drug discovery","Electronic health
+        records AI","Telemedicine and AI","AI-assisted surgery","Healthcare data analysis","AI
+        patient monitoring","Medical chatbots","AI in clinical trials","Healthcare
+        cybersecurity AI","AI for disease prediction","Smart hospitals","AI-powered
+        health wearables"]}}],"stop_reason":"tool_use","stop_sequence":null,"usage":{"input_tokens":430,"output_tokens":197}}'
+  recorded_at: Sun, 04 Aug 2024 19:33:10 GMT
 recorded_with: VCR 6.2.0

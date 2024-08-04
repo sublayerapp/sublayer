@@ -8,7 +8,7 @@ http_interactions:
       string: '{"model":"claude-3-haiku-20240307","max_tokens":4096,"tools":[{"name":"route","description":"A
         route selected from the list","input_schema":{"type":"object","properties":{"route":{"type":"string","description":"A
         route selected from the list","enum":["GET /","GET /users","GET /users/:id","POST
-        /users","PUT /users/:id","DELETE /users/:id"]}},"required":["route"]}}],"messages":[{"role":"user","content":"        You
+        /users","PUT /users/:id","DELETE /users/:id"]}},"required":["route"]}}],"tool_choice":{"type":"tool","name":"route"},"messages":[{"role":"user","content":"        You
         are skilled at selecting routes based on user intent.\n\n        Your task
         is to choose a route based on the following intent:\n\n        The user''s
         intent is:\n        I want to get all the users\n"}]}'
@@ -33,7 +33,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 16 May 2024 17:50:10 GMT
+      - Sun, 04 Aug 2024 19:33:11 GMT
       Content-Type:
       - application/json
       Transfer-Encoding:
@@ -43,19 +43,19 @@ http_interactions:
       Anthropic-Ratelimit-Requests-Limit:
       - '1000'
       Anthropic-Ratelimit-Requests-Remaining:
-      - '998'
+      - '999'
       Anthropic-Ratelimit-Requests-Reset:
-      - '2024-05-16T17:51:34Z'
+      - '2024-08-04T19:33:34Z'
       Anthropic-Ratelimit-Tokens-Limit:
       - '100000'
       Anthropic-Ratelimit-Tokens-Remaining:
-      - '99000'
+      - '100000'
       Anthropic-Ratelimit-Tokens-Reset:
-      - '2024-05-16T17:51:34Z'
+      - '2024-08-04T19:33:11Z'
       Request-Id:
-      - req_01AzYHyHFPgSXqEWiYxuGsUD
+      - req_01EThhttprxZh9WPigwWig7g
       X-Cloud-Trace-Context:
-      - ac1024e6a68fe24aed0dcfc47e44e3e7
+      - 766a22ee2c95f66d863210e312996731
       Via:
       - 1.1 google
       Cf-Cache-Status:
@@ -63,12 +63,10 @@ http_interactions:
       Server:
       - cloudflare
       Cf-Ray:
-      - 884d355fedeb0cc2-EWR
+      - 8ae0fa46d9888c0f-EWR
     body:
       encoding: ASCII-8BIT
-      string: '{"id":"msg_01DbJeKEXtjSYQ2qtmk3NyJq","type":"message","role":"assistant","model":"claude-3-haiku-20240307","stop_sequence":null,"usage":{"input_tokens":416,"output_tokens":75},"content":[{"type":"text","text":"Okay,
-        based on the user''s intent to get all the users, the appropriate route would
-        be:"},{"type":"tool_use","id":"toolu_01TkRD1m2U8SRdihgZhs8dNk","name":"route","input":{"route":"GET
-        /users"}}],"stop_reason":"tool_use"}'
-  recorded_at: Thu, 16 May 2024 17:50:10 GMT
+      string: '{"id":"msg_011Dby6895APkMh2kQcS631X","type":"message","role":"assistant","model":"claude-3-haiku-20240307","content":[{"type":"tool_use","id":"toolu_01Trx3ZKz59u8ufpDPc2GbvG","name":"route","input":{"route":"GET
+        /users"}}],"stop_reason":"tool_use","stop_sequence":null,"usage":{"input_tokens":510,"output_tokens":35}}'
+  recorded_at: Sun, 04 Aug 2024 19:33:11 GMT
 recorded_with: VCR 6.2.0
