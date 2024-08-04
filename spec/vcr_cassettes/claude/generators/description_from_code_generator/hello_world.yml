@@ -6,8 +6,10 @@ http_interactions:
     body:
       encoding: UTF-8
       string: '{"model":"claude-3-haiku-20240307","max_tokens":4096,"tools":[{"name":"code_description","description":"A
-        description of what the code in the file does","input_schema":{"type":"object","properties":{"code_description":{"type":"string","description":"A
-        description of what the code in the file does"}},"required":["code_description"]}}],"messages":[{"role":"user","content":"        You
+        description of what the code does, its purpose,functionality, and any noteworthy
+        details","input_schema":{"type":"object","properties":{"code_description":{"type":"string","description":"A
+        description of what the code does, its purpose,functionality, and any noteworthy
+        details"}},"required":["code_description"]}}],"tool_choice":{"type":"tool","name":"code_description"},"messages":[{"role":"user","content":"        You
         are an experienced software engineer. Below is a chunk of code:\n\n        #!/usr/bin/env
         ruby\n\n        require ''optparse''\n\n        options = {}\n        OptionParser.new
         do |opts|\n          opts.banner = \"Usage: hello.rb [options]\"\n\n          opts.on(\"-w\",
@@ -37,7 +39,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 02 May 2024 23:16:55 GMT
+      - Sun, 04 Aug 2024 19:33:18 GMT
       Content-Type:
       - application/json
       Transfer-Encoding:
@@ -47,19 +49,19 @@ http_interactions:
       Anthropic-Ratelimit-Requests-Limit:
       - '1000'
       Anthropic-Ratelimit-Requests-Remaining:
-      - '998'
+      - '999'
       Anthropic-Ratelimit-Requests-Reset:
-      - '2024-05-02T23:17:34Z'
+      - '2024-08-04T19:33:34Z'
       Anthropic-Ratelimit-Tokens-Limit:
       - '100000'
       Anthropic-Ratelimit-Tokens-Remaining:
-      - '99000'
+      - '100000'
       Anthropic-Ratelimit-Tokens-Reset:
-      - '2024-05-02T23:17:34Z'
+      - '2024-08-04T19:33:18Z'
       Request-Id:
-      - req_01P922uuTZeiZr6pKQhf5RSd
+      - req_018AMMghLAGFwVpM6TKRHRdQ
       X-Cloud-Trace-Context:
-      - 9d3588f06a58ba2e250527eab40b8de2
+      - a830e9689862af2d71077063396d1143
       Via:
       - 1.1 google
       Cf-Cache-Status:
@@ -67,23 +69,23 @@ http_interactions:
       Server:
       - cloudflare
       Cf-Ray:
-      - 87dbb8b57d670fb5-LAX
+      - 8ae0fa68199a5e6e-EWR
     body:
       encoding: ASCII-8BIT
-      string: '{"id":"msg_01Kp4iQSJEQckmpMTTK4FR62","type":"message","role":"assistant","model":"claude-3-haiku-20240307","stop_sequence":null,"usage":{"input_tokens":512,"output_tokens":301},"content":[{"type":"tool_use","id":"toolu_01ViYahRDBoApGoUb9LN5TkT","name":"code_description","input":{"code_description":"This
-        Ruby script provides a simple command-line interface (CLI) for greeting a
-        user. The script uses the `optparse` library to parse command-line arguments
-        and handle an optional `--who` flag to specify the name of the person to greet.\n\nThe
-        key functionality of this script is:\n\n1. It defines a hash called `options`
-        to store any command-line arguments passed to the script.\n2. It creates an
-        `OptionParser` object and configures it to accept the `--who` flag, which
-        takes a `PERSON` argument. If the `--who` flag is provided, the script stores
-        the value in the `options[:who]` key.\n3. The script then checks if the `options[:who]`
-        key has a value. If it does, it uses that value to construct the greeting
-        message. If not, it defaults to greeting \"world\".\n4. Finally, the script
-        prints the greeting message to the console.\n\nThis script demonstrates a
-        common pattern in Ruby command-line tools, where the `optparse` library is
-        used to handle command-line arguments and provide a user-friendly interface
-        for the script''s functionality."}}],"stop_reason":"tool_use"}'
-  recorded_at: Thu, 02 May 2024 23:16:55 GMT
+      string: '{"id":"msg_01ESeqZLJu9hM3cNEjRoDUYG","type":"message","role":"assistant","model":"claude-3-haiku-20240307","content":[{"type":"tool_use","id":"toolu_013TBVEVcGiqW2wy8WQaHZh8","name":"code_description","input":{"code_description":"This
+        is a Ruby script that uses the built-in OptionParser library to handle command-line
+        arguments. The script defines a single command-line option \"-w\" or \"--who\"
+        which allows the user to specify the name of the person to greet.\n\nThe script
+        first initializes an empty options hash. It then creates a new OptionParser
+        object and configures it with the usage banner and the \"-w\" option. When
+        the \"-w\" option is provided, the script stores the specified person''s name
+        in the options hash.\n\nAfter parsing the command-line arguments, the script
+        checks if the :who key is present in the options hash. If it is, it uses the
+        value stored there. If not, it defaults to \"world\".\n\nFinally, the script
+        prints out a greeting message in the format \"Hello, [person]!\" where [person]
+        is the name provided by the user or the default \"world\" if no name was specified.\n\nThis
+        script demonstrates a common pattern in Ruby command-line tools where OptionParser
+        is used to handle command-line arguments and provide a simple, user-friendly
+        interface for running the script."}}],"stop_reason":"tool_use","stop_sequence":null,"usage":{"input_tokens":626,"output_tokens":272}}'
+  recorded_at: Sun, 04 Aug 2024 19:33:18 GMT
 recorded_with: VCR 6.2.0

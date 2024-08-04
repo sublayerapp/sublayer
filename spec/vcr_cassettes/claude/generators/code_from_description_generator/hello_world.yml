@@ -7,7 +7,7 @@ http_interactions:
       encoding: UTF-8
       string: '{"model":"claude-3-haiku-20240307","max_tokens":4096,"tools":[{"name":"generated_code","description":"The
         generated code in the requested language","input_schema":{"type":"object","properties":{"generated_code":{"type":"string","description":"The
-        generated code in the requested language"}},"required":["generated_code"]}}],"messages":[{"role":"user","content":"        You
+        generated code in the requested language"}},"required":["generated_code"]}}],"tool_choice":{"type":"tool","name":"generated_code"},"messages":[{"role":"user","content":"        You
         are an expert programmer in ruby.\n\n        You are tasked with writing code
         using the following technologies: ruby.\n\n        The description of the
         task is a hello world app where I pass --who argument to set the ''world''
@@ -34,7 +34,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 02 May 2024 23:16:52 GMT
+      - Sun, 04 Aug 2024 19:33:06 GMT
       Content-Type:
       - application/json
       Transfer-Encoding:
@@ -46,17 +46,17 @@ http_interactions:
       Anthropic-Ratelimit-Requests-Remaining:
       - '999'
       Anthropic-Ratelimit-Requests-Reset:
-      - '2024-05-02T23:17:34Z'
+      - '2024-08-04T19:33:34Z'
       Anthropic-Ratelimit-Tokens-Limit:
       - '100000'
       Anthropic-Ratelimit-Tokens-Remaining:
-      - '99000'
+      - '100000'
       Anthropic-Ratelimit-Tokens-Reset:
-      - '2024-05-02T23:17:34Z'
+      - '2024-08-04T19:33:06Z'
       Request-Id:
-      - req_01DRFUk6PuVRLYYTp4Czy22z
+      - req_01N2NVQK2ANfGYXfw6e4MGrH
       X-Cloud-Trace-Context:
-      - 174e61ec4fa71020e9fe8c964c14d572
+      - 625af0deb82bda23aaf86316d8e19f4b
       Via:
       - 1.1 google
       Cf-Cache-Status:
@@ -64,14 +64,15 @@ http_interactions:
       Server:
       - cloudflare
       Cf-Ray:
-      - 87dbb8abe9b32ec0-LAX
+      - 8ae0fa23c82d435d-EWR
     body:
       encoding: ASCII-8BIT
-      string: '{"id":"msg_014sdVrmHcKQTo6gYfPLtLa6","type":"message","role":"assistant","model":"claude-3-haiku-20240307","stop_sequence":null,"usage":{"input_tokens":412,"output_tokens":165},"content":[{"type":"text","text":"Okay,
-        let''s break this down step-by-step:"},{"type":"tool_use","id":"toolu_01CMS8AEhD6N4na9svASagkZ","name":"generated_code","input":{"generated_code":"require
-        ''optparse''\n\noptions = {}\nOptionParser.new do |opts|\n  opts.banner =
-        \"Usage: hello.rb [options]\"\n\n  opts.on(\"-w\", \"--who WORLD\", \"Set
-        the ''world'' value\") do |world|\n    options[:world] = world\n  end\nend.parse!\n\nputs
-        \"Hello, #{options[:world] || ''world''}!\""}}],"stop_reason":"tool_use"}'
-  recorded_at: Thu, 02 May 2024 23:16:52 GMT
+      string: '{"id":"msg_01GNwSQikVCoYqdatMErDw8J","type":"message","role":"assistant","model":"claude-3-haiku-20240307","content":[{"type":"tool_use","id":"toolu_01WGbAcHYKbMpoYmQQGbELcm","name":"generated_code","input":{"generated_code":"#
+        Hello World App in Ruby with Optparser\n\nrequire ''optparse''\n\noptions
+        = {}\nOptionParser.new do |opts|\n  opts.banner = \"Usage: hello_world.rb
+        [options]\"\n\n  opts.on(\"-w\", \"--who VALUE\", \"Set the ''world'' value\")
+        do |v|\n    options[:who] = v\n  end\n\n  opts.on(\"-h\", \"--help\", \"Prints
+        this help\") do\n    puts opts\n    exit\n  end\nend.parse!\n\nwho = options[:who]
+        || \"world\"\nputs \"Hello, #{who}!\""}}],"stop_reason":"tool_use","stop_sequence":null,"usage":{"input_tokens":508,"output_tokens":174}}'
+  recorded_at: Sun, 04 Aug 2024 19:33:06 GMT
 recorded_with: VCR 6.2.0
