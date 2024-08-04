@@ -36,10 +36,13 @@ module Sublayer
 
         message = response.dig("choices", 0, "message")
 
-        raise "No function called" unless message["tool_calls"].length > 0
+        raise "No function called" unless message["tool_calls"]
 
         function_body = message.dig("tool_calls", 0, "function", "arguments")
-        JSON.parse(function_body)[output_adapter.name]
+
+        raise "Error generating with OpenAI. Empty response. Try rewording your output adapter params to be from the perspective of the model. Full Response: #{response}" if function_body == "{}"
+
+        results = JSON.parse(function_body)[output_adapter.name]
       end
     end
   end

@@ -1,0 +1,101 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.openai.com/v1/chat/completions
+    body:
+      encoding: UTF-8
+      string: '{"model":"gpt-4o","messages":[{"role":"user","content":"Write a description
+        of a historical event that happened in the past on this day 2024-08-04"}],"tool_choice":{"type":"function","function":{"name":"historical_event_description"}},"tools":[{"type":"function","function":{"name":"historical_event_description","description":"the
+        historical event on this day in the past","parameters":{"type":"object","properties":{"historical_event_description":{"type":"string","description":"the
+        historical event on this day in the past"}}},"required":["historical_event_description"]}}]}'
+    headers:
+      Content-Type:
+      - application/json
+      Authorization:
+      - Bearer <OPENAI_API_KEY>
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Sun, 04 Aug 2024 19:07:15 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Openai-Organization:
+      - sublayer
+      Openai-Processing-Ms:
+      - '370'
+      Openai-Version:
+      - '2020-10-01'
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubDomains; preload
+      X-Ratelimit-Limit-Requests:
+      - '10000'
+      X-Ratelimit-Limit-Tokens:
+      - '2000000'
+      X-Ratelimit-Remaining-Requests:
+      - '9999'
+      X-Ratelimit-Remaining-Tokens:
+      - '1999960'
+      X-Ratelimit-Reset-Requests:
+      - 6ms
+      X-Ratelimit-Reset-Tokens:
+      - 1ms
+      X-Request-Id:
+      - req_4045ed44e22cf0a1dae2a8bc36d65fb6
+      Cf-Cache-Status:
+      - DYNAMIC
+      Set-Cookie:
+      - __cf_bm=OpsvLFN0f7WTSDYGkptMkiDzx4JTKvoaFzzGNBXuG9o-1722798435-1.0.1.1-rwKnwdNG73T8znCXNwNL201V2bAQksCE_QjPxyr8bQEJpTwOtRu29rxIFRibUcSVuLrXu4ucwe99uu2IMag3tQ;
+        path=/; expires=Sun, 04-Aug-24 19:37:15 GMT; domain=.api.openai.com; HttpOnly;
+        Secure; SameSite=None
+      - _cfuvid=ylodMDWsJdtQkaNJJJ.b1FkIOYXQsx6aO3QJLEpcgnQ-1722798435653-0.0.1.1-604800000;
+        path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None
+      X-Content-Type-Options:
+      - nosniff
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 8ae0d44af9e942bd-EWR
+      Alt-Svc:
+      - h3=":443"; ma=86400
+    body:
+      encoding: ASCII-8BIT
+      string: |
+        {
+          "id": "chatcmpl-9sarTPHshk6O2zbu0B0hSWCXs2j7d",
+          "object": "chat.completion",
+          "created": 1722798435,
+          "model": "gpt-4o-2024-05-13",
+          "choices": [
+            {
+              "index": 0,
+              "message": {
+                "role": "assistant",
+                "content": "Some crazy stuff happened"
+              },
+              "logprobs": null,
+              "finish_reason": "stop"
+            }
+          ],
+          "usage": {
+            "prompt_tokens": 95,
+            "completion_tokens": 1,
+            "total_tokens": 96
+          },
+          "system_fingerprint": "fp_c832e4513b"
+        }
+  recorded_at: Sun, 04 Aug 2024 19:07:15 GMT
+recorded_with: VCR 6.2.0
