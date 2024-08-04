@@ -27,6 +27,7 @@ module Sublayer
                 }
               }
             ],
+            tool_choice: { type: "tool", name: output_adapter.name },
             messages: [{ "role": "user", "content": prompt }]
           }.to_json
         )
