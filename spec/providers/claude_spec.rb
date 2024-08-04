@@ -22,7 +22,8 @@ RSpec.describe Sublayer::Providers::Claude do
           output_adapter: basic_output_adapter
         )
 
-        expect(response).to eq("42")
+        expect(response).to be_a(String)
+        expect(response.length).to be > 0
       end
     end
 

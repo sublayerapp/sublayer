@@ -7,7 +7,7 @@ http_interactions:
       encoding: UTF-8
       string: '{"model":"claude-3-haiku-20240307","max_tokens":4096,"tools":[{"name":"valid_json","description":"The
         valid JSON string","input_schema":{"type":"object","properties":{"valid_json":{"type":"string","description":"The
-        valid JSON string"}},"required":["valid_json"]}}],"messages":[{"role":"user","content":"    You
+        valid JSON string"}},"required":["valid_json"]}}],"tool_choice":{"type":"tool","name":"valid_json"},"messages":[{"role":"user","content":"    You
         are an expert in JSON parsing.\n\n    The given string is not a valid JSON:
         {\"valid\": \"json\"}\n\n    Please fix this and produce a valid JSON.\n"}]}'
     headers:
@@ -31,7 +31,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 02 May 2024 23:16:56 GMT
+      - Sun, 04 Aug 2024 19:33:12 GMT
       Content-Type:
       - application/json
       Transfer-Encoding:
@@ -41,19 +41,19 @@ http_interactions:
       Anthropic-Ratelimit-Requests-Limit:
       - '1000'
       Anthropic-Ratelimit-Requests-Remaining:
-      - '997'
+      - '999'
       Anthropic-Ratelimit-Requests-Reset:
-      - '2024-05-02T23:17:34Z'
+      - '2024-08-04T19:33:34Z'
       Anthropic-Ratelimit-Tokens-Limit:
       - '100000'
       Anthropic-Ratelimit-Tokens-Remaining:
-      - '98000'
+      - '100000'
       Anthropic-Ratelimit-Tokens-Reset:
-      - '2024-05-02T23:17:34Z'
+      - '2024-08-04T19:33:12Z'
       Request-Id:
-      - req_01Uy8axwBxjk5yufCx9wmpio
+      - req_016U8jpXTmyyXze34czHkBwh
       X-Cloud-Trace-Context:
-      - 9945eb22cb9d64a9ba8c2542838fea3b
+      - ae7566ad6f46d8aa83f5ceb769697dfe
       Via:
       - 1.1 google
       Cf-Cache-Status:
@@ -61,10 +61,10 @@ http_interactions:
       Server:
       - cloudflare
       Cf-Ray:
-      - 87dbb8c65c7e7c2a-LAX
+      - 8ae0fa4faa669e17-EWR
     body:
       encoding: ASCII-8BIT
-      string: '{"id":"msg_01F7ACY89xAWsE5zK4r3yV79","type":"message","role":"assistant","model":"claude-3-haiku-20240307","stop_sequence":null,"usage":{"input_tokens":373,"output_tokens":60},"content":[{"type":"tool_use","id":"toolu_014jp3KzzR8FB8UEozz6CHfF","name":"valid_json","input":{"valid_json":"{\"valid\":
-        \"json\"}"}}],"stop_reason":"tool_use"}'
-  recorded_at: Thu, 02 May 2024 23:16:56 GMT
+      string: '{"id":"msg_015xcKWYvcWkYzKz7Wab9beq","type":"message","role":"assistant","model":"claude-3-haiku-20240307","content":[{"type":"tool_use","id":"toolu_01JiTBA6AVvFCA2aKYps2EKw","name":"valid_json","input":{"valid_json":"{\"valid\":
+        \"json\"}"}}],"stop_reason":"tool_use","stop_sequence":null,"usage":{"input_tokens":469,"output_tokens":40}}'
+  recorded_at: Sun, 04 Aug 2024 19:33:12 GMT
 recorded_with: VCR 6.2.0
