@@ -8,6 +8,15 @@ module Sublayer
   module Providers
     class Gemini
       def self.call(prompt:, output_adapter:)
+
+        request_id = SecureRandom.uuid
+        before_request = Time.now
+        Sublayer.configuration.logger.log(:info, "Gemini API request", {
+          model: Sublayer.configuration.ai_model,
+          prompt: prompt,
+          request_id: request_id
+        })
+
         response = HTTParty.post(
           "https://generativelanguage.googleapis.com/v1beta/models/#{Sublayer.configuration.ai_model}:generateContent?key=#{ENV['GEMINI_API_KEY']}",
           body: {
@@ -17,8 +26,8 @@ module Sublayer
                 text: "#{prompt}"
               },
             },
-            tools: {
-              functionDeclarations: [
+            tools: [{
+              function_declarations: [
                 {
                   name: output_adapter.name,
                   description: output_adapter.description,
@@ -29,7 +38,7 @@ module Sublayer
                   }
                 }
               ]
-            },
+            }],
             tool_config: {
               function_calling_config: {
                 mode: "ANY",
@@ -41,6 +50,19 @@ module Sublayer
             "Content-Type" => "application/json"
           }
         )
+
+        after_request = Time.now
+        response_time = after_request - before_request
+
+        Sublayer.configuration.logger.log(:info, "Gemini API response", {
+          request_id: request_id,
+          response_time: response_time,
+          usage: {
+            input_tokens: response["usageMetadata"]["promptTokenCount"],
+            output_tokens: response["usageMetadata"]["candidatesTokenCount"],
+            total_tokens: response["usageMetadata"]["totalTokenCount"]
+          }
+        })
 
         raise "Error generating with Gemini, error: #{response.body}" unless response.success?
 

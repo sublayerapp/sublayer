@@ -27,6 +27,31 @@ RSpec.describe Sublayer::Providers::Claude do
       end
     end
 
+    context "logging" do
+      let(:mock_logger) { instance_double(Sublayer::Logging::Base) }
+
+      before do
+        Sublayer.configuration.logger = mock_logger
+      end
+
+      after do
+        Sublayer.configuration.logger = Sublayer::Logging::NullLogger.new
+      end
+
+      it "logs the request and response" do
+        expect(mock_logger).to receive(:log).with(:info, "Claude API request", hash_including(:model, :prompt))
+        expect(mock_logger).to receive(:log).with(:info, "Claude API response", instance_of(Hash))
+
+        VCR.use_cassette("claude/42") do
+          described_class.call(
+            prompt: "What is the meaning of life, the universe, and everything?",
+            output_adapter: basic_output_adapter
+          )
+        end
+      end
+
+    end
+
     context "when the API returns a non-200 status code" do
       it "raises an error" do
         expect(HTTParty).to receive(:post).and_return(double(code: 500, body: "Internal Server Error"))

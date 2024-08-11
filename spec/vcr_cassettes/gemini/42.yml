@@ -1,0 +1,61 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=<GEMINI_API_KEY>
+    body:
+      encoding: UTF-8
+      string: '{"contents":{"role":"user","parts":{"text":"What is the meaning of
+        life, the universe, and everything?"}},"tools":[{"function_declarations":[{"name":"the_answer","description":"The
+        answer to the given question","parameters":{"type":"OBJECT","properties":{"the_answer":{"type":"string","description":"The
+        answer to the given question"}},"required":["the_answer"]}}]}],"tool_config":{"function_calling_config":{"mode":"ANY","allowed_function_names":["the_answer"]}}}'
+    headers:
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 500
+      message: Internal Server Error
+    headers:
+      Vary:
+      - Origin
+      - Referer
+      - X-Origin
+      Content-Type:
+      - application/json; charset=UTF-8
+      Date:
+      - Sun, 11 Aug 2024 21:07:52 GMT
+      Server:
+      - scaffolding on HTTPServer2
+      Cache-Control:
+      - private
+      X-Xss-Protection:
+      - '0'
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Content-Type-Options:
+      - nosniff
+      Server-Timing:
+      - gfet4t7; dur=276
+      Alt-Svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: |
+        {
+          "error": {
+            "code": 500,
+            "message": "An internal error has occurred. Please retry or report in https://developers.generativeai.google/guide/troubleshooting",
+            "status": "INTERNAL"
+          }
+        }
+  recorded_at: Sun, 11 Aug 2024 21:07:52 GMT
+recorded_with: VCR 6.2.0
