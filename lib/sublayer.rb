@@ -9,6 +9,7 @@ require "httparty"
 require "openai"
 require "nokogiri"
 require "listen"
+require "securerandom"
 
 require_relative "sublayer/version"
 
@@ -22,7 +23,8 @@ module Sublayer
   def self.configuration
     @configuration ||= OpenStruct.new(
       ai_provider: Sublayer::Providers::OpenAI,
-      ai_model: "gpt-4o"
+      ai_model: "gpt-4o",
+      logger: Sublayer::Logging::NullLogger.new
     )
   end
 

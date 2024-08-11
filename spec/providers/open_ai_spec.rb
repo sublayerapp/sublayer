@@ -26,6 +26,30 @@ RSpec.describe Sublayer::Providers::OpenAI do
       end
     end
 
+    context "logging" do
+      let(:mock_logger) { instance_double(Sublayer::Logging::Base) }
+
+      before do
+        Sublayer.configuration.logger = mock_logger
+      end
+
+      after do
+        Sublayer.configuration.logger = Sublayer::Logging::NullLogger.new
+      end
+
+      it "logs the request and response" do
+        expect(mock_logger).to receive(:log).with(:info, "OpenAI API request", hash_including(:model, :prompt))
+        expect(mock_logger).to receive(:log).with(:info, "OpenAI API response", instance_of(Hash))
+
+        VCR.use_cassette("openai/42") do
+          described_class.call(
+            prompt: "What is the meaning of life, the universe, and everything?",
+            output_adapter: basic_output_adapter
+          )
+        end
+      end
+    end
+
     context "when there is an empty function call" do
       it "raises an empty response exception" do
         VCR.use_cassette("openai/empty_response") do
