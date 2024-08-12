@@ -10,6 +10,7 @@ require "openai"
 require "nokogiri"
 require "listen"
 require "securerandom"
+require "time"
 
 require_relative "sublayer/version"
 
