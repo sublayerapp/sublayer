@@ -61,6 +61,7 @@ module Sublayer
         tool_use = json_response.dig("content").find { |content| content['type'] == 'tool_use' && content['name'] == output_adapter.name }
 
         raise "Error generating with Claude, error: No function called. If the answer is in the response, try rewording your prompt or output adapter name to be from the perspective of the model. Response: #{response.body}" unless tool_use
+        raise "Error generating with Claude, error: Max tokens exceeded. Try breaking your problem up into smaller pieces." if json_response.dig("stop_reason") == "max_tokens"
 
         tool_use.dig("input")[output_adapter.name]
       end
