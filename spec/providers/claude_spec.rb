@@ -77,5 +77,18 @@ RSpec.describe Sublayer::Providers::Claude do
         end
       end
     end
+
+    context "When the response is too long" do
+      it "raises a max tokens exception" do
+        VCR.use_cassette("claude/max_tokens") do
+          expect {
+            described_class.call(
+              prompt: "What is the meaning of life, the universe, and everything?",
+              output_adapter: basic_output_adapter
+            )
+          }.to raise_error(/Max tokens/)
+        end
+      end
+    end
   end
 end

@@ -83,5 +83,18 @@ RSpec.describe Sublayer::Providers::OpenAI do
         end
       end
     end
+
+    context "When the response is too long" do
+      it "raises a max tokens exception" do
+        VCR.use_cassette("openai/max_tokens") do
+          expect {
+            described_class.call(
+              prompt: "Write a description of a historical event that happened in the past on this day #{Date.today}",
+              output_adapter: basic_output_adapter
+            )
+          }.to raise_error(/Max tokens/)
+        end
+      end
+    end
   end
 end

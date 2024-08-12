@@ -63,6 +63,7 @@ module Sublayer
         function_body = message.dig("tool_calls", 0, "function", "arguments")
 
         raise "Error generating with OpenAI. Empty response. Try rewording your output adapter params to be from the perspective of the model. Full Response: #{response}" if function_body == "{}"
+        raise "Error generating with OpenAI. Error: Max tokens exceeded. Try breaking your problem up into smaller pieces." if response["choices"][0]["finish_reason"] == "length"
 
         results = JSON.parse(function_body)[output_adapter.name]
       end
