@@ -1,3 +1,4 @@
+require "pry"
 require 'spec_helper'
 
 RSpec.describe Sublayer::Components::OutputAdapters::Formattable do
@@ -20,6 +21,64 @@ RSpec.describe Sublayer::Components::OutputAdapters::Formattable do
   let(:formattable) { test_class.new }
 
   describe '#format_properties' do
+    context "object" do
+      context "single object" do
+        it "formats object correctly" do
+          formattable.add_property(OpenStruct.new(name: 'object', type: 'object', description: 'The object', required: true, properties: [
+            OpenStruct.new(name: 'name', type: 'string', description: 'The name', required: true),
+            OpenStruct.new(name: 'age', type: 'integer', description: 'The age', required: false)
+          ]))
+
+          expect(formattable.format_properties).to eq({
+            object: {
+              type: 'object',
+              description: 'The object',
+              properties: {
+                name: { type: 'string', description: 'The name' },
+                age: { type: 'integer', description: 'The age' }
+              }
+            }
+          })
+        end
+      end
+
+      context "nested object do" do
+        it "formats the object correctly" do
+          formattable.add_property(OpenStruct.new(name: 'object', type: 'object', description: 'The object', required: true, properties: [
+            OpenStruct.new(name: 'name', type: 'string', description: 'The name', required: true),
+            OpenStruct.new(name: 'age', type: 'integer', description: 'The age', required: false),
+            OpenStruct.new(name: 'address', type: 'object', description: 'The address', required: true, properties: [
+              OpenStruct.new(name: 'street', type: 'string', description: 'The street', required: true),
+              OpenStruct.new(name: 'city', type: 'string', description: 'The city', required: true),
+              OpenStruct.new(name: 'state', type: 'string', description: 'The state', required: true),
+              OpenStruct.new(name: 'zip', type: 'string', description: 'The zip', required: true)
+            ])
+          ]))
+
+          expect(formattable.format_properties).to eq({
+            object: {
+              type: 'object',
+              description: 'The object',
+              properties: {
+                name: { type: 'string', description: 'The name' },
+                age: { type: 'integer', description: 'The age' },
+                address: {
+                  type: 'object',
+                  description: 'The address',
+                  properties: {
+                    street: { type: 'string', description: 'The street' },
+                    city: { type: 'string', description: 'The city' },
+                    state: { type: 'string', description: 'The state' },
+                    zip: { type: 'string', description: 'The zip' }
+                  }
+                }
+              }
+            }
+          })
+        end
+      end
+    end
+
     it 'formats basic properties correctly' do
       formattable.add_property(OpenStruct.new(name: 'name', type: 'string', description: 'The name', required: true))
       formattable.add_property(OpenStruct.new(name: 'age', type: 'integer', description: 'The age', required: false))
