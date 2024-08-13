@@ -1,0 +1,92 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.anthropic.com/v1/messages
+    body:
+      encoding: UTF-8
+      string: '{"model":"claude-3-haiku-20240307","max_tokens":4096,"tools":[{"name":"product_description","description":"Generate
+        product descriptions","input_schema":{"type":"object","properties":{"product_description":{"type":"object","description":"Generate
+        product descriptions","properties":{"short_description":{"type":"string","description":"A
+        brief one-sentence description of the product"},"long_description":{"type":"string","description":"A
+        detailed paragraph describing the product"},"key_features":{"type":"string","description":"A
+        comma-separated list of key product features"},"target_audience":{"type":"string","description":"A
+        brief description of the target audience for this product"}}}},"required":["product_description"]}}],"tool_choice":{"type":"tool","name":"product_description"},"messages":[{"role":"user","content":"    You
+        are a skilled product copywriter. Create compelling product descriptions for
+        the following:\n\n    Product Name: Super Gadget\n    Product Category: Electronics\n\n    Please
+        provide the following:\n    1. A brief one-sentence description of the product\n    2.
+        A detailed paragraph describing the product\n    3. A comma-separated list
+        of key product features\n    4. A brief description of the target audience
+        for this product\n"}]}'
+    headers:
+      X-Api-Key:
+      - "<ANTHROPIC_API_KEY>"
+      Anthropic-Version:
+      - '2023-06-01'
+      Content-Type:
+      - application/json
+      Anthropic-Beta:
+      - tools-2024-04-04
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 13 Aug 2024 16:58:01 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Anthropic-Ratelimit-Requests-Limit:
+      - '1000'
+      Anthropic-Ratelimit-Requests-Remaining:
+      - '999'
+      Anthropic-Ratelimit-Requests-Reset:
+      - '2024-08-13T16:58:34Z'
+      Anthropic-Ratelimit-Tokens-Limit:
+      - '100000'
+      Anthropic-Ratelimit-Tokens-Remaining:
+      - '100000'
+      Anthropic-Ratelimit-Tokens-Reset:
+      - '2024-08-13T16:58:01Z'
+      Request-Id:
+      - req_01KKvSschHrTvGWY7kTSAEn8
+      X-Cloud-Trace-Context:
+      - 03e4ce455e3ef12b6521e02ceba69878
+      Via:
+      - 1.1 google
+      Cf-Cache-Status:
+      - DYNAMIC
+      X-Robots-Tag:
+      - none
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 8b2a3f521a29c342-EWR
+    body:
+      encoding: ASCII-8BIT
+      string: '{"id":"msg_01X6eRxF8Jp926yZ4w38F8jj","type":"message","role":"assistant","model":"claude-3-haiku-20240307","content":[{"type":"tool_use","id":"toolu_01AFvhZWWmBb7tnWQVeciuhn","name":"product_description","input":{"product_description":{"short_description":"The
+        Super Gadget is an innovative electronic device that revolutionizes the way
+        you interact with technology.","long_description":"Introducing the Super Gadget,
+        a groundbreaking electronic device that redefines the boundaries of what''s
+        possible. This cutting-edge gadget seamlessly integrates advanced functionality,
+        sleek design, and user-friendly features to enhance your daily digital experiences.
+        Whether you''re a tech enthusiast, a busy professional, or simply someone
+        who appreciates the latest innovations, the Super Gadget is your gateway to
+        a smarter, more efficient future.","key_features":"Intuitive touch interface,
+        Powerful dual-core processor, Wireless charging, Built-in virtual assistant,
+        Customizable settings","target_audience":"The Super Gadget caters to a wide
+        range of tech-savvy individuals, from millennials to tech-savvy professionals,
+        who demand the latest advancements in electronic devices and seek to streamline
+        their digital lives."}}}],"stop_reason":"tool_use","stop_sequence":null,"usage":{"input_tokens":624,"output_tokens":261}}'
+  recorded_at: Tue, 13 Aug 2024 16:58:01 GMT
+recorded_with: VCR 6.2.0
