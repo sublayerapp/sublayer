@@ -1,0 +1,70 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=<GEMINI_API_KEY>
+    body:
+      encoding: UTF-8
+      string: '{"contents":{"role":"user","parts":{"text":"    You are a skilled product
+        copywriter. Create compelling product descriptions for the following:\n\n    Product
+        Name: Super Gadget\n    Product Category: Electronics\n\n    Please provide
+        the following:\n    1. A brief one-sentence description of the product\n    2.
+        A detailed paragraph describing the product\n    3. A comma-separated list
+        of key product features\n    4. A brief description of the target audience
+        for this product\n"}},"tools":[{"function_declarations":[{"name":"product_description","description":"Generate
+        product descriptions","parameters":{"type":"OBJECT","properties":{"product_description":{"type":"object","description":"Generate
+        product descriptions","properties":{"short_description":{"type":"string","description":"A
+        brief one-sentence description of the product"},"long_description":{"type":"string","description":"A
+        detailed paragraph describing the product"},"key_features":{"type":"string","description":"A
+        comma-separated list of key product features"},"target_audience":{"type":"string","description":"A
+        brief description of the target audience for this product"}}}},"required":["product_description"]}}]}],"tool_config":{"function_calling_config":{"mode":"ANY","allowed_function_names":["product_description"]}}}'
+    headers:
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 500
+      message: Internal Server Error
+    headers:
+      Vary:
+      - Origin
+      - Referer
+      - X-Origin
+      Content-Type:
+      - application/json; charset=UTF-8
+      Date:
+      - Tue, 13 Aug 2024 16:57:10 GMT
+      Server:
+      - scaffolding on HTTPServer2
+      Cache-Control:
+      - private
+      X-Xss-Protection:
+      - '0'
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Content-Type-Options:
+      - nosniff
+      Server-Timing:
+      - gfet4t7; dur=391
+      Alt-Svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: |
+        {
+          "error": {
+            "code": 500,
+            "message": "An internal error has occurred. Please retry or report in https://developers.generativeai.google/guide/troubleshooting",
+            "status": "INTERNAL"
+          }
+        }
+  recorded_at: Tue, 13 Aug 2024 16:57:10 GMT
+recorded_with: VCR 6.2.0
