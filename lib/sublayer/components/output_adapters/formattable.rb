@@ -3,21 +3,39 @@ module Sublayer
     module OutputAdapters
       module Formattable
         def format_properties
-          formatted_properties = {}
-          self.properties.each do |prop|
-            property = {
-              type: prop.type,
-              description: prop.description
-            }
+          build_json_schema(self.properties)
+        end
 
-            property[:enum] = prop.enum if prop.respond_to?(:enum) && prop.enum
-            property[:default] = prop.default if prop.respond_to?(:default) && !prop.default.nil?
-            property[:minimum] = prop.minimum if prop.respond_to?(:minimum) && !prop.minimum.nil?
-            property[:maximum] = prop.maximum if prop.respond_to?(:maximum) && !prop.maximum.nil?
-            property[:items] = prop.items if prop.respond_to?(:items) && prop.items
-            formatted_properties[prop.name.to_sym] = property
+        def build_json_schema(props)
+          formatted_properties = {}
+
+          props.map do |prop|
+            formatted_property = format_property(prop)
+            formatted_properties[prop.name.to_sym] = formatted_property
           end
+
           formatted_properties
+        end
+
+        def format_property(property)
+          result = {
+            type: property.type,
+            description: property.description
+          }
+
+          result[:enum] = property.enum if property.respond_to?(:enum) && property.enum
+          result[:default] = property.default if property.respond_to?(:default) && !property.default.nil?
+          result[:minimum] = property.minimum if property.respond_to?(:minimum) && !property.minimum.nil?
+          result[:maximum] = property.maximum if property.respond_to?(:maximum) && !property.maximum.nil?
+
+          case property.type
+          when 'array'
+            result[:items] = property.items.is_a?(OpenStruct) ? format_property(property.items) : property.items
+          when 'object'
+            result[:properties] = build_json_schema(property.properties) if property.properties
+          end
+
+          result
         end
 
         def format_required
