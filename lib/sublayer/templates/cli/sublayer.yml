@@ -1,0 +1,4 @@
+project_name: PROJECT_NAME
+project_type: CLI
+ai_provider: OpenAI
+ai_model: gpt-4o

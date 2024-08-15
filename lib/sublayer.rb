@@ -16,6 +16,7 @@ require_relative "sublayer/version"
 
 loader = Zeitwerk::Loader.for_gem
 loader.inflector.inflect('open_ai' => 'OpenAI')
+loader.inflector.inflect("cli" => "CLI")
 loader.setup
 
 module Sublayer
