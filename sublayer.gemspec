@@ -29,6 +29,8 @@ Gem::Specification.new do |spec|
   end
 
   spec.require_paths = ["lib"]
+  spec.bindir = "bin"
+  spec.executables = ["sublayer"]
 
   spec.add_dependency "ruby-openai"
   spec.add_dependency "colorize"
@@ -37,6 +39,10 @@ Gem::Specification.new do |spec|
   spec.add_dependency "nokogiri", "~> 1.16.5"
   spec.add_dependency "httparty"
   spec.add_dependency "listen"
+  spec.add_dependency "tty-prompt", "~> 0.23"
+  spec.add_dependency "tty-progressbar", "~> 0.18"
+  spec.add_dependency "tty-command", "~> 0.10"
+  spec.add_dependency "tty-file", "~> 0.10"
 
   spec.add_development_dependency "rspec", "~> 3.12"
   spec.add_development_dependency "pry", "~> 0.14"
