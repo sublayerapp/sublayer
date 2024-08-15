@@ -36,7 +36,8 @@ RSpec.describe Sublayer::Components::OutputAdapters::Formattable do
               properties: {
                 name: { type: 'string', description: 'The name' },
                 age: { type: 'integer', description: 'The age' }
-              }
+              },
+              required: ['name']
             }
           })
         end
@@ -70,9 +71,11 @@ RSpec.describe Sublayer::Components::OutputAdapters::Formattable do
                     city: { type: 'string', description: 'The city' },
                     state: { type: 'string', description: 'The state' },
                     zip: { type: 'string', description: 'The zip' }
-                  }
+                  },
+                  required: ['street', 'city', 'state', 'zip']
                 }
-              }
+              },
+              required: ['name', 'address']
             }
           })
         end

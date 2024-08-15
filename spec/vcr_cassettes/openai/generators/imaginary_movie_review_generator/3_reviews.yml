@@ -1,0 +1,121 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.openai.com/v1/chat/completions
+    body:
+      encoding: UTF-8
+      string: '{"model":"gpt-4o","messages":[{"role":"user","content":"    You are
+        a movie review summarizer.\n    Please generate 3 movie review summaries with
+        the following details for each:\n    - movie_title: The title of a movie (real
+        or fictional)\n    - reviewer_name: A plausible name for a movie critic\n    -
+        rating: A rating out of 5 stars (format: X.X)\n    - brief_comment: A concise
+        summary of the review (1-2 sentences)\n\n    Provide your response as a list
+        of objects, each containing the above attributes.\n"}],"tool_choice":{"type":"function","function":{"name":"review_summaries"}},"tools":[{"type":"function","function":{"name":"review_summaries","description":"List
+        of movie reviews","parameters":{"type":"object","properties":{"review_summaries":{"type":"array","description":"List
+        of movie reviews","items":{"type":"object","description":"a single review","properties":{"movie_title":{"type":"string","description":"The
+        title of the movie"},"reviewer_name":{"type":"string","description":"The name
+        of the reviewer"},"rating":{"type":"string","description":"The rating given
+        by the reviewer (out of 5 stars)"},"brief_comment":{"type":"string","description":"A
+        brief summary of the movie"}},"required":["movie_title","reviewer_name","rating","brief_comment"]}}}},"required":["review_summaries"]}}]}'
+    headers:
+      Content-Type:
+      - application/json
+      Authorization:
+      - Bearer <OPENAI_API_KEY>
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 15 Aug 2024 19:03:50 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Openai-Organization:
+      - sublayer
+      Openai-Processing-Ms:
+      - '6587'
+      Openai-Version:
+      - '2020-10-01'
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubDomains; preload
+      X-Ratelimit-Limit-Requests:
+      - '10000'
+      X-Ratelimit-Limit-Tokens:
+      - '2000000'
+      X-Ratelimit-Remaining-Requests:
+      - '9999'
+      X-Ratelimit-Remaining-Tokens:
+      - '1999871'
+      X-Ratelimit-Reset-Requests:
+      - 6ms
+      X-Ratelimit-Reset-Tokens:
+      - 3ms
+      X-Request-Id:
+      - req_1e5a003bd85860cdbe4105558a24190e
+      Cf-Cache-Status:
+      - DYNAMIC
+      Set-Cookie:
+      - __cf_bm=ekSit9pOBRIaWh71aSQkHuD6wXhEbD3naSKzg1vCUbg-1723748630-1.0.1.1-A2DhUtTm3tw4cMoVVkw9nOhM8_ws3XmyS4HkeginpQvwu8gOej4Db8l3xnuflZndSyyoYYch5OlCdyJO7yZbOg;
+        path=/; expires=Thu, 15-Aug-24 19:33:50 GMT; domain=.api.openai.com; HttpOnly;
+        Secure; SameSite=None
+      - _cfuvid=0QOjiX2ds14yPysGcHkKtQVdrhxu4I52vDUuDjG.2wY-1723748630576-0.0.1.1-604800000;
+        path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None
+      X-Content-Type-Options:
+      - nosniff
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 8b3b72431a3d428f-EWR
+      Alt-Svc:
+      - h3=":443"; ma=86400
+    body:
+      encoding: ASCII-8BIT
+      string: |
+        {
+          "id": "chatcmpl-9wa35sKMW5Dm01z65Xid12sXWtDIj",
+          "object": "chat.completion",
+          "created": 1723748623,
+          "model": "gpt-4o-2024-05-13",
+          "choices": [
+            {
+              "index": 0,
+              "message": {
+                "role": "assistant",
+                "content": null,
+                "tool_calls": [
+                  {
+                    "id": "call_66EQGpThKjbKrmcvtD45MWI9",
+                    "type": "function",
+                    "function": {
+                      "name": "review_summaries",
+                      "arguments": "{\"review_summaries\":[{\"movie_title\":\"The Infinite Loop\",\"reviewer_name\":\"Jane Thompson\",\"rating\":\"4.5\",\"brief_comment\":\"A captivating sci-fi thriller with a mind-bending plot and stunning visuals.\"},{\"movie_title\":\"Love in Paris\",\"reviewer_name\":\"Michael Roberts\",\"rating\":\"3.8\",\"brief_comment\":\"A charming romantic comedy that explores love and relationships in the City of Lights, albeit with a predictable storyline.\"},{\"movie_title\":\"The Last Frontier\",\"reviewer_name\":\"Alicia Morgan\",\"rating\":\"4.0\",\"brief_comment\":\"A gripping drama set in the Wild West, featuring powerful performances and breathtaking cinematography.\"}]}"
+                    }
+                  }
+                ],
+                "refusal": null
+              },
+              "logprobs": null,
+              "finish_reason": "stop"
+            }
+          ],
+          "usage": {
+            "prompt_tokens": 226,
+            "completion_tokens": 135,
+            "total_tokens": 361
+          },
+          "system_fingerprint": "fp_3aa7262c27"
+        }
+  recorded_at: Thu, 15 Aug 2024 19:03:50 GMT
+recorded_with: VCR 6.2.0

@@ -1,0 +1,122 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.openai.com/v1/chat/completions
+    body:
+      encoding: UTF-8
+      string: '{"model":"gpt-4o","messages":[{"role":"user","content":"    You are
+        an expert at breaking down tasks into step-by-step instructions with associated
+        commands.\n    Please generate a list of steps to complete the following task:\n\n    Set
+        up a new Ruby on Rails project\n\n    For each step, provide:\n    - description:
+        A brief description of what the step accomplishes\n    - command: The exact
+        command to execute for this step (if applicable; use \"N/A\" if no command
+        is needed)\n\n    Provide your response as a list of objects, each containing
+        the above attributes.\n    Ensure the steps are in the correct order to complete
+        the task successfully.\n"}],"tool_choice":{"type":"function","function":{"name":"steps"}},"tools":[{"type":"function","function":{"name":"steps","description":"List
+        of steps to complete a task","parameters":{"type":"object","properties":{"steps":{"type":"array","description":"List
+        of steps to complete a task","items":{"type":"object","description":"a single
+        step","properties":{"description":{"type":"string","description":"A brief
+        description of the step"},"command":{"type":"string","description":"The command
+        to execute for this step"}},"required":["description","command"]}}}},"required":["steps"]}}]}'
+    headers:
+      Content-Type:
+      - application/json
+      Authorization:
+      - Bearer <OPENAI_API_KEY>
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 15 Aug 2024 18:53:58 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Openai-Organization:
+      - sublayer
+      Openai-Processing-Ms:
+      - '8002'
+      Openai-Version:
+      - '2020-10-01'
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubDomains; preload
+      X-Ratelimit-Limit-Requests:
+      - '10000'
+      X-Ratelimit-Limit-Tokens:
+      - '2000000'
+      X-Ratelimit-Remaining-Requests:
+      - '9999'
+      X-Ratelimit-Remaining-Tokens:
+      - '1999836'
+      X-Ratelimit-Reset-Requests:
+      - 6ms
+      X-Ratelimit-Reset-Tokens:
+      - 4ms
+      X-Request-Id:
+      - req_0a3f0500e1d2dffdbc865b83ef78ef5c
+      Cf-Cache-Status:
+      - DYNAMIC
+      Set-Cookie:
+      - __cf_bm=6.hedkdu92EIPV8N.OMWf4tjKnJYNJEwXzDCiCmbOaw-1723748038-1.0.1.1-PY8y1jT8iipvvVJkxCHZYLit1CryzIZ27CU_3ialk_3iZSq2jEypHgUrBz.uzqaPF_1x64irDic7YvPB2PtuTA;
+        path=/; expires=Thu, 15-Aug-24 19:23:58 GMT; domain=.api.openai.com; HttpOnly;
+        Secure; SameSite=None
+      - _cfuvid=Bi10ub15jcXR1TEUALktYoxANA9ad9At8mbmyZRtnJ0-1723748038154-0.0.1.1-604800000;
+        path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None
+      X-Content-Type-Options:
+      - nosniff
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 8b3b63c1fa898c6c-EWR
+      Alt-Svc:
+      - h3=":443"; ma=86400
+    body:
+      encoding: ASCII-8BIT
+      string: |
+        {
+          "id": "chatcmpl-9wZtWvY7Kp9oaGgt0igbY3OJ0A0KD",
+          "object": "chat.completion",
+          "created": 1723748030,
+          "model": "gpt-4o-2024-05-13",
+          "choices": [
+            {
+              "index": 0,
+              "message": {
+                "role": "assistant",
+                "content": null,
+                "tool_calls": [
+                  {
+                    "id": "call_q6JpdjgnvS8EDhCttvN5zonp",
+                    "type": "function",
+                    "function": {
+                      "name": "steps",
+                      "arguments": "{\"steps\":[{\"description\":\"Install Ruby using a version manager such as RVM (Ruby Version Manager) or rbenv.\",\"command\":\"\\n# Using RVM:\\n\\\\curl -sSL https://get.rvm.io | bash -s stable --ruby\\n\\n# Using rbenv:\\ngit clone https://github.com/rbenv/rbenv.git ~/.rbenv\\ncd ~/.rbenv && src/configure && make -C src\\nrbenv install 3.0.0\\nrbenv global 3.0.0\"},{\"description\":\"Install Rails gem, a full-stack web development framework written in Ruby.\",\"command\":\"gem install rails\"},{\"description\":\"Create a new Rails application in a specified directory.\",\"command\":\"rails new myapp\"},{\"description\":\"Navigate to the new Rails application directory.\",\"command\":\"cd myapp\"},{\"description\":\"Initialize the database for the new Rails application.\",\"command\":\"bin/rails db:create\"},{\"description\":\"Start the Rails server to run the application locally.\",\"command\":\"bin/rails server\"}]}"
+                    }
+                  }
+                ],
+                "refusal": null
+              },
+              "logprobs": null,
+              "finish_reason": "stop"
+            }
+          ],
+          "usage": {
+            "prompt_tokens": 212,
+            "completion_tokens": 214,
+            "total_tokens": 426
+          },
+          "system_fingerprint": "fp_3aa7262c27"
+        }
+  recorded_at: Thu, 15 Aug 2024 18:53:58 GMT
+recorded_with: VCR 6.2.0

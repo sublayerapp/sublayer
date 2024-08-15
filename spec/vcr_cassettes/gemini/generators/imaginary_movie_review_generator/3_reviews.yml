@@ -1,0 +1,126 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-pro-latest:generateContent?key=<GEMINI_API_KEY>
+    body:
+      encoding: UTF-8
+      string: '{"contents":{"role":"user","parts":{"text":"    You are a movie review
+        summarizer.\n    Please generate 3 movie review summaries with the following
+        details for each:\n    - movie_title: The title of a movie (real or fictional)\n    -
+        reviewer_name: A plausible name for a movie critic\n    - rating: A rating
+        out of 5 stars (format: X.X)\n    - brief_comment: A concise summary of the
+        review (1-2 sentences)\n\n    Provide your response as a list of objects,
+        each containing the above attributes.\n"}},"tools":[{"function_declarations":[{"name":"review_summaries","description":"List
+        of movie reviews","parameters":{"type":"OBJECT","properties":{"review_summaries":{"type":"array","description":"List
+        of movie reviews","items":{"type":"object","description":"a single review","properties":{"movie_title":{"type":"string","description":"The
+        title of the movie"},"reviewer_name":{"type":"string","description":"The name
+        of the reviewer"},"rating":{"type":"string","description":"The rating given
+        by the reviewer (out of 5 stars)"},"brief_comment":{"type":"string","description":"A
+        brief summary of the movie"}},"required":["movie_title","reviewer_name","rating","brief_comment"]}}},"required":["review_summaries"]}}]}],"tool_config":{"function_calling_config":{"mode":"ANY","allowed_function_names":["review_summaries"]}}}'
+    headers:
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Vary:
+      - Origin
+      - Referer
+      - X-Origin
+      Date:
+      - Thu, 15 Aug 2024 19:04:26 GMT
+      Server:
+      - scaffolding on HTTPServer2
+      Cache-Control:
+      - private
+      X-Xss-Protection:
+      - '0'
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Content-Type-Options:
+      - nosniff
+      Server-Timing:
+      - gfet4t7; dur=5355
+      Alt-Svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: |
+        {
+          "candidates": [
+            {
+              "content": {
+                "parts": [
+                  {
+                    "functionCall": {
+                      "name": "review_summaries",
+                      "args": {
+                        "review_summaries": [
+                          {
+                            "rating": "4.8",
+                            "reviewer_name": "David Thompson",
+                            "brief_comment": "A visually stunning masterpiece with a thought-provoking narrative that will stay with you long after the credits roll.",
+                            "movie_title": "Ephemeral Echoes"
+                          },
+                          {
+                            "movie_title": "Crimson Comet",
+                            "brief_comment": "A wild ride from start to finish. Though the plot felt rushed at times, the action sequences were breathtaking.",
+                            "reviewer_name": "Sarah Lee",
+                            "rating": "4.1"
+                          },
+                          {
+                            "reviewer_name": "Chris Williams",
+                            "brief_comment": "A charming and heartwarming story about the importance of family. A great choice for a family movie night.",
+                            "movie_title": "The Lost Puppy's Journey",
+                            "rating": "3.9"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                ],
+                "role": "model"
+              },
+              "finishReason": "STOP",
+              "index": 0,
+              "safetyRatings": [
+                {
+                  "category": "HARM_CATEGORY_DANGEROUS_CONTENT",
+                  "probability": "NEGLIGIBLE"
+                },
+                {
+                  "category": "HARM_CATEGORY_HARASSMENT",
+                  "probability": "NEGLIGIBLE"
+                },
+                {
+                  "category": "HARM_CATEGORY_HATE_SPEECH",
+                  "probability": "NEGLIGIBLE"
+                },
+                {
+                  "category": "HARM_CATEGORY_SEXUALLY_EXPLICIT",
+                  "probability": "NEGLIGIBLE"
+                }
+              ]
+            }
+          ],
+          "usageMetadata": {
+            "promptTokenCount": 278,
+            "candidatesTokenCount": 183,
+            "totalTokenCount": 461
+          }
+        }
+  recorded_at: Thu, 15 Aug 2024 19:04:26 GMT
+recorded_with: VCR 6.2.0

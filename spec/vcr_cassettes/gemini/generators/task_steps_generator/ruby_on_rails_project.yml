@@ -1,0 +1,137 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-pro-latest:generateContent?key=<GEMINI_API_KEY>
+    body:
+      encoding: UTF-8
+      string: '{"contents":{"role":"user","parts":{"text":"    You are an expert at
+        breaking down tasks into step-by-step instructions with associated commands.\n    Please
+        generate a list of steps to complete the following task:\n\n    Set up a new
+        Ruby on Rails project\n\n    For each step, provide:\n    - description: A
+        brief description of what the step accomplishes\n    - command: The exact
+        command to execute for this step (if applicable; use \"N/A\" if no command
+        is needed)\n\n    Provide your response as a list of objects, each containing
+        the above attributes.\n    Ensure the steps are in the correct order to complete
+        the task successfully.\n"}},"tools":[{"function_declarations":[{"name":"steps","description":"List
+        of steps to complete a task","parameters":{"type":"OBJECT","properties":{"steps":{"type":"array","description":"List
+        of steps to complete a task","items":{"type":"object","description":"a single
+        step","properties":{"description":{"type":"string","description":"A brief
+        description of the step"},"command":{"type":"string","description":"The command
+        to execute for this step"}},"required":["description","command"]}}},"required":["steps"]}}]}],"tool_config":{"function_calling_config":{"mode":"ANY","allowed_function_names":["steps"]}}}'
+    headers:
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Vary:
+      - Origin
+      - Referer
+      - X-Origin
+      Date:
+      - Thu, 15 Aug 2024 18:53:49 GMT
+      Server:
+      - scaffolding on HTTPServer2
+      Cache-Control:
+      - private
+      X-Xss-Protection:
+      - '0'
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Content-Type-Options:
+      - nosniff
+      Server-Timing:
+      - gfet4t7; dur=6328
+      Alt-Svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: |
+        {
+          "candidates": [
+            {
+              "content": {
+                "parts": [
+                  {
+                    "functionCall": {
+                      "name": "steps",
+                      "args": {
+                        "steps": [
+                          {
+                            "description": "Make sure you have the latest version of Ruby installed on your system.",
+                            "command": "Install Ruby"
+                          },
+                          {
+                            "description": "Use the `gem install rails` command to install the Rails framework.",
+                            "command": "Install Rails"
+                          },
+                          {
+                            "description": "Create a new Rails project by running the rails new command followed by the desired project name.",
+                            "command": "rails new my_rails_app"
+                          },
+                          {
+                            "description": "Navigate into the newly created project directory.",
+                            "command": "cd my_rails_app"
+                          },
+                          {
+                            "description": "Install all required dependencies for the project as specified in the Gemfile.",
+                            "command": "bundle install"
+                          },
+                          {
+                            "command": "rails server",
+                            "description": "Start the Rails development server."
+                          },
+                          {
+                            "command": "N/A",
+                            "description": "Open a web browser and visit `http://localhost:3000` to see your new Rails application running."
+                          }
+                        ]
+                      }
+                    }
+                  }
+                ],
+                "role": "model"
+              },
+              "finishReason": "STOP",
+              "index": 0,
+              "safetyRatings": [
+                {
+                  "category": "HARM_CATEGORY_HARASSMENT",
+                  "probability": "NEGLIGIBLE"
+                },
+                {
+                  "category": "HARM_CATEGORY_SEXUALLY_EXPLICIT",
+                  "probability": "NEGLIGIBLE"
+                },
+                {
+                  "category": "HARM_CATEGORY_HATE_SPEECH",
+                  "probability": "NEGLIGIBLE"
+                },
+                {
+                  "category": "HARM_CATEGORY_DANGEROUS_CONTENT",
+                  "probability": "NEGLIGIBLE"
+                }
+              ]
+            }
+          ],
+          "usageMetadata": {
+            "promptTokenCount": 238,
+            "candidatesTokenCount": 204,
+            "totalTokenCount": 442
+          }
+        }
+  recorded_at: Thu, 15 Aug 2024 18:53:49 GMT
+recorded_with: VCR 6.2.0
