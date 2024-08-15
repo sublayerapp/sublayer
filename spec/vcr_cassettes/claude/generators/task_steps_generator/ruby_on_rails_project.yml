@@ -1,0 +1,89 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.anthropic.com/v1/messages
+    body:
+      encoding: UTF-8
+      string: '{"model":"claude-3-haiku-20240307","max_tokens":4096,"tools":[{"name":"steps","description":"List
+        of steps to complete a task","input_schema":{"type":"object","properties":{"steps":{"type":"array","description":"List
+        of steps to complete a task","items":{"type":"object","description":"a single
+        step","properties":{"description":{"type":"string","description":"A brief
+        description of the step"},"command":{"type":"string","description":"The command
+        to execute for this step"}},"required":["description","command"]}}},"required":["steps"]}}],"tool_choice":{"type":"tool","name":"steps"},"messages":[{"role":"user","content":"    You
+        are an expert at breaking down tasks into step-by-step instructions with associated
+        commands.\n    Please generate a list of steps to complete the following task:\n\n    Set
+        up a new Ruby on Rails project\n\n    For each step, provide:\n    - description:
+        A brief description of what the step accomplishes\n    - command: The exact
+        command to execute for this step (if applicable; use \"N/A\" if no command
+        is needed)\n\n    Provide your response as a list of objects, each containing
+        the above attributes.\n    Ensure the steps are in the correct order to complete
+        the task successfully.\n"}]}'
+    headers:
+      X-Api-Key:
+      - "<ANTHROPIC_API_KEY>"
+      Anthropic-Version:
+      - '2023-06-01'
+      Content-Type:
+      - application/json
+      Anthropic-Beta:
+      - tools-2024-04-04
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 15 Aug 2024 18:54:00 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Anthropic-Ratelimit-Requests-Limit:
+      - '1000'
+      Anthropic-Ratelimit-Requests-Remaining:
+      - '999'
+      Anthropic-Ratelimit-Requests-Reset:
+      - '2024-08-15T18:54:34Z'
+      Anthropic-Ratelimit-Tokens-Limit:
+      - '100000'
+      Anthropic-Ratelimit-Tokens-Remaining:
+      - '100000'
+      Anthropic-Ratelimit-Tokens-Reset:
+      - '2024-08-15T18:54:00Z'
+      Request-Id:
+      - req_01So3HM7ZYWXazX8XiGRUt4T
+      X-Cloud-Trace-Context:
+      - ea4badb2cc0ef3367f0a7a39db6a8299
+      Via:
+      - 1.1 google
+      Cf-Cache-Status:
+      - DYNAMIC
+      X-Robots-Tag:
+      - none
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 8b3b63f82e1a43a3-EWR
+    body:
+      encoding: ASCII-8BIT
+      string: '{"id":"msg_0136Y1snUrtuhaxNFn9svxRB","type":"message","role":"assistant","model":"claude-3-haiku-20240307","content":[{"type":"tool_use","id":"toolu_012Jps1X9Xpg3JeGMQbfdYps","name":"steps","input":{"steps":[{"description":"Install
+        Ruby and Ruby on Rails on your system","command":"N/A"},{"description":"Create
+        a new Ruby on Rails project","command":"rails new my_project"},{"description":"Navigate
+        to the project directory","command":"cd my_project"},{"description":"Start
+        the Rails server to test the application","command":"rails server"},{"description":"Open
+        the application in a web browser at http://localhost:3000","command":"N/A"},{"description":"Generate
+        a new controller and view for the root page","command":"rails generate controller
+        pages home"},{"description":"Modify the routes.rb file to set the root path
+        to the home page","command":"N/A"},{"description":"Start the Rails server
+        again to see the changes","command":"rails server"}]}}],"stop_reason":"tool_use","stop_sequence":null,"usage":{"input_tokens":633,"output_tokens":302}}'
+  recorded_at: Thu, 15 Aug 2024 18:54:00 GMT
+recorded_with: VCR 6.2.0

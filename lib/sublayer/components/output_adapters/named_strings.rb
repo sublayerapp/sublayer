@@ -17,7 +17,9 @@ module Sublayer
               type: "object",
               description: @description,
               required: true,
-              properties: @attributes.map { |attribute| OpenStruct.new(type: "string", description: attribute[:description], required: true, name: attribute[:name]) }
+              properties: @attributes.map { |attribute|
+                OpenStruct.new(type: "string", description: attribute[:description], required: true, name: attribute[:name]) 
+              }
             )
           ]
         end
