@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module ProjectName
   module Generators
     class ExampleGenerator < Sublayer::Generators::Base

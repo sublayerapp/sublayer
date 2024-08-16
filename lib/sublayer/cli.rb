@@ -49,126 +49,118 @@ module Sublayer
                    prompt.select("Which Gemini model would you like to use?", ["gemini-1.5-pro-latest", "gemini-1.5-flash-latest"])
                  end
 
-    create_project(project_name, project_type, ai_provider, ai_model)
-  end
-
-  def create_project(project_name, project_type, ai_provider, ai_model)
-    project_path = File.join(Dir.pwd, project_name)
-
-    progress_bar = TTY::ProgressBar.new("Creating project [:bar] :percent", total: 8)
-
-    progress_bar.advance(1, log: "Creating project directory")
-    FileUtils.mkdir_p(project_path)
-
-    progress_bar.advance(1, log: "Copying template files")
-    copy_template_files(project_path, project_type)
-
-    progress_bar.advance(1, log: "Copying shared files")
-    copy_shared_files(project_path, project_type)
-
-    progress_bar.advance(1, log: "Generating configuration")
-    generate_config_file(project_path, project_name, project_type, ai_provider, ai_model)
-
-    progress_bar.advance(1, log: "Creating README")
-    create_readme(project_path, project_type, project_name)
-
-    progress_bar.advance(1, log: "Replacing placeholders")
-    replace_placeholders(project_path, project_name)
-
-    progress_bar.advance(1, log: "Finalizing project")
-    finalize_project(project_path, project_type)
-
-    puts "\nSublayer project '#{project_name}' created successfully!"
-  end
-
-  def copy_template_files(project_path, project_type)
-    template_dir = project_type == "CLI" ? "cli" : "web_service"
-    source_path = File.join(File.dirname(__FILE__), "templates", template_dir)
-    FileUtils.cp_r("#{source_path}/.", project_path)
-  end
-
-  def copy_shared_files(project_path, project_type)
-    shared_path = File.join(File.dirname(__FILE__), "templates", "shared")
-    destination_path = project_type == "CLI" ? File.join(project_path, "lib", File.basename(project_path)) : File.join(project_path, "app")
-    FileUtils.cp_r("#{shared_path}/.", destination_path)
-  end
-
-  def generate_config_file(project_path, project_name, project_type, ai_provider, ai_model)
-    config = {
-      project_name: project_name,
-      project_type: project_type,
-      ai_provider: ai_provider,
-      ai_model: ai_model
-    }
-
-    TTY::File.create_file(File.join(project_path, "sublayer.yml"), YAML.dump(config))
-  end
-
-  def create_readme(project_path, project_type, project_name)
-    readme_template = File.read(File.join(File.dirname(__FILE__), "templates", "shared", "README.md"))
-    readme_content = readme_template
-      .gsub("ProjectName", project_name)
-      .gsub("{{PROJECT_TYPE}}", project_type)
-      .gsub("{{PROJECT_TYPE_SPECIFIC_INSTRUCTIONS}}", project_type_specific_instructions(project_type))
-
-    TTY::File.create_file(File.join(project_path, "README.md"), readme_content)
-  end
-
-  def project_type_instructions(project_type)
-    if project_type == "CLI"
-      "Run your CLI application:\n   ```\n   ruby bin/#{File.basename(project_path)}\n   ```"
-    else
-      "Start your web server:\n   ```\n   ruby app.rb\n   ```\n   Then visit http://localhost:4567 in your browser."
+      create_project(project_name, project_type, ai_provider, ai_model)
     end
-  end
 
-  def replace_placeholders(project_path, project_name)
-    Dir.glob("#{project_path}/**/*", File::FNM_DOTMATCH).each do |file_path|
-      next if File.directory?(file_path)
-      next if file_path.include?(".git/")
+    def create_project(project_name, project_type, ai_provider, ai_model)
+      project_path = File.join(Dir.pwd, project_name)
 
-      content = File.read(file_path)
-      PLACEHOLDERS.each do |placeholder, options|
-        replacement = if options[:camelcase]
-                        project_name.split("_").map(&:capitalize).join
-                      elsif options[:underscore]
-                        project_name.gsub("-", "_").downcase
-                      else
-                        project_name
-                      end
-        content.gsub!(placeholder, replacement) if options[:gsub]
-      end
+      progress_bar = TTY::ProgressBar.new("Creating project [:bar] :percent", total: 8)
 
-      File.write(file_path, content)
+      progress_bar.advance(1, log: "Creating project directory")
+      FileUtils.mkdir_p(project_path)
 
-      if file_path.include?('PROJECT_NAME')
-        new_path = file_path.gsub("PROJECT_NAME", project_name.gsub('-', '_').downcase)
-        FileUtils.mv(file_path, new_path)
+      progress_bar.advance(1, log: "Copying template files")
+      copy_template_files(project_path, project_type)
+
+      progress_bar.advance(1, log: "Replacing placeholders")
+      replace_placeholders(project_path, project_name)
+
+      progress_bar.advance(1, log: "Generating configuration")
+      generate_config_file(project_path, project_name, project_type, ai_provider, ai_model)
+
+      progress_bar.advance(1, log: "Finalizing project")
+      finalize_project(project_path, project_type)
+
+      puts "\nSublayer project '#{project_name}' created successfully!"
+    end
+
+    def copy_template_files(project_path, project_type)
+      template_dir = project_type == "CLI" ? "cli" : "web_service"
+      source_path = File.join(File.dirname(__FILE__), "templates", template_dir)
+      FileUtils.cp_r("#{source_path}/.", project_path)
+    end
+
+    def generate_config_file(project_path, project_name, project_type, ai_provider, ai_model)
+      config = {
+        project_name: project_name,
+        project_type: project_type,
+        ai_provider: ai_provider,
+        ai_model: ai_model
+      }
+
+      TTY::File.create_file(File.join(project_path, "lib", project_name, "config", "sublayer.yml"), YAML.dump(config))
+    end
+
+    def project_type_instructions(project_type)
+      if project_type == "CLI"
+        "Run your CLI application:\n   ```\n   ruby bin/#{File.basename(project_path)}\n   ```"
+      else
+        "Start your web server:\n   ```\n   ruby app.rb\n   ```\n   Then visit http://localhost:4567 in your browser."
       end
     end
-  end
 
-  def finalize_project(project_path, project_type)
-    cmd = TTY::Command.new(printer: :null)
+    def replace_placeholders(project_path, project_name)
+      # First rename the lib/PROJECT_NAME directory to lib/project_name
+      FileUtils.mv(File.join(project_path, "lib", "PROJECT_NAME"), File.join(project_path, "lib", project_name.gsub("-", "_").downcase))
 
-    if TTY::Prompt.new.yes?("Initialize a git repository?")
-      cmd.run("git init", chdir: project_path)
+      # Then walk through each file in the project and replace the placeholder content and filenames
+      Dir.glob("#{project_path}/**/*", File::FNM_DOTMATCH).each do |file_path|
+        next if File.directory?(file_path)
+        next if file_path.include?(".git/")
+
+        content = File.read(file_path)
+        PLACEHOLDERS.each do |placeholder, options|
+          replacement = if options[:camelcase]
+                          project_name.split(/[_-]/).map(&:capitalize).join
+                        elsif options[:underscore]
+                          project_name.gsub("-", "_").downcase
+                        else
+                          project_name
+                        end
+          content.gsub!(placeholder, replacement) if options[:gsub]
+        end
+
+        File.write(file_path, content)
+
+
+        if file_path.include?('PROJECT_NAME')
+          new_path = file_path.gsub("PROJECT_NAME", project_name.gsub("-", "_").downcase)
+
+          FileUtils.mkdir_p(File.dirname(new_path))
+          FileUtils.mv(file_path, new_path)
+        end
+
+        if file_path.include?('project_name')
+          new_path = file_path.gsub("project_name", project_name.gsub("-", "_").downcase)
+
+          FileUtils.mkdir_p(File.dirname(new_path))
+          FileUtils.mv(file_path, new_path)
+        end
+      end
     end
 
-    if TTY::Prompt.new.yes?("Install dependencies now?")
-      cmd.run("bundle install", chdir: project_path)
+    def finalize_project(project_path, project_type)
+      cmd = TTY::Command.new(printer: :null)
+
+      if TTY::Prompt.new.yes?("Initialize a git repository?")
+        cmd.run("git init", chdir: project_path)
+      end
+
+      if TTY::Prompt.new.yes?("Install dependencies now?")
+        cmd.run("bundle install", chdir: project_path)
+      end
+
+      puts "To get started, run:"
+      puts "  cd #{File.basename(project_path)}"
+      puts "  bundle exec #{project_type == 'CLI' ? File.basename(project_path) : 'ruby app.rb'}"
     end
 
-    puts "To get started, run:"
-    puts "  cd #{File.basename(project_path)}"
-    puts "  bundle exec #{project_type == 'CLI' ? File.basename(project_path) : 'ruby app.rb'}"
+    def display_help
+      puts "Usage: sublayer [command] [arguments]"
+      puts "Commands:"
+      puts "  new PROJECT_NAME   Create a new Sublayer project"
+      puts "  help               Display this help message"
+    end
   end
-
-  def display_help
-    puts "Usage: sublayer [command] [arguments]"
-    puts "Commands:"
-    puts "  new PROJECT_NAME   Create a new Sublayer project"
-    puts "  help               Display this help message"
-  end
-end
 end

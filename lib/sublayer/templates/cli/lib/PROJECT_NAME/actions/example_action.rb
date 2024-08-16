@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module ProjectName
   module Actions
     class ExampleAction < Sublayer::Actions::Base

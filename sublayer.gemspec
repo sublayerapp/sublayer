@@ -43,6 +43,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "tty-progressbar", "~> 0.18"
   spec.add_dependency "tty-command", "~> 0.10"
   spec.add_dependency "tty-file", "~> 0.10"
+  spec.add_dependency "thor"
 
   spec.add_development_dependency "rspec", "~> 3.12"
   spec.add_development_dependency "pry", "~> 0.14"

@@ -1,22 +1,6 @@
 #!/usr/bin/env ruby
 
-require "yaml"
-require "sublayer"
-require_relative "../lib/PROJECT_NAME"
-
-config_path = File.join(__dir__, "..", "sublayer.yml")
-
-if File.exist?(config_path)
-  config = YAML.load_file(config_path)
-
-  Sublayer.configure do |c|
-    c.ai_provider = Object.const_get("Sublayer::Providers::#{config['ai_provider']}")
-    c.ai_model = config['ai_model'] if config['ai_model']
-
-    c.logger = Sublayer::Logging::JsonLogger.new("./log/sublayer.log")
-  end
-else
-  puts "Warning: sublayer.yml configuration file not found. Using default configuration."
-end
+require "bundler/setup"
+require_relative "../lib/project_name"
 
 ProjectName::CLI.start(ARGV)

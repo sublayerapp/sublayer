@@ -33,9 +33,8 @@ RSpec.describe Sublayer::CLI do
     describe "#create_new_project" do
       it "creates a new project with the given name" do
         expect(FileUtils).to receive(:mkdir_p)
-        expect(FileUtils).to receive(:cp_r).twice
+        expect(FileUtils).to receive(:cp_r)
         expect(TTY::File).to receive(:create_file)
-        expect(cli).to receive(:create_readme)
         expect(cli).to receive(:replace_placeholders)
         expect(cli).to receive(:finalize_project)
 

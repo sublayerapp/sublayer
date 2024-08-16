@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module ProjectName
   module Agents
     class ExampleAgent < Sublayer::Agents::Base

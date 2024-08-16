@@ -1,6 +1,5 @@
 source "https://rubygems.org"
 
-gem "sublayer", "~> 0.2.3"
 gem "tty-prompt", "~> 0.23"
 
 group :development, :test do
