@@ -46,6 +46,8 @@ RSpec.describe "CLI Project Creation" do
         "ruby", "-I", "#{project_path}/lib", "-r", "#{project_name}.rb", "-e", "puts 'Required successfully'"
       )
 
+      puts "Require output: #{require_output}"
+      puts "Require status: #{require_status}"
       expect(require_status.success?).to be true
       expect(require_output).to include("Required successfully")
     end
