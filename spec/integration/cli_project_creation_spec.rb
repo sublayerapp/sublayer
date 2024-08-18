@@ -31,7 +31,6 @@ RSpec.describe "CLI Project Creation" do
     expect(status.success?).to be true
     expect(output).to include("Sublayer project '#{project_name}' created successfully!")
 
-    puts "Project Path: #{project_path}"
     expect(Dir.exist?(project_path)).to be true
 
     %w[bin lib spec log].each do |dir|
@@ -47,8 +46,6 @@ RSpec.describe "CLI Project Creation" do
         "ruby", "-I", "#{project_path}/lib", "-r", "#{project_name}.rb", "-e", "puts 'Required successfully'"
       )
 
-      puts "Require output: ", require_output
-      puts "Require_status: ", require_status
       expect(require_status.success?).to be true
       expect(require_output).to include("Required successfully")
     end
