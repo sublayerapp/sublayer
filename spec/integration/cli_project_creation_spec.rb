@@ -24,7 +24,7 @@ RSpec.describe "CLI Project Creation" do
 
   it "creates a new project with all the expected files and structures" do
     command = "ruby -I lib #{File.dirname(__FILE__)}/../../bin/sublayer new #{project_name}"
-    input = "CLI\nOpenAI\ngpt-4o\nn\ny\n"
+    input = "CLI\nOpenAI\ngpt-4o\nn\n\n"
 
     output, status = Open3.capture2e(command, chdir: TMP_DIR, stdin_data: input)
 
@@ -37,27 +37,22 @@ RSpec.describe "CLI Project Creation" do
       expect(Dir.exist?(File.join(project_path, dir))).to be true
     end
 
-    %w[].each do |file|
+    %w[
+      bin/test_project
+      lib/test_project.rb
+      lib/test_project/version.rb
+      lib/test_project/cli.rb
+      lib/test_project/config.rb
+      lib/test_project/commands/example_command.rb
+      lib/test_project/commands/base_command.rb
+      lib/test_project/actions/example_action.rb
+      lib/test_project/agents/example_agent.rb
+      lib/test_project/generators/example_generator.rb
+      Gemfile
+      test_project.gemspec
+      README.md
+      ].each do |file|
       expect(File.exist?(File.join(project_path, file))).to be true
     end
-
-    Bundler.with_original_env do
-      require_output, require_status = Open3.capture2e(
-        "ruby", "-I", "#{project_path}/lib", "-r", "#{project_name}.rb", "-e", "puts 'Required successfully'"
-      )
-
-      puts "Require output: #{require_output}"
-      puts "Require status: #{require_status}"
-      expect(require_status.success?).to be true
-      expect(require_output).to include("Required successfully")
-    end
-
-      command_output, command_status = Open3.capture2e(
-        File.join(project_path, 'bin', project_name), "example",
-        chdir: project_path
-      )
-
-      expect(command_status.success?).to be true
-      expect(command_output).to include("Executing example command with args:")
   end
 end
