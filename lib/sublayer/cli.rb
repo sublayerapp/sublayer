@@ -79,6 +79,12 @@ module Sublayer
       template_dir = project_type == "CLI" ? "cli" : "quick_script"
       source_path = File.join(File.dirname(__FILE__), "templates", template_dir)
       FileUtils.cp_r("#{source_path}/.", project_path)
+
+      FileUtils.mkdir_p(File.join(project_path, "log")) if should_add_log_folder(project_type)
+    end
+
+    def should_add_log_folder(project_type)
+      project_type == "CLI"
     end
 
     def generate_config_file(project_path, project_name, project_type, ai_provider, ai_model)
