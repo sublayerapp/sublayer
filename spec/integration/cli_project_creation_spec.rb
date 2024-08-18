@@ -36,7 +36,14 @@ RSpec.describe "CLI Project Creation" do
 
     %w[bin lib spec log].each do |dir|
       puts "Checking for #{dir}"
-      expect(Dir.exist?(File.join(project_path, dir))).to be true
+      full_path = File.join(project_path, dir)
+      puts "Full path: #{full_path}"
+      puts "Directory exists? #{Dir.exist?(full_path)}"
+      puts "Is directory? #{File.directory?(full_path)}"
+      puts "Is file? #{File.file?(full_path)}"
+      puts "Contents: #{Dir.entries(full_path).join(', ')}" if Dir.exist?(full_path)
+      puts "Parent directory contents: #{Dir.entries(project_path).join(', ')}"
+      expect(Dir.exist?(full_path)).to be true
     end
 
     %w[].each do |file|
