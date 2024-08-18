@@ -1,0 +1,5 @@
+#!/usr/bin/env ruby
+
+require "sublayer/cli"
+
+Sublayer::CLI.start(ARGV)

@@ -1,0 +1,5 @@
+#!/usr/bin/env ruby
+
+require_relative "../lib/project_name"
+
+ProjectName::CLI.start(ARGV)
