@@ -24,7 +24,7 @@ RSpec.describe "CLI Project Creation" do
 
   it "creates a new project with all the expected files and structures" do
     command = "ruby -I lib #{File.dirname(__FILE__)}/../../bin/sublayer new #{project_name}"
-    input = "CLI\nOpenAI\ngpt-4o\nn\n"
+    input = "CLI\nOpenAI\ngpt-4o\nn\ny\n"
 
     output, status = Open3.capture2e(command, chdir: TMP_DIR, stdin_data: input)
 

@@ -2,11 +2,11 @@ module ProjectName
   module Commands
     class ExampleCommand < BaseCommand
       def self.description
-        "This is an example command"
+        "An example command that generates a story based on the command line arguments."
       end
 
       def execute(*args)
-        puts "Executing example command with args: #{args.join(', ')}"
+        puts ProjectName::Generators::ExampleGenerator.new(input: args.join(" ")).generate
       end
     end
   end

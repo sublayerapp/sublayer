@@ -4,6 +4,7 @@ require "tty-command"
 require "tty-file"
 require "fileutils"
 require "yaml"
+require "sublayer/version"
 
 module Sublayer
   class CLI
@@ -144,6 +145,12 @@ module Sublayer
           FileUtils.mv(file_path, new_path)
         end
       end
+
+      # replace the sublayer version in the gemspec file with Sublayer::VERSION
+      gemspec_path = File.join(project_path, "#{project_name}.gemspec")
+      gemspec_content = File.read(gemspec_path)
+      gemspec_content.gsub!("SUBLAYER_VERSION", Sublayer::VERSION)
+      File.write(gemspec_path, gemspec_content)
     end
 
     def finalize_project(project_path, project_type)
@@ -159,7 +166,7 @@ module Sublayer
 
       puts "To get started, run:"
       puts "  cd #{File.basename(project_path)}"
-      puts "  bundle exec #{project_type == 'CLI' ? File.basename(project_path) : 'ruby app.rb'}"
+      puts "  ./bin/#{File.basename(project_path)}" if project_type == "CLI"
     end
 
     def display_help

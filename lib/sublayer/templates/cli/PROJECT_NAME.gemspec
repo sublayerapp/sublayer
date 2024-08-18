@@ -30,6 +30,6 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   # Add dependencies here
-  spec.add_dependency "sublayer", "~> #{Sublayer::VERSION}"
+  spec.add_dependency "sublayer", "~> SUBLAYER_VERSION"
   spec.add_dependency "thor", "~> 1.2"
 end
