@@ -38,8 +38,8 @@ module Sublayer
 
       project_name ||= prompt.ask("What is the name of your project?")
 
-      project_type = prompt.select("How would you like to interact with this agent?", ["CLI", "Web Service"])
-      ai_provider = prompt.select("Which AI provider would you like to use?", ["OpenAI", "Claude", "Gemini"])
+      project_type = prompt.select("Select a project template: ", ["CLI", "Quick Script"])
+      ai_provider = prompt.select("Select an AI provider:", ["OpenAI", "Claude", "Gemini"])
 
       ai_model = if ai_provider == "OpenAI"
                    prompt.select("Which OpenAI model would you like to use?", ["gpt-4o", "gpt-4o-mini", "gpt-4-turbo", "gpt-4", "gpt-3.5-turbo"])
@@ -76,7 +76,7 @@ module Sublayer
     end
 
     def copy_template_files(project_path, project_type)
-      template_dir = project_type == "CLI" ? "cli" : "web_service"
+      template_dir = project_type == "CLI" ? "cli" : "quick_script"
       source_path = File.join(File.dirname(__FILE__), "templates", template_dir)
       FileUtils.cp_r("#{source_path}/.", project_path)
     end
