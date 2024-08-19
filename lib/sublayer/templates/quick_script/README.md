@@ -1,0 +1,16 @@
+# ProjectName
+
+Welcome to your new Sublayer quick script project!
+
+There are example Agents, Generators, and Actions in the respective folders.
+
+## Usage
+
+Create your own custom agents, generators, and actions and use them in
+`project_name.rb`
+
+Run your script:
+
+```
+$ ruby project_name.rb
+```

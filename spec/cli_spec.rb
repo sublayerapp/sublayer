@@ -8,7 +8,7 @@ RSpec.describe Sublayer::CLI do
   before do
     allow(TTY::Prompt).to receive(:new).and_return(prompt)
     allow(prompt).to receive(:ask).and_return("test_project")
-    allow(prompt).to receive(:select).and_return("Web Service", "OpenAI")
+    allow(prompt).to receive(:select).and_return("CLI", "OpenAI")
     allow(prompt).to receive(:yes?).and_return(false)
   end
 
@@ -32,7 +32,7 @@ RSpec.describe Sublayer::CLI do
 
     describe "#create_new_project" do
       it "creates a new project with the given name" do
-        expect(FileUtils).to receive(:mkdir_p)
+        expect(FileUtils).to receive(:mkdir_p).twice
         expect(FileUtils).to receive(:cp_r)
         expect(TTY::File).to receive(:create_file)
         expect(cli).to receive(:replace_placeholders)
