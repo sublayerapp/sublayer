@@ -17,7 +17,6 @@ $ bin/PROJECT_NAME
 ```
 
 Available commands:
-- `example`: Run the example agent
-- `generate`: Run the example generator
+- `example`: Run the example generator
 - `help`: Display the help message
 

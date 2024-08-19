@@ -96,7 +96,16 @@ module Sublayer
         ai_model: ai_model
       }
 
-      TTY::File.create_file(File.join(project_path, "lib", project_name, "config", "sublayer.yml"), YAML.dump(config))
+      TTY::File.create_file(File.join(project_path, "lib", project_name, "config", "sublayer.yml"), YAML.dump(config)) if project_type == "CLI"
+
+      if project_type == "Quick Script"
+        config_lines = <<~CONFIG
+          Sublayer.configuration.ai_provider = Sublayer::Providers::#{config[:ai_provider]}
+          Sublayer.configuration.ai_model = "#{config[:ai_model]}"
+        CONFIG
+        project_file = File.join(project_path, "#{project_name}.rb")
+        File.write(project_file, File.read(project_file) + config_lines)
+      end
     end
 
     def project_type_instructions(project_type)
@@ -109,7 +118,7 @@ module Sublayer
 
     def replace_placeholders(project_path, project_name)
       # First rename the lib/PROJECT_NAME directory to lib/project_name
-      FileUtils.mv(File.join(project_path, "lib", "PROJECT_NAME"), File.join(project_path, "lib", project_name.gsub("-", "_").downcase))
+      FileUtils.mv(File.join(project_path, "lib", "PROJECT_NAME"), File.join(project_path, "lib", project_name.gsub("-", "_").downcase)) if File.directory?(File.join(project_path, "lib", "PROJECT_NAME"))
 
       # Then walk through each file in the project and replace the placeholder content and filenames
       Dir.glob("#{project_path}/**/*", File::FNM_DOTMATCH).each do |file_path|
@@ -147,10 +156,12 @@ module Sublayer
       end
 
       # replace the sublayer version in the gemspec file with Sublayer::VERSION
-      gemspec_path = File.join(project_path, "#{project_name}.gemspec")
-      gemspec_content = File.read(gemspec_path)
-      gemspec_content.gsub!("SUBLAYER_VERSION", Sublayer::VERSION)
-      File.write(gemspec_path, gemspec_content)
+      if File.exist?(File.join(project_path, "#{project_name}.gemspec"))
+        gemspec_path = File.join(project_path, "#{project_name}.gemspec")
+        gemspec_content = File.read(gemspec_path)
+        gemspec_content.gsub!("SUBLAYER_VERSION", Sublayer::VERSION)
+        File.write(gemspec_path, gemspec_content)
+      end
     end
 
     def finalize_project(project_path, project_type)
@@ -167,6 +178,7 @@ module Sublayer
       puts "To get started, run:"
       puts "  cd #{File.basename(project_path)}"
       puts "  ./bin/#{File.basename(project_path)}" if project_type == "CLI"
+      puts "  ruby #{File.basename(project_path)}.rb" if project_type == "Quick Script"
     end
 
     def display_help
