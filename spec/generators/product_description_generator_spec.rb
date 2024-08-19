@@ -1,5 +1,4 @@
 require "spec_helper"
-require "pry"
 
 require "generators/examples/product_description_generator"
 
