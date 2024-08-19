@@ -25,7 +25,7 @@ module Sublayer
   def self.configuration
     @configuration ||= OpenStruct.new(
       ai_provider: Sublayer::Providers::OpenAI,
-      ai_model: "gpt-4o",
+      ai_model: "gpt-4o-2024-08-06",
       logger: Sublayer::Logging::NullLogger.new
     )
   end

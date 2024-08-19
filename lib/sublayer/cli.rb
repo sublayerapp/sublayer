@@ -43,7 +43,7 @@ module Sublayer
       ai_provider = prompt.select("Select an AI provider:", ["OpenAI", "Claude", "Gemini"])
 
       ai_model = if ai_provider == "OpenAI"
-                   prompt.select("Which OpenAI model would you like to use?", ["gpt-4o", "gpt-4o-mini", "gpt-4-turbo", "gpt-4", "gpt-3.5-turbo"])
+                   prompt.select("Which OpenAI model would you like to use?", ["gpt-4o-2024-08-06", "gpt-4o", "gpt-4o-mini", "gpt-4-turbo", "gpt-4", "gpt-3.5-turbo"])
                  elsif ai_provider == "Claude"
                    prompt.select("Which Anthropic model would you like to use?", ["claude-3-5-sonnet-20240620", "claude-3-opus-20240229", "claude-3-haiku-20240307"])
                  elsif ai_provider == "Gemini"

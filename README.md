@@ -51,7 +51,7 @@ Visit [OpenAI](https://openai.com/product) to get an API key.
 Usage:
 ```ruby
 Sublayer.configuration.ai_provider = Sublayer::Providers::OpenAI
-Sublayer.configuration.ai_model = "gpt-4o"
+Sublayer.configuration.ai_model = "gpt-4o-2024-08-06"
 ```
 
 ### Gemini [UNSTABLE]
