@@ -11,7 +11,7 @@ RSpec.describe ProductDescriptionGenerator do
   context "OpenAI" do
     before do
       Sublayer.configuration.ai_provider = Sublayer::Providers::OpenAI
-      Sublayer.configuration.ai_model = "gpt-4o"
+      Sublayer.configuration.ai_model = "gpt-4o-2024-08-06"
     end
 
     it "generates an with the correct keys" do
