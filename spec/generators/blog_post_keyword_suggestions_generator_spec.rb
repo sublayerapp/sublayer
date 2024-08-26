@@ -39,7 +39,7 @@ RSpec.describe BlogPostKeywordSuggestionGenerator do
   context "gemini" do
     before do
       Sublayer.configuration.ai_provider = Sublayer::Providers::Gemini
-      Sublayer.configuration.ai_model = "gemini-pro"
+      Sublayer.configuration.ai_model = "gemini-1.5-flash-latest"
     end
 
     it "generates keyword suggestions for a blog post" do

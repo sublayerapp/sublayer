@@ -55,27 +55,18 @@ puts "Hello, #{who_to_greet}!")
 
   end
 
-  xcontext "Gemini" do
+  context "Gemini" do
     before do
       Sublayer.configuration.ai_provider = Sublayer::Providers::Gemini
-      Sublayer.configuration.ai_model = "gemini-pro"
+      Sublayer.configuration.ai_model = "gemini-1.5-flash-latest"
     end
 
     it "generates code from description" do
       VCR.use_cassette("gemini/generators/code_from_description_generator/hello_world") do
         code = generate(description: "a hello world app where I pass --who argument to set the 'world' value using optparser")
-        expect(code.strip).to eq %q(#!/usr/bin/env ruby
-
-require 'optparse'
-
-options = {}
-OptionParser.new do |opts|
-  opts.on('--who WHO', 'Who to greet (default: World)') do |who|
-    options[:who] = who
-  end
-end.parse!
-
-puts "Hello, #{options[:who]}!")
+        expect(code.strip).to include("require 'optparse'")
+        expect(code.strip).to include("OptionParser.new")
+        expect(code.strip).to include("puts \"Hello, \#{")
       end
     end
   end

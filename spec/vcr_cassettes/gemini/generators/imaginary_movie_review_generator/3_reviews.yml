@@ -11,13 +11,12 @@ http_interactions:
         reviewer_name: A plausible name for a movie critic\n    - rating: A rating
         out of 5 stars (format: X.X)\n    - brief_comment: A concise summary of the
         review (1-2 sentences)\n\n    Provide your response as a list of objects,
-        each containing the above attributes.\n"}},"tools":[{"function_declarations":[{"name":"review_summaries","description":"List
-        of movie reviews","parameters":{"type":"OBJECT","properties":{"review_summaries":{"type":"array","description":"List
+        each containing the above attributes.\n"}},"generationConfig":{"responseMimeType":"application/json","responseSchema":{"type":"OBJECT","properties":{"review_summaries":{"type":"array","description":"List
         of movie reviews","items":{"type":"object","description":"a single review","properties":{"movie_title":{"type":"string","description":"The
         title of the movie"},"reviewer_name":{"type":"string","description":"The name
         of the reviewer"},"rating":{"type":"string","description":"The rating given
         by the reviewer (out of 5 stars)"},"brief_comment":{"type":"string","description":"A
-        brief summary of the movie"}},"required":["movie_title","reviewer_name","rating","brief_comment"]}}},"required":["review_summaries"]}}]}],"tool_config":{"function_calling_config":{"mode":"ANY","allowed_function_names":["review_summaries"]}}}'
+        brief summary of the movie"}},"required":["movie_title","reviewer_name","rating","brief_comment"]}}},"required":["review_summaries"]}}}'
     headers:
       Content-Type:
       - application/json
@@ -39,7 +38,7 @@ http_interactions:
       - Referer
       - X-Origin
       Date:
-      - Thu, 15 Aug 2024 19:04:26 GMT
+      - Mon, 26 Aug 2024 19:18:58 GMT
       Server:
       - scaffolding on HTTPServer2
       Cache-Control:
@@ -51,7 +50,7 @@ http_interactions:
       X-Content-Type-Options:
       - nosniff
       Server-Timing:
-      - gfet4t7; dur=5355
+      - gfet4t7; dur=4635
       Alt-Svc:
       - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
       Transfer-Encoding:
@@ -65,31 +64,7 @@ http_interactions:
               "content": {
                 "parts": [
                   {
-                    "functionCall": {
-                      "name": "review_summaries",
-                      "args": {
-                        "review_summaries": [
-                          {
-                            "rating": "4.8",
-                            "reviewer_name": "David Thompson",
-                            "brief_comment": "A visually stunning masterpiece with a thought-provoking narrative that will stay with you long after the credits roll.",
-                            "movie_title": "Ephemeral Echoes"
-                          },
-                          {
-                            "movie_title": "Crimson Comet",
-                            "brief_comment": "A wild ride from start to finish. Though the plot felt rushed at times, the action sequences were breathtaking.",
-                            "reviewer_name": "Sarah Lee",
-                            "rating": "4.1"
-                          },
-                          {
-                            "reviewer_name": "Chris Williams",
-                            "brief_comment": "A charming and heartwarming story about the importance of family. A great choice for a family movie night.",
-                            "movie_title": "The Lost Puppy's Journey",
-                            "rating": "3.9"
-                          }
-                        ]
-                      }
-                    }
+                    "text": "{\"review_summaries\": [{\"brief_comment\": \"A visually stunning epic with a powerful story that stays with you long after the credits roll.\", \"movie_title\": \"The Sands of Time\", \"rating\": \"4.8\", \"reviewer_name\": \"David Chen\"}, {\"brief_comment\": \"While the plot feels predictable at times, the charming cast and witty dialogue make this rom-com a delightful watch.\", \"movie_title\": \"Love in the City\", \"rating\": \"3.5\", \"reviewer_name\": \"Samantha Lee\"}, {\"brief_comment\": \"A disappointing horror flick that relies more on jump scares than genuine suspense. Forgettable and uninspired.\", \"movie_title\": \"The Haunting of Blackwood Manor\", \"rating\": \"2.0\", \"reviewer_name\": \"Brian Parker\"}]} "
                   }
                 ],
                 "role": "model"
@@ -98,11 +73,7 @@ http_interactions:
               "index": 0,
               "safetyRatings": [
                 {
-                  "category": "HARM_CATEGORY_DANGEROUS_CONTENT",
-                  "probability": "NEGLIGIBLE"
-                },
-                {
-                  "category": "HARM_CATEGORY_HARASSMENT",
+                  "category": "HARM_CATEGORY_SEXUALLY_EXPLICIT",
                   "probability": "NEGLIGIBLE"
                 },
                 {
@@ -110,17 +81,21 @@ http_interactions:
                   "probability": "NEGLIGIBLE"
                 },
                 {
-                  "category": "HARM_CATEGORY_SEXUALLY_EXPLICIT",
+                  "category": "HARM_CATEGORY_HARASSMENT",
+                  "probability": "NEGLIGIBLE"
+                },
+                {
+                  "category": "HARM_CATEGORY_DANGEROUS_CONTENT",
                   "probability": "NEGLIGIBLE"
                 }
               ]
             }
           ],
           "usageMetadata": {
-            "promptTokenCount": 278,
-            "candidatesTokenCount": 183,
-            "totalTokenCount": 461
+            "promptTokenCount": 113,
+            "candidatesTokenCount": 174,
+            "totalTokenCount": 287
           }
         }
-  recorded_at: Thu, 15 Aug 2024 19:04:26 GMT
+  recorded_at: Mon, 26 Aug 2024 19:18:58 GMT
 recorded_with: VCR 6.2.0

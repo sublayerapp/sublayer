@@ -2,16 +2,15 @@
 http_interactions:
 - request:
     method: post
-    uri: https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=<GEMINI_API_KEY>
+    uri: https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=<GEMINI_API_KEY>
     body:
       encoding: UTF-8
       string: '{"contents":{"role":"user","parts":{"text":"        You are skilled
         at selecting routes based on user intent.\n\n        Your task is to choose
         a route based on the following intent:\n\n        The user''s intent is:\n        I
-        want to get all the users\n"}},"tools":{"functionDeclarations":[{"name":"route","description":"A
-        route selected from the list","parameters":{"type":"OBJECT","properties":{"route":{"type":"STRING","description":"A
+        want to get all the users\n"}},"generationConfig":{"responseMimeType":"application/json","responseSchema":{"type":"OBJECT","properties":{"route":{"type":"string","description":"A
         route selected from the list","enum":["GET /","GET /users","GET /users/:id","POST
-        /users","PUT /users/:id","DELETE /users/:id"]}},"required":["route"]}}]}}'
+        /users","PUT /users/:id","DELETE /users/:id"]}},"required":["route"]}}}'
     headers:
       Content-Type:
       - application/json
@@ -33,7 +32,7 @@ http_interactions:
       - Referer
       - X-Origin
       Date:
-      - Mon, 22 Jul 2024 21:35:07 GMT
+      - Mon, 26 Aug 2024 19:21:06 GMT
       Server:
       - scaffolding on HTTPServer2
       Cache-Control:
@@ -45,7 +44,7 @@ http_interactions:
       X-Content-Type-Options:
       - nosniff
       Server-Timing:
-      - gfet4t7; dur=857
+      - gfet4t7; dur=341
       Alt-Svc:
       - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
       Transfer-Encoding:
@@ -59,12 +58,7 @@ http_interactions:
               "content": {
                 "parts": [
                   {
-                    "functionCall": {
-                      "name": "route",
-                      "args": {
-                        "route": "GET /users"
-                      }
-                    }
+                    "text": "{\"route\": \"GET /users\"}\n"
                   }
                 ],
                 "role": "model"
@@ -81,21 +75,21 @@ http_interactions:
                   "probability": "NEGLIGIBLE"
                 },
                 {
-                  "category": "HARM_CATEGORY_DANGEROUS_CONTENT",
+                  "category": "HARM_CATEGORY_HARASSMENT",
                   "probability": "NEGLIGIBLE"
                 },
                 {
-                  "category": "HARM_CATEGORY_HARASSMENT",
+                  "category": "HARM_CATEGORY_DANGEROUS_CONTENT",
                   "probability": "NEGLIGIBLE"
                 }
               ]
             }
           ],
           "usageMetadata": {
-            "promptTokenCount": 122,
-            "candidatesTokenCount": 15,
-            "totalTokenCount": 137
+            "promptTokenCount": 47,
+            "candidatesTokenCount": 8,
+            "totalTokenCount": 55
           }
         }
-  recorded_at: Mon, 22 Jul 2024 21:35:07 GMT
+  recorded_at: Mon, 26 Aug 2024 19:21:06 GMT
 recorded_with: VCR 6.2.0

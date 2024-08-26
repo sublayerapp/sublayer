@@ -26,23 +26,12 @@ module Sublayer
                 text: "#{prompt}"
               },
             },
-            tools: [{
-              function_declarations: [
-                {
-                  name: output_adapter.name,
-                  description: output_adapter.description,
-                  parameters: {
-                    type: "OBJECT",
-                    properties: output_adapter.format_properties,
-                    required: output_adapter.format_required
-                  }
-                }
-              ]
-            }],
-            tool_config: {
-              function_calling_config: {
-                mode: "ANY",
-                allowed_function_names: [output_adapter.name]
+            generationConfig: {
+              responseMimeType: "application/json",
+              responseSchema: {
+                type: "OBJECT",
+                properties: output_adapter.format_properties,
+                required: output_adapter.format_required
               }
             }
           }.to_json,
@@ -66,7 +55,9 @@ module Sublayer
 
         raise "Error generating with Gemini, error: #{response.body}" unless response.success?
 
-        argument = response.dig("candidates", 0, "content", "parts", 0, "functionCall", "args", output_adapter.name)
+        output = response.dig("candidates", 0, "content", "parts", 0, "text")
+
+        parsed_output = JSON.parse(output)[output_adapter.name]
       end
     end
   end
