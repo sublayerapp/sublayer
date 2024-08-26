@@ -1,4 +1,3 @@
-require "pry"
 require 'spec_helper'
 
 RSpec.describe Sublayer::Components::OutputAdapters::Formattable do
