@@ -35,7 +35,7 @@ RSpec.describe FourDigitPasscodeGenerator do
     end
   end
 
-  xcontext "Gemini" do
+  context "Gemini" do
     before do
       Sublayer.configuration.ai_provider = Sublayer::Providers::Gemini
       Sublayer.configuration.ai_model = "gemini-1.5-flash-latest"
@@ -47,6 +47,5 @@ RSpec.describe FourDigitPasscodeGenerator do
         expect(result).to be_an_instance_of(Integer)
       end
     end
-
   end
 end
