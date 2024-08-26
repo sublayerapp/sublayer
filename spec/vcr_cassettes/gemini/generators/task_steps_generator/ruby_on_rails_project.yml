@@ -13,12 +13,11 @@ http_interactions:
         command to execute for this step (if applicable; use \"N/A\" if no command
         is needed)\n\n    Provide your response as a list of objects, each containing
         the above attributes.\n    Ensure the steps are in the correct order to complete
-        the task successfully.\n"}},"tools":[{"function_declarations":[{"name":"steps","description":"List
-        of steps to complete a task","parameters":{"type":"OBJECT","properties":{"steps":{"type":"array","description":"List
+        the task successfully.\n"}},"generationConfig":{"responseMimeType":"application/json","responseSchema":{"type":"OBJECT","properties":{"steps":{"type":"array","description":"List
         of steps to complete a task","items":{"type":"object","description":"a single
         step","properties":{"description":{"type":"string","description":"A brief
         description of the step"},"command":{"type":"string","description":"The command
-        to execute for this step"}},"required":["description","command"]}}},"required":["steps"]}}]}],"tool_config":{"function_calling_config":{"mode":"ANY","allowed_function_names":["steps"]}}}'
+        to execute for this step"}},"required":["description","command"]}}},"required":["steps"]}}}'
     headers:
       Content-Type:
       - application/json
@@ -40,7 +39,7 @@ http_interactions:
       - Referer
       - X-Origin
       Date:
-      - Thu, 15 Aug 2024 18:53:49 GMT
+      - Mon, 26 Aug 2024 19:19:04 GMT
       Server:
       - scaffolding on HTTPServer2
       Cache-Control:
@@ -52,7 +51,7 @@ http_interactions:
       X-Content-Type-Options:
       - nosniff
       Server-Timing:
-      - gfet4t7; dur=6328
+      - gfet4t7; dur=4514
       Alt-Svc:
       - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
       Transfer-Encoding:
@@ -66,41 +65,7 @@ http_interactions:
               "content": {
                 "parts": [
                   {
-                    "functionCall": {
-                      "name": "steps",
-                      "args": {
-                        "steps": [
-                          {
-                            "description": "Make sure you have the latest version of Ruby installed on your system.",
-                            "command": "Install Ruby"
-                          },
-                          {
-                            "description": "Use the `gem install rails` command to install the Rails framework.",
-                            "command": "Install Rails"
-                          },
-                          {
-                            "description": "Create a new Rails project by running the rails new command followed by the desired project name.",
-                            "command": "rails new my_rails_app"
-                          },
-                          {
-                            "description": "Navigate into the newly created project directory.",
-                            "command": "cd my_rails_app"
-                          },
-                          {
-                            "description": "Install all required dependencies for the project as specified in the Gemfile.",
-                            "command": "bundle install"
-                          },
-                          {
-                            "command": "rails server",
-                            "description": "Start the Rails development server."
-                          },
-                          {
-                            "command": "N/A",
-                            "description": "Open a web browser and visit `http://localhost:3000` to see your new Rails application running."
-                          }
-                        ]
-                      }
-                    }
+                    "text": "{\"steps\": [{\"command\": \"gem install rails\", \"description\": \"Install the latest version of Ruby on Rails\"}, {\"command\": \"rails new my_rails_project --database=postgresql\", \"description\": \"Create a new Rails project with PostgreSQL as the database\"}, {\"command\": \"cd my_rails_project\", \"description\": \"Navigate to the newly created project directory\"}, {\"command\": \"bundle install\", \"description\": \"Install all gem dependencies specified in the Gemfile\"}, {\"command\": \"rails db:create\", \"description\": \"Create the development and test databases\"}, {\"command\": \"rails server\", \"description\": \"Start the Rails development server\"}, {\"command\": \"N/A\", \"description\": \"Open a web browser and visit http://localhost:3000 to see the default Rails application\"}]} "
                   }
                 ],
                 "role": "model"
@@ -109,15 +74,15 @@ http_interactions:
               "index": 0,
               "safetyRatings": [
                 {
-                  "category": "HARM_CATEGORY_HARASSMENT",
-                  "probability": "NEGLIGIBLE"
-                },
-                {
                   "category": "HARM_CATEGORY_SEXUALLY_EXPLICIT",
                   "probability": "NEGLIGIBLE"
                 },
                 {
                   "category": "HARM_CATEGORY_HATE_SPEECH",
+                  "probability": "NEGLIGIBLE"
+                },
+                {
+                  "category": "HARM_CATEGORY_HARASSMENT",
                   "probability": "NEGLIGIBLE"
                 },
                 {
@@ -128,10 +93,10 @@ http_interactions:
             }
           ],
           "usageMetadata": {
-            "promptTokenCount": 238,
-            "candidatesTokenCount": 204,
-            "totalTokenCount": 442
+            "promptTokenCount": 130,
+            "candidatesTokenCount": 172,
+            "totalTokenCount": 302
           }
         }
-  recorded_at: Thu, 15 Aug 2024 18:53:49 GMT
+  recorded_at: Mon, 26 Aug 2024 19:19:04 GMT
 recorded_with: VCR 6.2.0

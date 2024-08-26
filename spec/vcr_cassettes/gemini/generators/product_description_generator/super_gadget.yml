@@ -11,13 +11,12 @@ http_interactions:
         the following:\n    1. A brief one-sentence description of the product\n    2.
         A detailed paragraph describing the product\n    3. A comma-separated list
         of key product features\n    4. A brief description of the target audience
-        for this product\n"}},"tools":[{"function_declarations":[{"name":"product_description","description":"Generate
-        product descriptions","parameters":{"type":"OBJECT","properties":{"product_description":{"type":"object","description":"Generate
+        for this product\n"}},"generationConfig":{"responseMimeType":"application/json","responseSchema":{"type":"OBJECT","properties":{"product_description":{"type":"object","description":"Generate
         product descriptions","properties":{"short_description":{"type":"string","description":"A
         brief one-sentence description of the product"},"long_description":{"type":"string","description":"A
         detailed paragraph describing the product"},"key_features":{"type":"string","description":"A
         comma-separated list of key product features"},"target_audience":{"type":"string","description":"A
-        brief description of the target audience for this product"}}}},"required":["product_description"]}}]}],"tool_config":{"function_calling_config":{"mode":"ANY","allowed_function_names":["product_description"]}}}'
+        brief description of the target audience for this product"}},"required":["short_description","long_description","key_features","target_audience"]}},"required":["product_description"]}}}'
     headers:
       Content-Type:
       - application/json
@@ -29,17 +28,17 @@ http_interactions:
       - Ruby
   response:
     status:
-      code: 500
-      message: Internal Server Error
+      code: 200
+      message: OK
     headers:
+      Content-Type:
+      - application/json; charset=UTF-8
       Vary:
       - Origin
       - Referer
       - X-Origin
-      Content-Type:
-      - application/json; charset=UTF-8
       Date:
-      - Tue, 13 Aug 2024 16:57:10 GMT
+      - Mon, 26 Aug 2024 20:11:09 GMT
       Server:
       - scaffolding on HTTPServer2
       Cache-Control:
@@ -51,7 +50,7 @@ http_interactions:
       X-Content-Type-Options:
       - nosniff
       Server-Timing:
-      - gfet4t7; dur=391
+      - gfet4t7; dur=1526
       Alt-Svc:
       - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
       Transfer-Encoding:
@@ -60,11 +59,43 @@ http_interactions:
       encoding: ASCII-8BIT
       string: |
         {
-          "error": {
-            "code": 500,
-            "message": "An internal error has occurred. Please retry or report in https://developers.generativeai.google/guide/troubleshooting",
-            "status": "INTERNAL"
+          "candidates": [
+            {
+              "content": {
+                "parts": [
+                  {
+                    "text": "{\"product_description\": {\"key_features\": \"Sleek design, intuitive interface, advanced connectivity, long battery life, versatile functionality.\", \"long_description\": \"The Super Gadget is a revolutionary electronic device that seamlessly blends cutting-edge technology with user-friendly design. Its sleek and compact form factor makes it incredibly portable, while its powerful processor and high-resolution display deliver an immersive experience. Equipped with advanced connectivity features, the Super Gadget allows you to effortlessly connect to your other devices and access a wealth of information and entertainment.  Its long battery life ensures you can stay connected and productive throughout the day, and its versatile functionality makes it the perfect companion for work, play, and everything in between.\", \"short_description\": \"The Super Gadget is an innovative electronic device that combines power, portability, and versatility in one sleek package.\", \"target_audience\": \"Tech-savvy individuals, professionals, students, and anyone looking for a reliable and feature-rich electronic device.\"}}\n"
+                  }
+                ],
+                "role": "model"
+              },
+              "finishReason": "STOP",
+              "index": 0,
+              "safetyRatings": [
+                {
+                  "category": "HARM_CATEGORY_SEXUALLY_EXPLICIT",
+                  "probability": "NEGLIGIBLE"
+                },
+                {
+                  "category": "HARM_CATEGORY_HATE_SPEECH",
+                  "probability": "NEGLIGIBLE"
+                },
+                {
+                  "category": "HARM_CATEGORY_HARASSMENT",
+                  "probability": "NEGLIGIBLE"
+                },
+                {
+                  "category": "HARM_CATEGORY_DANGEROUS_CONTENT",
+                  "probability": "NEGLIGIBLE"
+                }
+              ]
+            }
+          ],
+          "usageMetadata": {
+            "promptTokenCount": 89,
+            "candidatesTokenCount": 198,
+            "totalTokenCount": 287
           }
         }
-  recorded_at: Tue, 13 Aug 2024 16:57:10 GMT
+  recorded_at: Mon, 26 Aug 2024 20:11:09 GMT
 recorded_with: VCR 6.2.0

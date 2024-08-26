@@ -13,11 +13,9 @@ http_interactions:
         person\n          end\n        end.parse!\n\n        who = options[:who] ||
         \"world\"\n        puts \"Hello, #{who}!\"\n\n        Please read the code
         carefully and provide a high-level description of what this code does, including
-        its purpose, functionalities, and any noteworthy details.\n"}},"tools":{"functionDeclarations":[{"name":"code_description","description":"A
+        its purpose, functionalities, and any noteworthy details.\n"}},"generationConfig":{"responseMimeType":"application/json","responseSchema":{"type":"OBJECT","properties":{"code_description":{"type":"string","description":"A
         description of what the code does, its purpose,functionality, and any noteworthy
-        details","parameters":{"type":"OBJECT","properties":{"code_description":{"type":"STRING","description":"A
-        description of what the code does, its purpose,functionality, and any noteworthy
-        details"}},"required":["code_description"]}}]},"tool_config":{"function_calling_config":{"mode":"ANY","allowed_function_names":["code_description"]}}}'
+        details"}},"required":["code_description"]}}}'
     headers:
       Content-Type:
       - application/json
@@ -39,7 +37,7 @@ http_interactions:
       - Referer
       - X-Origin
       Date:
-      - Mon, 22 Jul 2024 21:43:47 GMT
+      - Mon, 26 Aug 2024 19:18:53 GMT
       Server:
       - scaffolding on HTTPServer2
       Cache-Control:
@@ -51,7 +49,7 @@ http_interactions:
       X-Content-Type-Options:
       - nosniff
       Server-Timing:
-      - gfet4t7; dur=7267
+      - gfet4t7; dur=6841
       Alt-Svc:
       - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
       Transfer-Encoding:
@@ -65,12 +63,7 @@ http_interactions:
               "content": {
                 "parts": [
                   {
-                    "functionCall": {
-                      "name": "code_description",
-                      "args": {
-                        "code_description": "This Ruby code is a simple command-line program that greets a person by name. \\n\\nHere is a breakdown of the code:\\n\\n1. **Requires the `optparse` library:** This line includes the `optparse` library, which is used for parsing command-line options.\\n2. **Initializes an options hash:** `options = {}` creates an empty hash called `options` to store command-line arguments.\\n3. **Defines command-line options:**\\n   - `OptionParser.new do |opts| ... end.parse!` creates a new OptionParser object and defines the command-line options.\\n   - `opts.banner = \"Usage: hello.rb [options]\"` sets the banner message displayed at the top of the help text.\\n   - `opts.on(\"-w\", \"--who PERSON\", \"Name of the person to greet\") do |person| ... end` defines an option `-w` or `--who` that takes a `PERSON` argument. The value of the argument is stored in the `options[:who]` hash.\\n4. **Gets the name to greet:**\\n   - `who = options[:who] || \"world\"` retrieves the value of the `:who` option from the `options` hash. If the option is not provided, it defaults to \"world\".\\n5. **Prints the greeting:**\\n   - `puts \"Hello, #{who}!\"` prints the greeting message with the name of the person being greeted."
-                      }
-                    }
+                    "text": "{\"code_description\": \"This Ruby code is a simple command-line script that prints a greeting message. Here's a breakdown:\\n\\n**Purpose:** \\nThe script aims to output a personalized \\\"Hello\\\" message, addressing a specific person or defaulting to \\\"world\\\" if no name is provided.\\n\\n**Functionality:**\\n\\n1. **Argument Parsing:** It uses Ruby's `OptionParser` to handle command-line arguments gracefully. \\n2. **Option Handling:** Specifically, it defines an optional `-w` or `--who` flag followed by a person's name. This name is stored in the `options` hash for later use.\\n3. **Default Greeting:** If no name is provided via the command-line flag, the script defaults to greeting \\\"world\\\".\\n4. **Output:** Finally, it prints the constructed greeting message to the console.\\n\\n**Noteworthy Details:**\\n\\n- The `#!/usr/bin/env ruby` on the first line is called a shebang and makes the script executable on Unix-like systems, indicating that it should be run with the Ruby interpreter.\\n- The script demonstrates good practice by using `OptionParser` for clean argument handling, making it user-friendly.\\n- The use of a default value for `who` ensures a greeting is always printed, even without user input.\"\n} "
                   }
                 ],
                 "role": "model"
@@ -79,11 +72,11 @@ http_interactions:
               "index": 0,
               "safetyRatings": [
                 {
-                  "category": "HARM_CATEGORY_DANGEROUS_CONTENT",
+                  "category": "HARM_CATEGORY_SEXUALLY_EXPLICIT",
                   "probability": "NEGLIGIBLE"
                 },
                 {
-                  "category": "HARM_CATEGORY_SEXUALLY_EXPLICIT",
+                  "category": "HARM_CATEGORY_HATE_SPEECH",
                   "probability": "NEGLIGIBLE"
                 },
                 {
@@ -91,17 +84,17 @@ http_interactions:
                   "probability": "NEGLIGIBLE"
                 },
                 {
-                  "category": "HARM_CATEGORY_HATE_SPEECH",
+                  "category": "HARM_CATEGORY_DANGEROUS_CONTENT",
                   "probability": "NEGLIGIBLE"
                 }
               ]
             }
           ],
           "usageMetadata": {
-            "promptTokenCount": 228,
-            "candidatesTokenCount": 346,
-            "totalTokenCount": 574
+            "promptTokenCount": 157,
+            "candidatesTokenCount": 295,
+            "totalTokenCount": 452
           }
         }
-  recorded_at: Mon, 22 Jul 2024 21:43:47 GMT
+  recorded_at: Mon, 26 Aug 2024 19:18:53 GMT
 recorded_with: VCR 6.2.0

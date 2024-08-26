@@ -40,7 +40,7 @@ RSpec.describe SentimentFromTextGenerator do
   context "Gemini" do
     before do
       Sublayer.configuration.ai_provider = Sublayer::Providers::Gemini
-      Sublayer.configuration.ai_model = "gemini-pro"
+      Sublayer.configuration.ai_model = "gemini-1.5-flash-latest"
     end
 
     it "generates a sentiment value from the text" do

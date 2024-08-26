@@ -42,7 +42,7 @@ RSpec.describe ProductDescriptionGenerator do
 
   end
 
-  xcontext "Gemini" do
+  context "Gemini" do
     before do
       Sublayer.configuration.ai_provider = Sublayer::Providers::Gemini
       Sublayer.configuration.ai_model = "gemini-1.5-flash-latest"

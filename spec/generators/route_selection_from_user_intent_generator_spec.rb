@@ -44,7 +44,7 @@ RSpec.describe RouteSelectionFromUserIntentGenerator do
   context "Gemini" do
     before do
       Sublayer.configuration.ai_provider = Sublayer::Providers::Gemini
-      Sublayer.configuration.ai_model = "gemini-pro"
+      Sublayer.configuration.ai_model = "gemini-1.5-flash-latest"
     end
 
     it "selects a route based on the user's intent" do

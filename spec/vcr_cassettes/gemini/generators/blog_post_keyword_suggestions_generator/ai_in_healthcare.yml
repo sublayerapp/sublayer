@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: post
-    uri: https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=<GEMINI_API_KEY>
+    uri: https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=<GEMINI_API_KEY>
     body:
       encoding: UTF-8
       string: '{"contents":{"role":"user","parts":{"text":"    You are an SEO expect
@@ -10,9 +10,8 @@ http_interactions:
         is: Artificial Intelligence in Healthcare\n\n    Please suggest relevant  keywords
         or key phrases for this post''s topic.\n    Each keyword or phrase should
         be concise and directly related to the topic.\n\n    Provide your suggestions
-        as a list of strings.\n"}},"tools":{"functionDeclarations":[{"name":"suggestions","description":"List
-        of keyword suggestions","parameters":{"type":"OBJECT","properties":{"suggestions":{"type":"ARRAY","description":"List
-        of keyword suggestions","items":{"type":"string"}}},"required":["suggestions"]}}]}}'
+        as a list of strings.\n"}},"generationConfig":{"responseMimeType":"application/json","responseSchema":{"type":"OBJECT","properties":{"suggestions":{"type":"array","description":"List
+        of keyword suggestions","items":{"type":"string"}}},"required":["suggestions"]}}}'
     headers:
       Content-Type:
       - application/json
@@ -34,7 +33,7 @@ http_interactions:
       - Referer
       - X-Origin
       Date:
-      - Mon, 22 Jul 2024 21:29:06 GMT
+      - Mon, 26 Aug 2024 19:21:07 GMT
       Server:
       - scaffolding on HTTPServer2
       Cache-Control:
@@ -46,7 +45,7 @@ http_interactions:
       X-Content-Type-Options:
       - nosniff
       Server-Timing:
-      - gfet4t7; dur=1195
+      - gfet4t7; dur=1000
       Alt-Svc:
       - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
       Transfer-Encoding:
@@ -60,16 +59,7 @@ http_interactions:
               "content": {
                 "parts": [
                   {
-                    "functionCall": {
-                      "name": "suggestions",
-                      "args": {
-                        "suggestions": [
-                          "Artificial Intelligence in Healthcare",
-                          "cancer",
-                          "disease"
-                        ]
-                      }
-                    }
+                    "text": "{\"suggestions\": [\"AI in healthcare\", \"artificial intelligence healthcare\", \"healthcare AI\", \"AI applications in healthcare\", \"AI in medicine\", \"AI for healthcare\", \"machine learning healthcare\", \"AI medical diagnosis\", \"AI drug discovery\", \"AI patient care\", \"AI medical imaging\", \"AI personalized medicine\", \"AI health technology\", \"future of healthcare AI\", \"ethics of AI in healthcare\", \"AI healthcare trends\", \"AI healthcare benefits\", \"AI healthcare challenges\", \"AI healthcare regulations\", \"AI healthcare companies\"]}\n"
                   }
                 ],
                 "role": "model"
@@ -78,11 +68,7 @@ http_interactions:
               "index": 0,
               "safetyRatings": [
                 {
-                  "category": "HARM_CATEGORY_HARASSMENT",
-                  "probability": "NEGLIGIBLE"
-                },
-                {
-                  "category": "HARM_CATEGORY_DANGEROUS_CONTENT",
+                  "category": "HARM_CATEGORY_SEXUALLY_EXPLICIT",
                   "probability": "NEGLIGIBLE"
                 },
                 {
@@ -90,17 +76,21 @@ http_interactions:
                   "probability": "NEGLIGIBLE"
                 },
                 {
-                  "category": "HARM_CATEGORY_SEXUALLY_EXPLICIT",
+                  "category": "HARM_CATEGORY_HARASSMENT",
+                  "probability": "NEGLIGIBLE"
+                },
+                {
+                  "category": "HARM_CATEGORY_DANGEROUS_CONTENT",
                   "probability": "NEGLIGIBLE"
                 }
               ]
             }
           ],
           "usageMetadata": {
-            "promptTokenCount": 112,
-            "candidatesTokenCount": 22,
-            "totalTokenCount": 134
+            "promptTokenCount": 73,
+            "candidatesTokenCount": 106,
+            "totalTokenCount": 179
           }
         }
-  recorded_at: Mon, 22 Jul 2024 21:29:06 GMT
+  recorded_at: Mon, 26 Aug 2024 19:21:07 GMT
 recorded_with: VCR 6.2.0

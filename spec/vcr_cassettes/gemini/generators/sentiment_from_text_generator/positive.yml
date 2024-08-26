@@ -2,15 +2,14 @@
 http_interactions:
 - request:
     method: post
-    uri: https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=<GEMINI_API_KEY>
+    uri: https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=<GEMINI_API_KEY>
     body:
       encoding: UTF-8
       string: '{"contents":{"role":"user","parts":{"text":"        You are an expert
         at determining sentiment from text.\n\n        You are tasked with analyzing
         the following text and determining its sentiment value.\n\n        The text
-        is:\n        Matz is nice so we are nice\n"}},"tools":{"functionDeclarations":[{"name":"sentiment_value","description":"A
-        sentiment value from the list","parameters":{"type":"OBJECT","properties":{"sentiment_value":{"type":"STRING","description":"A
-        sentiment value from the list","enum":["positive","negative","neutral"]}},"required":["sentiment_value"]}}]}}'
+        is:\n        Matz is nice so we are nice\n"}},"generationConfig":{"responseMimeType":"application/json","responseSchema":{"type":"OBJECT","properties":{"sentiment_value":{"type":"string","description":"A
+        sentiment value from the list","enum":["positive","negative","neutral"]}},"required":["sentiment_value"]}}}'
     headers:
       Content-Type:
       - application/json
@@ -32,7 +31,7 @@ http_interactions:
       - Referer
       - X-Origin
       Date:
-      - Mon, 22 Jul 2024 21:35:09 GMT
+      - Mon, 26 Aug 2024 19:21:04 GMT
       Server:
       - scaffolding on HTTPServer2
       Cache-Control:
@@ -44,7 +43,7 @@ http_interactions:
       X-Content-Type-Options:
       - nosniff
       Server-Timing:
-      - gfet4t7; dur=958
+      - gfet4t7; dur=288
       Alt-Svc:
       - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
       Transfer-Encoding:
@@ -58,12 +57,7 @@ http_interactions:
               "content": {
                 "parts": [
                   {
-                    "functionCall": {
-                      "name": "sentiment_value",
-                      "args": {
-                        "sentiment_value": "positive"
-                      }
-                    }
+                    "text": "{\"sentiment_value\": \"positive\"}\n"
                   }
                 ],
                 "role": "model"
@@ -72,7 +66,11 @@ http_interactions:
               "index": 0,
               "safetyRatings": [
                 {
-                  "category": "HARM_CATEGORY_DANGEROUS_CONTENT",
+                  "category": "HARM_CATEGORY_SEXUALLY_EXPLICIT",
+                  "probability": "NEGLIGIBLE"
+                },
+                {
+                  "category": "HARM_CATEGORY_HATE_SPEECH",
                   "probability": "NEGLIGIBLE"
                 },
                 {
@@ -80,21 +78,17 @@ http_interactions:
                   "probability": "NEGLIGIBLE"
                 },
                 {
-                  "category": "HARM_CATEGORY_SEXUALLY_EXPLICIT",
-                  "probability": "NEGLIGIBLE"
-                },
-                {
-                  "category": "HARM_CATEGORY_HATE_SPEECH",
+                  "category": "HARM_CATEGORY_DANGEROUS_CONTENT",
                   "probability": "NEGLIGIBLE"
                 }
               ]
             }
           ],
           "usageMetadata": {
-            "promptTokenCount": 100,
-            "candidatesTokenCount": 17,
-            "totalTokenCount": 117
+            "promptTokenCount": 45,
+            "candidatesTokenCount": 8,
+            "totalTokenCount": 53
           }
         }
-  recorded_at: Mon, 22 Jul 2024 21:35:09 GMT
+  recorded_at: Mon, 26 Aug 2024 19:21:04 GMT
 recorded_with: VCR 6.2.0

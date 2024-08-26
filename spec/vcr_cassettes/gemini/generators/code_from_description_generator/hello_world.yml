@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: post
-    uri: https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=<GEMINI_API_KEY>
+    uri: https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=<GEMINI_API_KEY>
     body:
       encoding: UTF-8
       string: '{"contents":{"role":"user","parts":{"text":"        You are an expert
@@ -10,9 +10,8 @@ http_interactions:
         following technologies: ruby.\n\n        The description of the task is a
         hello world app where I pass --who argument to set the ''world'' value using
         optparser\n\n        Take a deep breath and think step by step before you
-        start coding.\n"}},"tools":{"functionDeclarations":[{"name":"generated_code","description":"The
-        generated code in the requested language","parameters":{"type":"OBJECT","properties":{"generated_code":{"type":"STRING","description":"The
-        generated code in the requested language"}},"required":["generated_code"]}}]},"tool_config":{"function_calling_config":{"mode":"ANY","allowed_function_names":["generated_code"]}}}'
+        start coding.\n"}},"generationConfig":{"responseMimeType":"application/json","responseSchema":{"type":"OBJECT","properties":{"generated_code":{"type":"string","description":"The
+        generated code in the requested language"}},"required":["generated_code"]}}}'
     headers:
       Content-Type:
       - application/json
@@ -34,7 +33,7 @@ http_interactions:
       - Referer
       - X-Origin
       Date:
-      - Mon, 22 Jul 2024 21:55:02 GMT
+      - Mon, 26 Aug 2024 20:11:39 GMT
       Server:
       - scaffolding on HTTPServer2
       Cache-Control:
@@ -46,7 +45,7 @@ http_interactions:
       X-Content-Type-Options:
       - nosniff
       Server-Timing:
-      - gfet4t7; dur=2536
+      - gfet4t7; dur=814
       Alt-Svc:
       - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
       Transfer-Encoding:
@@ -60,7 +59,7 @@ http_interactions:
               "content": {
                 "parts": [
                   {
-                    "text": "```ruby  \n  require \"optparse\"\n\n  # Define the options for the script\n  options = {}\n  OptionParser.new do |opts|\n    opts.on(\"-w\", \"--who NAME\", \"Who to say hello to (default: World)\") do |who|\n      options[:who] = who\n    end\n  end.parse!\n\n  # Set the default value for the `who` option\n  options[:who] ||= \"World\"\n\n  # Print the greeting\n  puts \"Hello, #{options[:who]}!\"  \n```"
+                    "text": "{\"generated_code\": \"require 'optparse'\\n\\noptions = {}\\nOptionParser.new do |opts|\\n  opts.on('-w', '--who WHO', 'Who to greet') do |who|\\n    options[:who] = who\\n  end\\nend.parse!\\n\\nwho = options[:who] || 'world'\\nputs \\\"Hello, #{who}!\\\"\"}\n"
                   }
                 ],
                 "role": "model"
@@ -88,10 +87,10 @@ http_interactions:
             }
           ],
           "usageMetadata": {
-            "promptTokenCount": 119,
-            "candidatesTokenCount": 122,
-            "totalTokenCount": 241
+            "promptTokenCount": 70,
+            "candidatesTokenCount": 87,
+            "totalTokenCount": 157
           }
         }
-  recorded_at: Mon, 22 Jul 2024 21:55:02 GMT
+  recorded_at: Mon, 26 Aug 2024 20:11:39 GMT
 recorded_with: VCR 6.2.0
