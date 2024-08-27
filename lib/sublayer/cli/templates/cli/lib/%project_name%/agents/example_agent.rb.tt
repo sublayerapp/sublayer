@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module ProjectName
+module <%= project_name.camelize %>
   module Agents
     class ExampleAgent < Sublayer::Agents::Base
       trigger_on_files_changed { ["example_file.txt"] }

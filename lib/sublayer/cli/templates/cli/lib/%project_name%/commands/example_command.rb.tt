@@ -1,4 +1,4 @@
-module ProjectName
+module <%= project_name.camelize %>
   module Commands
     class ExampleCommand < BaseCommand
       def self.description
@@ -6,7 +6,7 @@ module ProjectName
       end
 
       def execute(*args)
-        puts ProjectName::Generators::ExampleGenerator.new(input: args.join(" ")).generate
+        puts <%= project_name.camelize %>::Generators::ExampleGenerator.new(input: args.join(" ")).generate
       end
     end
   end

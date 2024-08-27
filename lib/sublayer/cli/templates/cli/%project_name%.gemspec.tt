@@ -1,22 +1,22 @@
-require_relative "lib/PROJECT_NAME/version"
+require_relative "lib/<%= project_name.gsub("-", "_") %>/version"
 
 Gem::Specification.new do |spec|
-  spec.name = "PROJECT_NAME"
-  spec.version = ProjectName::VERSION
+  spec.name = "<%= project_name %>"
+  spec.version = <%= project_name.camelize %>::VERSION
   spec.authors = ["Your Name"]
   spec.email = ["your.email@example.com"]
 
   spec.summary = "Summary of your project"
   spec.description = "Longer description of your project"
-  spec.homepage = "https://github.com/yourusername/PROJECT_NAME"
+  spec.homepage = "https://github.com/yourusername/<%= project_name %>"
   spec.license = "MIT"
   spec.required_ruby_version = ">= 2.6.0"
 
   spec.metadata["allowed_push_host"] = "TODO: Set to your gem server 'https://example.com'"
 
   spec.metadata["homepage_uri"] = spec.homepage
-  spec.metadata["source_code_uri"] = "https://github.com/yourusername/PROJECT_NAME"
-  spec.metadata["changelog_uri"] = "https://github.com/yourusername/PROJECT_NAME/blob/master/CHANGELOG.md"
+  spec.metadata["source_code_uri"] = "https://github.com/yourusername/<%= project_name %>"
+  spec.metadata["changelog_uri"] = "https://github.com/yourusername/<%= project_name %>/blob/master/CHANGELOG.md"
 
   # Specify which files should be added to the gem when it is released.
   # The `git ls-files -z` loads the files in the RubyGem that have been added into git.
@@ -30,6 +30,6 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   # Add dependencies here
-  spec.add_dependency "sublayer", "~> SUBLAYER_VERSION"
+  spec.add_dependency "sublayer", "~> <%= sublayer_version %>"
   spec.add_dependency "thor", "~> 1.2"
 end

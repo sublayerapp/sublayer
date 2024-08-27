@@ -1,4 +1,4 @@
-module ProjectName
+module <%= project_name.camelize %>
   module Config
     def self.load
       config_path = File.join(File.dirname(__FILE__), "config", "sublayer.yml")
