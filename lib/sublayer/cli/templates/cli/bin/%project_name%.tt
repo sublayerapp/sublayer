@@ -2,4 +2,4 @@
 
 require_relative "../lib/project_name"
 
-ProjectName::CLI.start(ARGV)
+<%= project_name.camelize %>::CLI.start(ARGV)

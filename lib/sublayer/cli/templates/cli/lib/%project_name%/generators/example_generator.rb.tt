@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module ProjectName
+module <%= project_name.camelize %>
   module Generators
     class ExampleGenerator < Sublayer::Generators::Base
       llm_output_adapter type: :single_string,

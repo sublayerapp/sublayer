@@ -1,4 +1,4 @@
-# ProjectName
+# <%= project_name %>
 
 Welcome to your new Sublayer CLI project!
 
@@ -13,7 +13,7 @@ Execute:
 To run your CLI application:
 
 ```
-$ bin/PROJECT_NAME
+$ bin/<%= project_name %>
 ```
 
 Available commands:

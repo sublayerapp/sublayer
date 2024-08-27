@@ -1,5 +1,5 @@
 # frozen_string_literal: true
 
-module ProjectName
+module <%= project_name.camelize %>
   VERSION = "0.0.1"
 end
