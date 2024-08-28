@@ -61,6 +61,8 @@ module Sublayer
       def finalize_project
         say "Finalizing project", :green
         inside(project_name) do
+          chmod("bin/#{project_name}", "+x") if @project_template == "CLI"
+
           run("git init") if yes?("Initialize a git repository?")
           run("bundle install") if yes?("Install gems?")
         end
