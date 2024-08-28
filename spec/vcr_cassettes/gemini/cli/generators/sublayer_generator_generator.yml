@@ -1,0 +1,146 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-pro-latest:generateContent?key=<GEMINI_API_KEY>
+    body:
+      encoding: UTF-8
+      string: '{"contents":{"role":"user","parts":{"text":"    You are an expert ruby
+        programmer and and great at repurposing code examples to use for new situations.\n\n    A
+        Sublayer generator is a class that acts as an abstraction for sending a request
+        to an LLM and getting structured data back.\n\n    An example Sublayer generator
+        is:\n    <example_generator>\n    class CodeFromDescriptionGenerator < Sublayer::Generators::Base\n  llm_output_adapter
+        type: :single_string,\n    name: \"generated_code\",\n    description: \"The
+        generated code in the requested language\"\n\n  def initialize(description:,
+        technologies:)\n    @description = description\n    @technologies = technologies\n  end\n\n  def
+        generate\n    super\n  end\n\n  def prompt\n    <<-PROMPT\n        You are
+        an expert programmer in #{@technologies.join(\", \")}.\n\n        You are
+        tasked with writing code using the following technologies: #{@technologies.join(\",
+        \")}.\n\n        The description of the task is #{@description}\n\n        Take
+        a deep breath and think step by step before you start coding.\n    PROMPT\n  end\nend\n\n    </example_generator>\n\n    And
+        it is the generator we''re currently using for taking in a description from
+        a user and generating a new Sublayer generator.\n\n    All Sublayer::Generators
+        inherit from Sublayer::Generators::Base and have a generate method that simply
+        calls super for the user to use and modify for their uses.\n\n    the llm_output_adapter
+        directive is used to instruct the LLM on what structure of output to generate.
+        In the example we''re using type: :single_string which takes a name and description
+        as arguments.\n\n    the other available options and their example usage is:\n    llm_output_adapter
+        type: :list_of_strings,\n      name: \"suggestions\",\n      description:
+        \"List of keyword suggestions\"\n\n    llm_output_adapter type: :single_integer,\n      name:
+        \"four_digit_passcode\",\n      description: \"an uncommon and difficult to
+        guess four digit passcode\"\n\n    llm_output_adapter type: :list_of_named_strings,\n      name:
+        \"review_summaries\",\n      description: \"List of movie reviews\",\n      item_name:
+        \"review\",\n      attributes: [\n        { name: \"movie_title\", description:
+        \"The title of the movie\" },\n        { name: \"reviewer_name\", description:
+        \"The name of the reviewer\" },\n        { name: \"rating\", description:
+        \"The rating given by the reviewer (out of 5 stars)\" },\n        { name:
+        \"brief_comment\", description: \"A brief summary of the movie\" }\n      ]\n\n    llm_output_adapter
+        type: :named_strings,\n      name: \"product_description\",\n      description:
+        \"Generate product descriptions\",\n      attributes: [\n        { name: \"short_description\",
+        description: \"A brief one-sentence description of the product\" },\n        {
+        name: \"long_description\", description: \"A detailed paragraph describing
+        the product\" },\n        { name: \"key_features\", description: \"A comma-separated
+        list of key product features\" },\n        { name: \"target_audience\", description:
+        \"A brief description of the target audience for this product\" }\n      ]\n\n    #
+        Where :available_routes is a method that returns an array of available routes\n    llm_output_adapter
+        type: :string_selection_from_list,\n      name: \"route\",\n      description:
+        \"A route selected from the list\",\n      options: :available_routes\n\n    #
+        Where @sentiment_options is an array of sentiment values passed in to the
+        initializer\n    llm_output_adapter type: :string_selection_from_list,\n      name:
+        \"sentiment_value\",\n      description: \"A sentiment value from the list\",\n      options:
+        -> { @sentiment_options }\n\n    Besides that, a Sublayer::Generator also
+        has a prompt method that describes the task to the LLM and provides any necessary
+        context for the generation which\n    is either passed in through the initializer
+        or accessed in the prompt itself.\n\n    You have a description provided by
+        the user to generate a new sublayer generator.\n\n    You are tasked with
+        creating a new sublayer generator according to the given description.\n\n    Consider
+        the details and requirements mentioned in the description to create the appropriate
+        Sublayer::Generator.\n    <users_description>\n    a sublayer generator that
+        takes in code and converts it to the users requested programming language\n    </users_description>\n\n    Take
+        a deep breath and reflect on each aspect of the description before proceeding
+        with the generation.\n"}},"generationConfig":{"responseMimeType":"application/json","responseSchema":{"type":"OBJECT","properties":{"sublayer_generator":{"type":"object","description":"The
+        new Sublayer generator code based on the description","properties":{"code":{"type":"string","description":"The
+        code of the generated Sublayer generator"},"filename":{"type":"string","description":"The
+        filename of the generated Sublayer generator camel cased and with a .rb extension"}},"required":["code","filename"]}},"required":["sublayer_generator"]}}}'
+    headers:
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Vary:
+      - Origin
+      - Referer
+      - X-Origin
+      Date:
+      - Wed, 28 Aug 2024 21:09:38 GMT
+      Server:
+      - scaffolding on HTTPServer2
+      Cache-Control:
+      - private
+      X-Xss-Protection:
+      - '0'
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Content-Type-Options:
+      - nosniff
+      Server-Timing:
+      - gfet4t7; dur=12293
+      Alt-Svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: |
+        {
+          "candidates": [
+            {
+              "content": {
+                "parts": [
+                  {
+                    "text": "{\n\"sublayer_generator\": {\n\"code\": \"class CodeLanguageConverter \u003c Sublayer::Generators::Base\\n  llm_output_adapter type: :single_string,\\n    name: \\\"converted_code\\\",\\n    description: \\\"The code converted to the requested language\\\"\\n\\n  def initialize(code:, target_language:)\\n    @code = code\\n    @target_language = target_language\\n  end\\n\\n  def generate\\n    super\\n  end\\n\\n  def prompt\\n    \u003c\u003c-PROMPT\\n        You are an expert programmer.\\n\\n        You are tasked with converting code from one language to another.\\n\\n        The code to convert is: #{@code}\\n\\n        The target language is: #{@target_language}\\n\\n        Take a deep breath and think step by step before you start coding.\\n    PROMPT\\n  end\\nend\",\n\"filename\": \"CodeLanguageConverter.rb\"\n}\n} "
+                  }
+                ],
+                "role": "model"
+              },
+              "finishReason": "STOP",
+              "index": 0,
+              "safetyRatings": [
+                {
+                  "category": "HARM_CATEGORY_SEXUALLY_EXPLICIT",
+                  "probability": "NEGLIGIBLE"
+                },
+                {
+                  "category": "HARM_CATEGORY_HATE_SPEECH",
+                  "probability": "NEGLIGIBLE"
+                },
+                {
+                  "category": "HARM_CATEGORY_HARASSMENT",
+                  "probability": "NEGLIGIBLE"
+                },
+                {
+                  "category": "HARM_CATEGORY_DANGEROUS_CONTENT",
+                  "probability": "NEGLIGIBLE"
+                }
+              ]
+            }
+          ],
+          "usageMetadata": {
+            "promptTokenCount": 1008,
+            "candidatesTokenCount": 223,
+            "totalTokenCount": 1231
+          }
+        }
+  recorded_at: Wed, 28 Aug 2024 21:09:38 GMT
+recorded_with: VCR 6.2.0
