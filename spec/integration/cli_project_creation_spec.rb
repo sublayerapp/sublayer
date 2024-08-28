@@ -28,8 +28,6 @@ RSpec.describe "CLI Project Creation" do
 
     output, status = Open3.capture2e(command, chdir: TMP_DIR, stdin_data: input)
 
-    puts "Output: #{output}"
-    puts "Status: #{status}"
     expect(status.success?).to be true
     expect(output).to include("Sublayer project '#{project_name}' created successfully!")
 
