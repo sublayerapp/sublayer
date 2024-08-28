@@ -5,7 +5,6 @@ module Sublayer
     class Generator < Thor::Group
       include Thor::Actions
 
-
       class_option :description, type: :string, desc: "Description of the generator you want to generate", aliases: :d
       class_option :provider, type: :string, desc: "AI provider (OpenAI, Claude, or Gemini)", aliases: :p
       class_option :model, type: :string, desc: "AI model name to use (e.g. gpt-4o, claude-3-haiku-20240307, gemini-1.5-flash-latest)", aliases: :m
