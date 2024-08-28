@@ -22,8 +22,8 @@ RSpec.describe "Quick Script Project Creation" do
   end
 
   it "creates a new project with all the expected files and structures" do
-    command = "ruby -I lib #{File.dirname(__FILE__)}/../../bin/sublayer new #{project_name}"
-    input = "\e[B\n\n\nn\n\n"
+    command = "ruby -I lib #{File.dirname(__FILE__)}/../../bin/sublayer new #{project_name} --template quick_script"
+    input = "OpenAI\ngpt-4o\nn\n\n"
 
     output, status = Open3.capture2e(command, chdir: TMP_DIR, stdin_data: input)
 

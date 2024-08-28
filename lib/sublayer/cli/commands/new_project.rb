@@ -36,12 +36,6 @@ module Sublayer
         empty_directory File.join(project_name, "log") if @project_template =="CLI"
       end
 
-      def replace_placeholders
-        say "Replacing placeholders", :green
-        puts "Files in current directory: #{Dir.pwd}"
-        puts "Files in project directory: #{Dir[File.join(project_name, "**", "*.rb")]}"
-      end
-
       def generate_config_file
         say "Generating configuration", :green
 
