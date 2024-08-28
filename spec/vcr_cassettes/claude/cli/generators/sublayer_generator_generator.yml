@@ -1,0 +1,136 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.anthropic.com/v1/messages
+    body:
+      encoding: UTF-8
+      string: '{"model":"claude-3-haiku-20240307","max_tokens":4096,"tools":[{"name":"sublayer_generator","description":"The
+        new Sublayer generator code based on the description","input_schema":{"type":"object","properties":{"sublayer_generator":{"type":"object","description":"The
+        new Sublayer generator code based on the description","properties":{"code":{"type":"string","description":"The
+        code of the generated Sublayer generator"},"filename":{"type":"string","description":"The
+        filename of the generated Sublayer generator camel cased and with a .rb extension"}},"required":["code","filename"]}},"required":["sublayer_generator"]}}],"tool_choice":{"type":"tool","name":"sublayer_generator"},"messages":[{"role":"user","content":"    You
+        are an expert ruby programmer and and great at repurposing code examples to
+        use for new situations.\n\n    A Sublayer generator is a class that acts as
+        an abstraction for sending a request to an LLM and getting structured data
+        back.\n\n    An example Sublayer generator is:\n    <example_generator>\n    class
+        CodeFromDescriptionGenerator < Sublayer::Generators::Base\n  llm_output_adapter
+        type: :single_string,\n    name: \"generated_code\",\n    description: \"The
+        generated code in the requested language\"\n\n  def initialize(description:,
+        technologies:)\n    @description = description\n    @technologies = technologies\n  end\n\n  def
+        generate\n    super\n  end\n\n  def prompt\n    <<-PROMPT\n        You are
+        an expert programmer in #{@technologies.join(\", \")}.\n\n        You are
+        tasked with writing code using the following technologies: #{@technologies.join(\",
+        \")}.\n\n        The description of the task is #{@description}\n\n        Take
+        a deep breath and think step by step before you start coding.\n    PROMPT\n  end\nend\n\n    </example_generator>\n\n    And
+        it is the generator we''re currently using for taking in a description from
+        a user and generating a new Sublayer generator.\n\n    All Sublayer::Generators
+        inherit from Sublayer::Generators::Base and have a generate method that simply
+        calls super for the user to use and modify for their uses.\n\n    the llm_output_adapter
+        directive is used to instruct the LLM on what structure of output to generate.
+        In the example we''re using type: :single_string which takes a name and description
+        as arguments.\n\n    the other available options and their example usage is:\n    llm_output_adapter
+        type: :list_of_strings,\n      name: \"suggestions\",\n      description:
+        \"List of keyword suggestions\"\n\n    llm_output_adapter type: :single_integer,\n      name:
+        \"four_digit_passcode\",\n      description: \"an uncommon and difficult to
+        guess four digit passcode\"\n\n    llm_output_adapter type: :list_of_named_strings,\n      name:
+        \"review_summaries\",\n      description: \"List of movie reviews\",\n      item_name:
+        \"review\",\n      attributes: [\n        { name: \"movie_title\", description:
+        \"The title of the movie\" },\n        { name: \"reviewer_name\", description:
+        \"The name of the reviewer\" },\n        { name: \"rating\", description:
+        \"The rating given by the reviewer (out of 5 stars)\" },\n        { name:
+        \"brief_comment\", description: \"A brief summary of the movie\" }\n      ]\n\n    llm_output_adapter
+        type: :named_strings,\n      name: \"product_description\",\n      description:
+        \"Generate product descriptions\",\n      attributes: [\n        { name: \"short_description\",
+        description: \"A brief one-sentence description of the product\" },\n        {
+        name: \"long_description\", description: \"A detailed paragraph describing
+        the product\" },\n        { name: \"key_features\", description: \"A comma-separated
+        list of key product features\" },\n        { name: \"target_audience\", description:
+        \"A brief description of the target audience for this product\" }\n      ]\n\n    #
+        Where :available_routes is a method that returns an array of available routes\n    llm_output_adapter
+        type: :string_selection_from_list,\n      name: \"route\",\n      description:
+        \"A route selected from the list\",\n      options: :available_routes\n\n    #
+        Where @sentiment_options is an array of sentiment values passed in to the
+        initializer\n    llm_output_adapter type: :string_selection_from_list,\n      name:
+        \"sentiment_value\",\n      description: \"A sentiment value from the list\",\n      options:
+        -> { @sentiment_options }\n\n    Besides that, a Sublayer::Generator also
+        has a prompt method that describes the task to the LLM and provides any necessary
+        context for the generation which\n    is either passed in through the initializer
+        or accessed in the prompt itself.\n\n    You have a description provided by
+        the user to generate a new sublayer generator.\n\n    You are tasked with
+        creating a new sublayer generator according to the given description.\n\n    Consider
+        the details and requirements mentioned in the description to create the appropriate
+        Sublayer::Generator.\n    <users_description>\n    a sublayer generator that
+        takes in code and converts it to the users requested programming language\n    </users_description>\n\n    Take
+        a deep breath and reflect on each aspect of the description before proceeding
+        with the generation.\n"}]}'
+    headers:
+      X-Api-Key:
+      - "<ANTHROPIC_API_KEY>"
+      Anthropic-Version:
+      - '2023-06-01'
+      Content-Type:
+      - application/json
+      Anthropic-Beta:
+      - tools-2024-04-04
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 28 Aug 2024 21:08:41 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Anthropic-Ratelimit-Requests-Limit:
+      - '1000'
+      Anthropic-Ratelimit-Requests-Remaining:
+      - '999'
+      Anthropic-Ratelimit-Requests-Reset:
+      - '2024-08-28T21:09:34Z'
+      Anthropic-Ratelimit-Tokens-Limit:
+      - '100000'
+      Anthropic-Ratelimit-Tokens-Remaining:
+      - '100000'
+      Anthropic-Ratelimit-Tokens-Reset:
+      - '2024-08-28T21:08:41Z'
+      Request-Id:
+      - req_01J3DTorZu8gJuxkjzpTv7Ww
+      X-Cloud-Trace-Context:
+      - fea889f4d4fd176510829627b5f0b9be
+      Via:
+      - 1.1 google
+      Cf-Cache-Status:
+      - DYNAMIC
+      X-Robots-Tag:
+      - none
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 8ba7471f5e1a7cb1-EWR
+    body:
+      encoding: ASCII-8BIT
+      string: '{"id":"msg_01Ths4r5nTPZYbtEWZAP6mds","type":"message","role":"assistant","model":"claude-3-haiku-20240307","content":[{"type":"tool_use","id":"toolu_01CpAGDdUnVPMVUPoqRm4BVB","name":"sublayer_generator","input":{"sublayer_generator":{"code":"class
+        CodeToLanguageGenerator < Sublayer::Generators::Base\n  llm_output_adapter
+        type: :single_string,\n    name: \"generated_code\",\n    description: \"The
+        generated code in the requested language\"\n\n  def initialize(code:, target_language:)\n    @code
+        = code\n    @target_language = target_language\n  end\n\n  def generate\n    super\n  end\n\n  def
+        prompt\n    <<-PROMPT\n    You are an expert programmer who is highly skilled
+        at translating code from one programming language to another.\n\n    You have
+        been provided the following code:\n\n    #{@code}\n\n    Please translate
+        this code to the #{@target_language} programming language, while maintaining
+        the same functionality and logic.\n\n    Take your time to carefully review
+        the code and think through the best approach for translating it before you
+        start writing the new version.\n    PROMPT\n  end\nend","filename":"code_to_language_generator.rb"}}}],"stop_reason":"tool_use","stop_sequence":null,"usage":{"input_tokens":1556,"output_tokens":270}}'
+  recorded_at: Wed, 28 Aug 2024 21:08:41 GMT
+recorded_with: VCR 6.2.0
