@@ -34,6 +34,7 @@ module Sublayer
         Sublayer.configuration.ai_provider = Object.const_get("Sublayer::Providers::#{@ai_provider}")
         Sublayer.configuration.ai_model = @ai_model
 
+        say "Generating Sublayer Generator..."
         @results = SublayerGeneratorGenerator.new(description: @description).generate
       end
 
