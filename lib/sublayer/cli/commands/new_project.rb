@@ -61,10 +61,20 @@ module Sublayer
       def finalize_project
         say "Finalizing project", :green
         inside(project_name) do
-          chmod("bin/#{project_name}", "+x") if @project_template == "CLI"
+          if @project_template == "CLI"
+            chmod("bin/#{project_name}", "+x")
+            run("bundle install") if yes?("Install gems?")
+          else
+            append_to_file "#{project_name}.rb" do
+              <<~INSTRUCTIONS
+              puts "Welcome to your quick Sublayer script!"
+              puts "To get started, create some generators, actions, or agents in their respective directories and call them here"
+              puts "For more information, visit https://docs.sublayer.com"
+              INSTRUCTIONS
+            end
+          end
 
           run("git init") if yes?("Initialize a git repository?")
-          run("bundle install") if yes?("Install gems?")
         end
       end
 
