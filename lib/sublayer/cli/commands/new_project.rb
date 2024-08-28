@@ -96,9 +96,9 @@ module Sublayer
         when "OpenAI"
           ask("Which OpenAI model would you like to use?", default: "gpt-4o", limited_to: %w[gpt-4o gpt-4o-mini gpt-4-turbo gpt-3.5-turbo])
         when "Claude"
-          ask("Which Anthropic model would you like to use?", default: "claude-3-5-sonnet-20240620", limited_to: %[claude-3-5-sonnet-20240620 claude-3-opus-20240620 claude-3-haiku-20240307])
+          ask("Which Anthropic model would you like to use?", default: "claude-3-5-sonnet-20240620", limited_to: %w[claude-3-5-sonnet-20240620 claude-3-opus-20240620 claude-3-haiku-20240307])
         when "Gemini"
-          ask("Which Google model would you like to use?", default: "gemini-1.5-flash-latest", limited_to: %[gemini-1.5-flash-latest gemini-1.5-pro-latest])
+          ask("Which Google model would you like to use?", default: "gemini-1.5-flash-latest", limited_to: %w[gemini-1.5-flash-latest gemini-1.5-pro-latest])
         end
       end
 
