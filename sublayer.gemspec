@@ -33,21 +33,14 @@ Gem::Specification.new do |spec|
   spec.executables = ["sublayer"]
 
   spec.add_dependency "ruby-openai"
-  spec.add_dependency "colorize"
   spec.add_dependency "activesupport"
   spec.add_dependency "zeitwerk"
-  spec.add_dependency "nokogiri", "~> 1.16.5"
   spec.add_dependency "httparty"
   spec.add_dependency "listen"
-  spec.add_dependency "tty-prompt", "~> 0.23"
-  spec.add_dependency "tty-progressbar", "~> 0.18"
-  spec.add_dependency "tty-command", "~> 0.10"
-  spec.add_dependency "tty-file", "~> 0.10"
   spec.add_dependency "thor"
 
   spec.add_development_dependency "rspec", "~> 3.12"
   spec.add_development_dependency "pry", "~> 0.14"
   spec.add_development_dependency "vcr", "~> 6.0"
   spec.add_development_dependency "webmock", "~> 3"
-  spec.add_development_dependency "clag"
 end

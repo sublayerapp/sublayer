@@ -7,7 +7,6 @@ require 'active_support/inflector'
 require 'ostruct'
 require "httparty"
 require "openai"
-require "nokogiri"
 require "listen"
 require "securerandom"
 require "time"
