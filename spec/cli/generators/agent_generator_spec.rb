@@ -29,7 +29,6 @@ RSpec.describe SublayerAgentGenerator do
           "take an unprocessed transcription file, generate a summary, and any followups, and update the notion crm with the information"
         )
 
-        binding.pry
         expect(results.filename).to be_a(String)
         expect(results.filename.length).to be > 0
         expect(results.code).to be_a(String)
@@ -54,7 +53,6 @@ RSpec.describe SublayerAgentGenerator do
           "take an unprocessed transcription file, generate a summary, and any followups, and update the notion crm with the information"
         )
 
-        binding.pry
         expect(results.filename).to be_a(String)
         expect(results.filename.length).to be > 0
         expect(results.code).to be_a(String)
@@ -79,7 +77,6 @@ RSpec.describe SublayerAgentGenerator do
           "take an unprocessed transcription file, generate a summary, and any followups, and update the notion crm with the information"
         )
 
-        binding.pry
         expect(results.filename).to be_a(String)
         expect(results.filename.length).to be > 0
         expect(results.code).to be_a(String)
