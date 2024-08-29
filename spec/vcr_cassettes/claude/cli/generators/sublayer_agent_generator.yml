@@ -1,0 +1,126 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.anthropic.com/v1/messages
+    body:
+      encoding: UTF-8
+      string: '{"model":"claude-3-haiku-20240307","max_tokens":4096,"tools":[{"name":"sublayer_agent","description":"The
+        new sublayer agent based on the description and supporting information","input_schema":{"type":"object","properties":{"sublayer_agent":{"type":"object","description":"The
+        new sublayer agent based on the description and supporting information","properties":{"code":{"type":"string","description":"The
+        code of the generated Sublayer agent"},"filename":{"type":"string","description":"The
+        filename of the generated sublayer agent snake cased with a .rb extension"}},"required":["code","filename"]}},"required":["sublayer_agent"]}}],"tool_choice":{"type":"tool","name":"sublayer_agent"},"messages":[{"role":"user","content":"    You
+        are an expert ruby programmer and great at repurposing code examples to use
+        for new situations.\n\n    A Sublayer agent is a DSL for defining a feedback
+        loop for an AI agent. The agents sit running like a daemon and are triggered
+        to run and step toward their goal checking status along the way.\n\n    One
+        example of a Sublayer agent is this one for doing TDD with RSpec:\n    <example_tdd_agent>\n    class
+        RSpecAgent < Sublayer::Agents::Base\n  def initialize(implementation_file_path:,
+        test_file_path:)\n    @implementation_file_path = implementation_file_path\n    @test_file_path
+        = test_file_path\n    @tests_passing = false\n  end\n\n  trigger_on_files_changed
+        { [@implementation_file_path, @test_file_path] }\n\n  goal_condition { @tests_passing
+        == true }\n\n  check_status do\n    stdout, stderr, status = Sublayer::Actions::RunTestCommandAction.new(\n      test_command:
+        \"rspec #{@test_file_path}\"\n    ).call\n\n    @test_output = stdout\n    @tests_passing
+        = (status.exitstatus == 0)\n  end\n\n  step do\n    modified_implementation
+        = Sublayer::Generators::ModifiedImplementationToPassTestsGenerator.new(\n      implementation_file_contents:
+        File.read(@implementation_file_path),\n      test_file_contents: File.read(@test_file_path),\n      test_output:
+        @test_output\n    ).generate\n\n    Sublayer::Actions::WriteFileAction.new(\n      file_contents:
+        modified_implementation,\n      file_path: @implementation_file_path\n    ).call\n  end\nend\n\n    </example_tdd_agent>\n\n    Sublayer
+        Agents take advantage of other Sublayer components to perform their tasks.\n    Sublayer::Actions
+        are used to perform actions in the outside world, things like saving files,
+        making external api calls, retrieving data, etc\n    Sublayer::Generators
+        are used to make calls to LLMs based on information they receive from Sublayer::Actions
+        or other sources and return structured data for other Sublayer::Actions to
+        do use in the outside world\n\n    The Sublayer Agent DSL consists of 4 main
+        parts:\n    1. trigger: What triggers the agent, currently built into the
+        framework is the trigger_on_files_changed, but the trigger method also accepts
+        a Sublayer::Triggers::Base subclass that defines an initialize method and
+        a setup method that takes an agent as an argument\n                The setup
+        method then calls activate(agent) when the trigger condition is met\n    2.
+        goal: What the agent is trying to achieve, this is a block that returns a
+        boolean\n    3. check_status: A method that checks the status of the agent
+        on its way toward the goal. Usually you update the goal condition here or
+        can perform any Sublayer::Actions to examine the state of the outside world\n    4.
+        step: A method that encapsulates the way the agent should work toward the
+        goal. Sublayer::Actions and Sublayer::Generators are used heavily here.\n\n    Your
+        goal is to rely on the above information about how Sublayer Agents work to
+        generate a new Sublayer agent based on the following information:\n\n    Agent
+        description: a sublayer agent that monitors a transcription folder and updates
+        a notion crm with information from the latest transcriptions\n    Trigger
+        condition: \n    Goal condition: all the transcription files in the folder
+        have been processed\n    Status check method: see if there are any files in
+        the transcription folder that havent been procesed\n    Step action method:
+        take an unprocessed transcription file, generate a summary, and any followups,
+        and update the notion crm with the information\n\n    You can assume that
+        any Sublayer::Actions or Sublayer::Generators you need are available to you
+        in the Sublayer framework\n\n    Take a deep breath and think step by step
+        before coding. You can do this!\n"}]}'
+    headers:
+      X-Api-Key:
+      - "<ANTHROPIC_API_KEY>"
+      Anthropic-Version:
+      - '2023-06-01'
+      Content-Type:
+      - application/json
+      Anthropic-Beta:
+      - tools-2024-04-04
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 29 Aug 2024 02:11:03 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Anthropic-Ratelimit-Requests-Limit:
+      - '1000'
+      Anthropic-Ratelimit-Requests-Remaining:
+      - '999'
+      Anthropic-Ratelimit-Requests-Reset:
+      - '2024-08-29T02:11:34Z'
+      Anthropic-Ratelimit-Tokens-Limit:
+      - '100000'
+      Anthropic-Ratelimit-Tokens-Remaining:
+      - '100000'
+      Anthropic-Ratelimit-Tokens-Reset:
+      - '2024-08-29T02:11:03Z'
+      Request-Id:
+      - req_01N7ymBVSiTzQ8qeTn3mFzKM
+      X-Cloud-Trace-Context:
+      - 06267ca62bdb48515e82acfd999ed731
+      Via:
+      - 1.1 google
+      Cf-Cache-Status:
+      - DYNAMIC
+      X-Robots-Tag:
+      - none
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 8ba90209dd1c422e-EWR
+    body:
+      encoding: ASCII-8BIT
+      string: '{"id":"msg_01GkpWnzisWcJV7gnap1Znnv","type":"message","role":"assistant","model":"claude-3-haiku-20240307","content":[{"type":"tool_use","id":"toolu_01QMtrT5XVQphUuasMzW22Dy","name":"sublayer_agent","input":{"sublayer_agent":{"code":"class
+        TranscriptionAgent < Sublayer::Agents::Base\n  def initialize(transcription_folder_path:,
+        notion_crm_integration:)\n    @transcription_folder_path = transcription_folder_path\n    @notion_crm_integration
+        = notion_crm_integration\n    @unprocessed_files = []\n  end\n\n  trigger_on_files_changed
+        { [@transcription_folder_path] }\n\n  goal_condition { @unprocessed_files.empty?
+        }\n\n  check_status do\n    @unprocessed_files = Dir.glob(File.join(@transcription_folder_path,
+        ''*'')).reject do |file|\n      # Check if file has already been processed\n      @notion_crm_integration.file_processed?(file)\n    end\n  end\n\n  step
+        do\n    unprocessed_file = @unprocessed_files.shift\n    summary, followups
+        = Sublayer::Generators::TranscriptionSummaryGenerator.new(\n      transcription_file_path:
+        unprocessed_file\n    ).generate\n    @notion_crm_integration.update_with_transcription(unprocessed_file,
+        summary, followups)\n  end\nend","filename":"transcription_agent.rb"}}}],"stop_reason":"tool_use","stop_sequence":null,"usage":{"input_tokens":1430,"output_tokens":340}}'
+  recorded_at: Thu, 29 Aug 2024 02:11:03 GMT
+recorded_with: VCR 6.2.0
