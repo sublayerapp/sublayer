@@ -1,0 +1,100 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.anthropic.com/v1/messages
+    body:
+      encoding: UTF-8
+      string: '{"model":"claude-3-haiku-20240307","max_tokens":4096,"tools":[{"name":"sublayer_action","description":"The
+        new sublayer action based on the description and supporting information","input_schema":{"type":"object","properties":{"sublayer_action":{"type":"object","description":"The
+        new sublayer action based on the description and supporting information","properties":{"code":{"type":"string","description":"The
+        code of the generated Sublayer action"},"filename":{"type":"string","description":"The
+        filename of the generated sublayer action snake cased with a .rb extension"}},"required":["code","filename"]}},"required":["sublayer_action"]}}],"tool_choice":{"type":"tool","name":"sublayer_action"},"messages":[{"role":"user","content":"    You
+        are an expert ruby programmer and are great at repurposing code examples to
+        use for new situations.\n\n    A Sublayer Action is an example of a command
+        pattern that is used in the Sublayer AI framework to perform actions in the
+        outside world such as manipulating files or making API calls.\n\n    The Sublayer
+        framework also has a component called a Generator that takes data in, sends
+        it to an LLM and gets structured data out.\n    Sublayer::Actions are used
+        both to retrieve data for use in a generator or perform actions based on the
+        output of the generator.\n    This is used to both aid in generating new composable
+        bits of functionality and to ease testing.\n\n    A sublayer action is initialized
+        with the data it needs and then exposes a `call` method which is used to perform
+        the action.\n\n    An example of an action being used to save a file to the
+        file system, for example after generating the contents is:\n    <example_file_manipulation_action>\n    class
+        WriteFileAction < Sublayer::Actions::Base\n  def initialize(file_contents:,
+        file_path:)\n    @file_contents = file_contents\n    @file_path = file_path\n  end\n\n  def
+        call\n    File.open(@file_path, ''wb'') do |file|\n      file.write(@file_contents)\n    end\n  end\nend\n\n    </example_file_manipulation_action>\n\n    An
+        example action being used to make a call to an external api, such as OpenAI''s
+        text to speech API is:\n    <example_api_call_action>\n    class TextToSpeechAction
+        < Sublayer::Actions::Base\n  def initialize(text)\n    @text = text\n  end\n\n  def
+        call\n    speech = HTTParty.post(\n      \"https://api.openai.com/v1/audio/speech\",\n      headers:
+        {\n        \"Authorization\" => \"Bearer #{ENV[\"OPENAI_API_KEY\"]}\",\n        \"Content-Type\"
+        => \"application/json\",\n      },\n      body: {\n        \"model\": \"tts-1\",\n        \"input\":
+        @text,\n        \"voice\": \"nova\",\n        \"response_format\": \"wav\"\n      }.to_json\n    )\n\n    speech\n  end\nend\n\n    </example_api_call_action>\n\n    Your
+        task is to generate a new Sublayer::Action::Base subclass that performs an
+        action based on the description provided.\n    <description>\n    a sublayer
+        action that sends a notification to a particular discord channel\n    </description>\n"}]}'
+    headers:
+      X-Api-Key:
+      - "<ANTHROPIC_API_KEY>"
+      Anthropic-Version:
+      - '2023-06-01'
+      Content-Type:
+      - application/json
+      Anthropic-Beta:
+      - tools-2024-04-04
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 29 Aug 2024 21:34:03 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Anthropic-Ratelimit-Requests-Limit:
+      - '1000'
+      Anthropic-Ratelimit-Requests-Remaining:
+      - '999'
+      Anthropic-Ratelimit-Requests-Reset:
+      - '2024-08-29T21:34:34Z'
+      Anthropic-Ratelimit-Tokens-Limit:
+      - '100000'
+      Anthropic-Ratelimit-Tokens-Remaining:
+      - '100000'
+      Anthropic-Ratelimit-Tokens-Reset:
+      - '2024-08-29T21:34:03Z'
+      Request-Id:
+      - req_01LmMjtqERcCuND7L69FWZRk
+      X-Cloud-Trace-Context:
+      - 86343df9b3fad2d01b54ccfea63418fa
+      Via:
+      - 1.1 google
+      Cf-Cache-Status:
+      - DYNAMIC
+      X-Robots-Tag:
+      - none
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 8bafa9acbcfb5e6c-EWR
+    body:
+      encoding: ASCII-8BIT
+      string: '{"id":"msg_01AxAZhNBchHJnoi8bnkaLLv","type":"message","role":"assistant","model":"claude-3-haiku-20240307","content":[{"type":"tool_use","id":"toolu_01T9XZ7g4NDdzVtjQE3jKgDQ","name":"sublayer_action","input":{"sublayer_action":{"code":"class
+        DiscordNotificationAction < Sublayer::Actions::Base\n  def initialize(channel_id:,
+        message:)\n    @channel_id = channel_id\n    @message = message\n  end\n\n  def
+        call\n    client = Discordrb::Bot.new(token: ENV[''DISCORD_BOT_TOKEN''])\n    channel
+        = client.channel(@channel_id)\n    channel.send_message(@message)\n  end\nend","filename":"discord_notification_action.rb"}}}],"stop_reason":"tool_use","stop_sequence":null,"usage":{"input_tokens":1105,"output_tokens":165}}'
+  recorded_at: Thu, 29 Aug 2024 21:34:03 GMT
+recorded_with: VCR 6.2.0
