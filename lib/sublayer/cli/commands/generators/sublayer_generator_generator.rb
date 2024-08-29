@@ -4,7 +4,7 @@ class SublayerGeneratorGenerator < Sublayer::Generators::Base
     description: "The new Sublayer generator code based on the description",
     attributes: [
       { name: "code", description: "The code of the generated Sublayer generator" },
-      { name: "filename", description: "The filename of the generated Sublayer generator camel cased and with a .rb extension" }
+      { name: "filename", description: "The filename of the generated Sublayer generator snake cased and with a .rb extension" }
     ]
 
   def initialize(description:)
