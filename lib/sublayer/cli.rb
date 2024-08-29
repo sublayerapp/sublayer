@@ -8,15 +8,18 @@ require "active_support/inflector"
 
 require_relative "cli/commands/subcommand_base"
 require_relative "cli/commands/new_project"
-require_relative "cli/commands/generate"
+require_relative "cli/commands/generator"
+require_relative "cli/commands/agent"
+require_relative "cli/commands/action"
 
 module Sublayer
   class CLI < Thor
 
     register(Sublayer::Commands::NewProject, "new", "new PROJECT_NAME", "Creates a new Sublayer project")
 
-    desc "generate", "Generate Sublayer Actions, Generators, and Agents with an LLM"
-    subcommand "generate", Sublayer::Commands::Generate
+    register(Sublayer::Commands::Generator, "generate:generator", "generate:generator", "Generates a new Sublayer::Generator subclass for your project")
+    register(Sublayer::Commands::Agent, "generate:agent", "generate:agent", "Generates a new Sublayer::Agent subclass for your project")
+    register(Sublayer::Commands::Action, "generate:action", "generate:action", "Generates a new Sublayer::Action subclass for your project")
 
     desc "version", "Prints the Sublayer version"
     def version

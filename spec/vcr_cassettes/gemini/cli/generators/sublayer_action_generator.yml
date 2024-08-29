@@ -1,0 +1,118 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=<GEMINI_API_KEY>
+    body:
+      encoding: UTF-8
+      string: '{"contents":{"role":"user","parts":{"text":"    You are an expert ruby
+        programmer and are great at repurposing code examples to use for new situations.\n\n    A
+        Sublayer Action is an example of a command pattern that is used in the Sublayer
+        AI framework to perform actions in the outside world such as manipulating
+        files or making API calls.\n\n    The Sublayer framework also has a component
+        called a Generator that takes data in, sends it to an LLM and gets structured
+        data out.\n    Sublayer::Actions are used both to retrieve data for use in
+        a generator or perform actions based on the output of the generator.\n    This
+        is used to both aid in generating new composable bits of functionality and
+        to ease testing.\n\n    A sublayer action is initialized with the data it
+        needs and then exposes a `call` method which is used to perform the action.\n\n    An
+        example of an action being used to save a file to the file system, for example
+        after generating the contents is:\n    <example_file_manipulation_action>\n    class
+        WriteFileAction < Sublayer::Actions::Base\n  def initialize(file_contents:,
+        file_path:)\n    @file_contents = file_contents\n    @file_path = file_path\n  end\n\n  def
+        call\n    File.open(@file_path, ''wb'') do |file|\n      file.write(@file_contents)\n    end\n  end\nend\n\n    </example_file_manipulation_action>\n\n    An
+        example action being used to make a call to an external api, such as OpenAI''s
+        text to speech API is:\n    <example_api_call_action>\n    class TextToSpeechAction
+        < Sublayer::Actions::Base\n  def initialize(text)\n    @text = text\n  end\n\n  def
+        call\n    speech = HTTParty.post(\n      \"https://api.openai.com/v1/audio/speech\",\n      headers:
+        {\n        \"Authorization\" => \"Bearer #{ENV[\"OPENAI_API_KEY\"]}\",\n        \"Content-Type\"
+        => \"application/json\",\n      },\n      body: {\n        \"model\": \"tts-1\",\n        \"input\":
+        @text,\n        \"voice\": \"nova\",\n        \"response_format\": \"wav\"\n      }.to_json\n    )\n\n    speech\n  end\nend\n\n    </example_api_call_action>\n\n    Your
+        task is to generate a new Sublayer::Action::Base subclass that performs an
+        action based on the description provided.\n    <description>\n    a sublayer
+        action that sends a notification to a particular discord channel\n    </description>\n"}},"generationConfig":{"responseMimeType":"application/json","responseSchema":{"type":"OBJECT","properties":{"sublayer_action":{"type":"object","description":"The
+        new sublayer action based on the description and supporting information","properties":{"code":{"type":"string","description":"The
+        code of the generated Sublayer action"},"filename":{"type":"string","description":"The
+        filename of the generated sublayer action snake cased with a .rb extension"}},"required":["code","filename"]}},"required":["sublayer_action"]}}}'
+    headers:
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Vary:
+      - Origin
+      - Referer
+      - X-Origin
+      Date:
+      - Thu, 29 Aug 2024 21:35:09 GMT
+      Server:
+      - scaffolding on HTTPServer2
+      Cache-Control:
+      - private
+      X-Xss-Protection:
+      - '0'
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Content-Type-Options:
+      - nosniff
+      Server-Timing:
+      - gfet4t7; dur=1171
+      Alt-Svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: |
+        {
+          "candidates": [
+            {
+              "content": {
+                "parts": [
+                  {
+                    "text": "{\"sublayer_action\": {\"code\": \"class SendDiscordNotificationAction \u003c Sublayer::Actions::Base\\n  def initialize(channel_id:, message:)\\n    @channel_id = channel_id\\n    @message = message\\n  end\\n\\n  def call\\n    # Replace with your preferred Discord API client or library\\n    # This example uses the discordrb gem\\n    client = Discordrb::Bot.new token: ENV['DISCORD_BOT_TOKEN']\\n    client.channel(@channel_id).send_message @message\\n  end\\nend\", \"filename\": \"send_discord_notification_action.rb\"}}\n"
+                  }
+                ],
+                "role": "model"
+              },
+              "finishReason": "STOP",
+              "index": 0,
+              "safetyRatings": [
+                {
+                  "category": "HARM_CATEGORY_SEXUALLY_EXPLICIT",
+                  "probability": "NEGLIGIBLE"
+                },
+                {
+                  "category": "HARM_CATEGORY_HATE_SPEECH",
+                  "probability": "NEGLIGIBLE"
+                },
+                {
+                  "category": "HARM_CATEGORY_HARASSMENT",
+                  "probability": "NEGLIGIBLE"
+                },
+                {
+                  "category": "HARM_CATEGORY_DANGEROUS_CONTENT",
+                  "probability": "NEGLIGIBLE"
+                }
+              ]
+            }
+          ],
+          "usageMetadata": {
+            "promptTokenCount": 568,
+            "candidatesTokenCount": 146,
+            "totalTokenCount": 714
+          }
+        }
+  recorded_at: Thu, 29 Aug 2024 21:35:09 GMT
+recorded_with: VCR 6.2.0
