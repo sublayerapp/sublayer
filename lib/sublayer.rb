@@ -16,6 +16,8 @@ require_relative "sublayer/version"
 loader = Zeitwerk::Loader.for_gem
 loader.inflector.inflect('open_ai' => 'OpenAI')
 loader.inflector.inflect("cli" => "CLI")
+loader.ignore("#{__dir__}/sublayer/cli")
+loader.ignore("#{__dir__}/sublayer/cli.rb")
 loader.setup
 
 module Sublayer
@@ -33,3 +35,5 @@ module Sublayer
     yield(configuration) if block_given?
   end
 end
+
+loader.eager_load
