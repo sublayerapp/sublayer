@@ -17,6 +17,10 @@ module Sublayer
         File.dirname(__FILE__)
       end
 
+      def self.banner
+        "sublayer new PROJECT_NAME"
+      end
+
       def ask_for_project_details
         puts options[:template]
         @project_template = options[:template] || ask("Select a project template:", default: "CLI", limited_to: %w[CLI QuickScript])

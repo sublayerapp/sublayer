@@ -9,6 +9,10 @@ module Sublayer
       class_option :provider, type: :string, desc: "AI provider (OpenAI, Claude, or Gemini)", aliases: :p
       class_option :model, type: :string, desc: "AI model name to use (e.g. gpt-4o, claude-3-haiku-20240307, gemini-1.5-flash-latest)", aliases: :m
 
+      def self.banner
+        "sublayer generate:generator"
+      end
+
       def confirm_usage_of_ai_api
         puts "You are about to generate a new generator that uses an AI API to generate content."
         puts "Please ensure you have the necessary API keys and that you are aware of the costs associated with using the API."
