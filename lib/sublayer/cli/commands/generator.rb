@@ -1,4 +1,5 @@
 require_relative "generators/sublayer_generator_generator"
+require_relative "generators/sublayer_command_generator"
 
 module Sublayer
   module Commands
@@ -8,9 +9,14 @@ module Sublayer
       class_option :description, type: :string, desc: "Description of the generator you want to generate", aliases: :d
       class_option :provider, type: :string, desc: "AI provider (OpenAI, Claude, or Gemini)", aliases: :p
       class_option :model, type: :string, desc: "AI model name to use (e.g. gpt-4o, claude-3-haiku-20240307, gemini-1.5-flash-latest)", aliases: :m
+      class_option :generate_command, type: :boolean, desc: "Generate a command for the new generator", aliases: :c
 
       def self.banner
         "sublayer generate:generator"
+      end
+
+      def self.source_root
+        File.expand_path("../../templates", __FILE__)
       end
 
       def confirm_usage_of_ai_api
@@ -31,6 +37,10 @@ module Sublayer
         @description = options[:description] || ask("Enter a description for the Sublayer Generator you'd like to create:")
         @ai_provider = options[:provider] || ask("Select an AI provider:", default: "OpenAI", limited_to: @available_providers)
         @ai_model = options[:model] || select_ai_model
+
+        if is_cli_project? && options[:generate_command].nil?
+          @generate_command = yes?("Would you like to create a corresponding CLI command for this generator?")
+        end
       end
 
       def generate_generator
@@ -56,7 +66,46 @@ module Sublayer
         create_file File.join(@destination_folder, @results.filename), @results.code
       end
 
+      def generate_command_if_requested
+        return unless @generate_command
+
+        say "Generating command..."
+
+        generator_code = File.read(File.join(@destination_folder, @results.filename))
+        command_results = SublayerCommandGenerator.new(generator_code: generator_code).generate
+        @command_class_name = command_results.class_name
+        @command_description = command_results.description
+        @command_execute_body = command_results.execute_body
+        @command_filename = command_results.filename
+
+        commands_folder = File.join("lib", @project_name, "commands")
+
+        destination_path = File.join(commands_folder, @command_filename)
+        template("utilities/cli/command.rb.tt", destination_path)
+      end
+
       private
+      def is_cli_project?
+        config_path = find_config_file
+        return false unless config_path
+
+        config = YAML.load_file(config_path)
+        @project_name = config[:project_name]
+        config[:project_template] == 'CLI'
+      rescue StandardError => e
+        say "Error reading project configuration: #{e.message}", :red
+        false
+      end
+
+      def find_config_file
+        possible_paths = [
+          File.join(Dir.pwd, 'config', 'sublayer.yml'),
+          File.join(Dir.pwd, 'lib', '*', 'config', 'sublayer.yml' )
+        ]
+
+        Dir.glob(possible_paths).first
+      end
+
       def select_ai_model
         case @ai_provider
         when "OpenAI"

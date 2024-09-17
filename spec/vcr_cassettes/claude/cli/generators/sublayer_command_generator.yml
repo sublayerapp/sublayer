@@ -1,0 +1,104 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.anthropic.com/v1/messages
+    body:
+      encoding: UTF-8
+      string: '{"model":"claude-3-haiku-20240307","max_tokens":4096,"tools":[{"name":"sublayer_command","description":"The
+        new command code based on the generator","input_schema":{"type":"object","properties":{"sublayer_command":{"type":"object","description":"The
+        new command code based on the generator","properties":{"class_name":{"type":"string","description":"The
+        class name of the command"},"description":{"type":"string","description":"The
+        description of the command"},"execute_body":{"type":"string","description":"The
+        code inside the execute method"},"filename":{"type":"string","description":"The
+        filename of the command, snake_cased with a .rb extension"}},"required":["class_name","description","execute_body","filename"]}},"required":["sublayer_command"]}}],"tool_choice":{"type":"tool","name":"sublayer_command"},"messages":[{"role":"user","content":"      You
+        are an expert Ruby developer.\n\n      Given the following Sublayer generator
+        code:\n\n      class TaskStepsGenerator < Sublayer::Generators::Base\n  llm_output_adapter
+        type: :list_of_named_strings,\n    name: \"steps\",\n    description: \"List
+        of steps to complete a task\",\n    item_name: \"step\",\n    attributes:
+        [ { name: \"description\", description: \"A brief description of the step\"
+        }, { name: \"command\", description: \"The command to execute for this step\"
+        } ]\n\n  def initialize(task:)\n    @task = task\n  end\n\n  def generate\n    super\n  end\n\n  def
+        prompt\n    <<-PROMPT\n    You are an expert at breaking down tasks into step-by-step
+        instructions with associated commands.\n    Please generate a list of steps
+        to complete the following task:\n\n    #{@task}\n\n    For each step, provide:\n    -
+        description: A brief description of what the step accomplishes\n    - command:
+        The exact command to execute for this step (if applicable; use \"N/A\" if
+        no command is needed)\n\n    Provide your response as a list of objects, each
+        containing the above attributes.\n    Ensure the steps are in the correct
+        order to complete the task successfully.\n    PROMPT\n  end\nend\n\n\n      Please
+        generate a Thor command class that interacts with this generator. The command
+        should:\n\n      - Be a subclass of `BaseCommand`.\n      - Include a descriptive
+        class name.\n      - Provide a description for the command.\n      - Implement
+        an `execute` method that accepts appropriate arguments and invokes the generator.\n\n      Provide
+        the class name, description, execute method body, and filename for the command.\n\n      These
+        parameters will be used in a template to create the command file. The template
+        is:\n           module <%= project_name.camelize %>\n       module Commands\n         class
+        <%= command_class_name %> < BaseCommand\n           def self.description\n             \"<%=
+        command_description %>\"\n           end\n\n           def execute(*args)\n             <%=
+        command_execute_body %>\n           end\n         end\n       end\n     end\n\n      Take
+        into account any parameters the generator requires and map them to command-line
+        arguments.\n"}]}'
+    headers:
+      X-Api-Key:
+      - "<ANTHROPIC_API_KEY>"
+      Anthropic-Version:
+      - '2023-06-01'
+      Content-Type:
+      - application/json
+      Anthropic-Beta:
+      - tools-2024-04-04
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 17 Sep 2024 18:27:05 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Anthropic-Ratelimit-Requests-Limit:
+      - '1000'
+      Anthropic-Ratelimit-Requests-Remaining:
+      - '999'
+      Anthropic-Ratelimit-Requests-Reset:
+      - '2024-09-17T18:27:34Z'
+      Anthropic-Ratelimit-Tokens-Limit:
+      - '100000'
+      Anthropic-Ratelimit-Tokens-Remaining:
+      - '100000'
+      Anthropic-Ratelimit-Tokens-Reset:
+      - '2024-09-17T18:27:05Z'
+      Request-Id:
+      - req_01DRdnwpEjKT8vq1m5aZDsHm
+      X-Cloud-Trace-Context:
+      - 7a31ac7276a8382105264da41b0e183c
+      Via:
+      - 1.1 google
+      Cf-Cache-Status:
+      - DYNAMIC
+      X-Robots-Tag:
+      - none
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 8c4b25ed892c5e6b-EWR
+    body:
+      encoding: ASCII-8BIT
+      string: '{"id":"msg_014Ae1nqsVAKA4S3JiDU49sk","type":"message","role":"assistant","model":"claude-3-haiku-20240307","content":[{"type":"tool_use","id":"toolu_016ryjzz8w9iKh5DtdR1YKdu","name":"sublayer_command","input":{"sublayer_command":{"class_name":"TaskStepsCommand","description":"Generate
+        a list of steps to complete a task, including descriptions and commands.","execute_body":"\n    task
+        = args.first\n    generator = TaskStepsGenerator.new(task: task)\n    steps
+        = generator.generate\n    steps.each do |step|\n      puts \"Step: #{step[''description'']}\"\n      puts
+        \"Command: #{step[''command'']}\"\n      puts\n    end\n  ","filename":"task_steps_command.rb"}}}],"stop_reason":"tool_use","stop_sequence":null,"usage":{"input_tokens":1065,"output_tokens":169}}'
+  recorded_at: Tue, 17 Sep 2024 18:27:05 GMT
+recorded_with: VCR 6.2.0
