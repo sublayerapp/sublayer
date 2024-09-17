@@ -1,0 +1,147 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.openai.com/v1/chat/completions
+    body:
+      encoding: UTF-8
+      string: '{"model":"gpt-4o-mini","messages":[{"role":"user","content":"      You
+        are an expert Ruby developer.\n\n      Given the following Sublayer generator
+        code:\n\n      class TaskStepsGenerator < Sublayer::Generators::Base\n  llm_output_adapter
+        type: :list_of_named_strings,\n    name: \"steps\",\n    description: \"List
+        of steps to complete a task\",\n    item_name: \"step\",\n    attributes:
+        [ { name: \"description\", description: \"A brief description of the step\"
+        }, { name: \"command\", description: \"The command to execute for this step\"
+        } ]\n\n  def initialize(task:)\n    @task = task\n  end\n\n  def generate\n    super\n  end\n\n  def
+        prompt\n    <<-PROMPT\n    You are an expert at breaking down tasks into step-by-step
+        instructions with associated commands.\n    Please generate a list of steps
+        to complete the following task:\n\n    #{@task}\n\n    For each step, provide:\n    -
+        description: A brief description of what the step accomplishes\n    - command:
+        The exact command to execute for this step (if applicable; use \"N/A\" if
+        no command is needed)\n\n    Provide your response as a list of objects, each
+        containing the above attributes.\n    Ensure the steps are in the correct
+        order to complete the task successfully.\n    PROMPT\n  end\nend\n\n\n      Please
+        generate a Thor command class that interacts with this generator. The command
+        should:\n\n      - Be a subclass of `BaseCommand`.\n      - Include a descriptive
+        class name.\n      - Provide a description for the command.\n      - Implement
+        an `execute` method that accepts appropriate arguments and invokes the generator.\n\n      Provide
+        the class name, description, execute method body, and filename for the command.\n\n      These
+        parameters will be used in a template to create the command file. The template
+        is:\n           module <%= project_name.camelize %>\n       module Commands\n         class
+        <%= command_class_name %> < BaseCommand\n           def self.description\n             \"<%=
+        command_description %>\"\n           end\n\n           def execute(*args)\n             <%=
+        command_execute_body %>\n           end\n         end\n       end\n     end\n\n      Take
+        into account any parameters the generator requires and map them to command-line
+        arguments.\n"}],"tool_choice":{"type":"function","function":{"name":"sublayer_command"}},"tools":[{"type":"function","function":{"name":"sublayer_command","description":"The
+        new command code based on the generator","parameters":{"type":"object","properties":{"sublayer_command":{"type":"object","description":"The
+        new command code based on the generator","properties":{"class_name":{"type":"string","description":"The
+        class name of the command"},"description":{"type":"string","description":"The
+        description of the command"},"execute_body":{"type":"string","description":"The
+        code inside the execute method"},"filename":{"type":"string","description":"The
+        filename of the command, snake_cased with a .rb extension"}},"required":["class_name","description","execute_body","filename"]}}},"required":["sublayer_command"]}}]}'
+    headers:
+      Content-Type:
+      - application/json
+      Authorization:
+      - Bearer <OPENAI_API_KEY>
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 17 Sep 2024 18:27:07 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Access-Control-Expose-Headers:
+      - X-Request-ID
+      Openai-Organization:
+      - sublayer
+      Openai-Processing-Ms:
+      - '785'
+      Openai-Version:
+      - '2020-10-01'
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubDomains; preload
+      X-Ratelimit-Limit-Requests:
+      - '10000'
+      X-Ratelimit-Limit-Tokens:
+      - '10000000'
+      X-Ratelimit-Remaining-Requests:
+      - '9999'
+      X-Ratelimit-Remaining-Tokens:
+      - '9999454'
+      X-Ratelimit-Reset-Requests:
+      - 6ms
+      X-Ratelimit-Reset-Tokens:
+      - 3ms
+      X-Request-Id:
+      - req_8670d7f5686bd2cb37ce5ca9c8dab21c
+      Cf-Cache-Status:
+      - DYNAMIC
+      Set-Cookie:
+      - __cf_bm=5FHl7.TO_A5rRZ10OxPy1vdY3uWEPNCeOHHvNMd38aY-1726597627-1.0.1.1-YwfvnxeL8.aqerbuuWFtFc3WNZSuNkD.UqUWjQ6X2st1bNDx1ayloEOGDXM8VxCA06yYgwqRlQ3ZpE4.9lIe2w;
+        path=/; expires=Tue, 17-Sep-24 18:57:07 GMT; domain=.api.openai.com; HttpOnly;
+        Secure; SameSite=None
+      - _cfuvid=s6DExVlKvJBmAVWsbFY2OzyDwD7MSF0oLtnjUC.p8Nk-1726597627548-0.0.1.1-604800000;
+        path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None
+      X-Content-Type-Options:
+      - nosniff
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 8c4b25fd692a423a-EWR
+      Alt-Svc:
+      - h3=":443"; ma=86400
+    body:
+      encoding: ASCII-8BIT
+      string: |
+        {
+          "id": "chatcmpl-A8XCkjH0aTQ0oCIrSF3JOmSilf2tP",
+          "object": "chat.completion",
+          "created": 1726597626,
+          "model": "gpt-4o-mini-2024-07-18",
+          "choices": [
+            {
+              "index": 0,
+              "message": {
+                "role": "assistant",
+                "content": null,
+                "tool_calls": [
+                  {
+                    "id": "call_5ucK7D4dt8zCNd9f7aUReyOz",
+                    "type": "function",
+                    "function": {
+                      "name": "sublayer_command",
+                      "arguments": "{\"sublayer_command\":{\"class_name\":\"TaskStepsCommand\",\"description\":\"Generates a list of steps to complete a task with associated commands\",\"execute_body\":\"task = args.first\\nsteps_generator = TaskStepsGenerator.new(task: task)\\nsteps = steps_generator.generate\\nputs steps.to_json\",\"filename\":\"task_steps_command.rb\"}}"
+                    }
+                  }
+                ],
+                "refusal": null
+              },
+              "logprobs": null,
+              "finish_reason": "stop"
+            }
+          ],
+          "usage": {
+            "prompt_tokens": 572,
+            "completion_tokens": 67,
+            "total_tokens": 639,
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          },
+          "system_fingerprint": "fp_483d39d857"
+        }
+  recorded_at: Tue, 17 Sep 2024 18:27:07 GMT
+recorded_with: VCR 6.2.0

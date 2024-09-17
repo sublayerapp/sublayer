@@ -1,0 +1,13 @@
+module <%= @project_name.camelize %>
+  module Commands
+    class <%= @command_class_name %> < BaseCommand
+      def self.description
+        "<%= @command_description %>"
+      end
+
+      def execute(*args)
+        <%= @command_execute_body %>
+      end
+    end
+  end
+end

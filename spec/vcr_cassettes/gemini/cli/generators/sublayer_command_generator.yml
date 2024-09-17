@@ -1,0 +1,122 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=<GEMINI_API_KEY>
+    body:
+      encoding: UTF-8
+      string: '{"contents":{"role":"user","parts":{"text":"      You are an expert
+        Ruby developer.\n\n      Given the following Sublayer generator code:\n\n      class
+        TaskStepsGenerator < Sublayer::Generators::Base\n  llm_output_adapter type:
+        :list_of_named_strings,\n    name: \"steps\",\n    description: \"List of
+        steps to complete a task\",\n    item_name: \"step\",\n    attributes: [ {
+        name: \"description\", description: \"A brief description of the step\" },
+        { name: \"command\", description: \"The command to execute for this step\"
+        } ]\n\n  def initialize(task:)\n    @task = task\n  end\n\n  def generate\n    super\n  end\n\n  def
+        prompt\n    <<-PROMPT\n    You are an expert at breaking down tasks into step-by-step
+        instructions with associated commands.\n    Please generate a list of steps
+        to complete the following task:\n\n    #{@task}\n\n    For each step, provide:\n    -
+        description: A brief description of what the step accomplishes\n    - command:
+        The exact command to execute for this step (if applicable; use \"N/A\" if
+        no command is needed)\n\n    Provide your response as a list of objects, each
+        containing the above attributes.\n    Ensure the steps are in the correct
+        order to complete the task successfully.\n    PROMPT\n  end\nend\n\n\n      Please
+        generate a Thor command class that interacts with this generator. The command
+        should:\n\n      - Be a subclass of `BaseCommand`.\n      - Include a descriptive
+        class name.\n      - Provide a description for the command.\n      - Implement
+        an `execute` method that accepts appropriate arguments and invokes the generator.\n\n      Provide
+        the class name, description, execute method body, and filename for the command.\n\n      These
+        parameters will be used in a template to create the command file. The template
+        is:\n           module <%= project_name.camelize %>\n       module Commands\n         class
+        <%= command_class_name %> < BaseCommand\n           def self.description\n             \"<%=
+        command_description %>\"\n           end\n\n           def execute(*args)\n             <%=
+        command_execute_body %>\n           end\n         end\n       end\n     end\n\n      Take
+        into account any parameters the generator requires and map them to command-line
+        arguments.\n"}},"generationConfig":{"responseMimeType":"application/json","responseSchema":{"type":"OBJECT","properties":{"sublayer_command":{"type":"object","description":"The
+        new command code based on the generator","properties":{"class_name":{"type":"string","description":"The
+        class name of the command"},"description":{"type":"string","description":"The
+        description of the command"},"execute_body":{"type":"string","description":"The
+        code inside the execute method"},"filename":{"type":"string","description":"The
+        filename of the command, snake_cased with a .rb extension"}},"required":["class_name","description","execute_body","filename"]}},"required":["sublayer_command"]}}}'
+    headers:
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Vary:
+      - Origin
+      - Referer
+      - X-Origin
+      Date:
+      - Tue, 17 Sep 2024 18:27:06 GMT
+      Server:
+      - scaffolding on HTTPServer2
+      Cache-Control:
+      - private
+      X-Xss-Protection:
+      - '0'
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Content-Type-Options:
+      - nosniff
+      Server-Timing:
+      - gfet4t7; dur=738
+      Alt-Svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: |
+        {
+          "candidates": [
+            {
+              "content": {
+                "parts": [
+                  {
+                    "text": "{\"sublayer_command\": {\"class_name\": \"GenerateTaskStepsCommand\", \"description\": \"Generate a list of steps to complete a task, including descriptions and commands.\", \"execute_body\": \"generator = TaskStepsGenerator.new(task: args[0])\\nputs generator.generate\", \"filename\": \"generate_task_steps_command.rb\"}} "
+                  }
+                ],
+                "role": "model"
+              },
+              "finishReason": "STOP",
+              "index": 0,
+              "safetyRatings": [
+                {
+                  "category": "HARM_CATEGORY_SEXUALLY_EXPLICIT",
+                  "probability": "NEGLIGIBLE"
+                },
+                {
+                  "category": "HARM_CATEGORY_HATE_SPEECH",
+                  "probability": "NEGLIGIBLE"
+                },
+                {
+                  "category": "HARM_CATEGORY_HARASSMENT",
+                  "probability": "NEGLIGIBLE"
+                },
+                {
+                  "category": "HARM_CATEGORY_DANGEROUS_CONTENT",
+                  "probability": "NEGLIGIBLE"
+                }
+              ]
+            }
+          ],
+          "usageMetadata": {
+            "promptTokenCount": 490,
+            "candidatesTokenCount": 77,
+            "totalTokenCount": 567
+          }
+        }
+  recorded_at: Tue, 17 Sep 2024 18:27:06 GMT
+recorded_with: VCR 6.2.0
