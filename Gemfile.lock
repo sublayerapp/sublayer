@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    sublayer (0.2.6)
+    sublayer (0.2.7)
       activesupport
       httparty
       listen
