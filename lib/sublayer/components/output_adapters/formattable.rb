@@ -33,6 +33,7 @@ module Sublayer
             result[:items] = property.items.is_a?(OpenStruct) ? format_property(property.items) : property.items
           when 'object'
             result[:properties] = build_json_schema(property.properties) if property.properties
+            result[:additionalProperties] = false if property.properties
             result[:required] = property.properties.select(&:required).map(&:name) if property.properties
           end
 

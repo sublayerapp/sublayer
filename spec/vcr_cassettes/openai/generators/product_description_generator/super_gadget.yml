@@ -5,19 +5,18 @@ http_interactions:
     uri: https://api.openai.com/v1/chat/completions
     body:
       encoding: UTF-8
-      string: '{"model":"gpt-4o","messages":[{"role":"user","content":"    You are
-        a skilled product copywriter. Create compelling product descriptions for the
-        following:\n\n    Product Name: Super Gadget\n    Product Category: Electronics\n\n    Please
+      string: '{"model":"gpt-4o-2024-08-06","messages":[{"role":"user","content":"    You
+        are a skilled product copywriter. Create compelling product descriptions for
+        the following:\n\n    Product Name: Super Gadget\n    Product Category: Electronics\n\n    Please
         provide the following:\n    1. A brief one-sentence description of the product\n    2.
         A detailed paragraph describing the product\n    3. A comma-separated list
         of key product features\n    4. A brief description of the target audience
-        for this product\n"}],"tool_choice":{"type":"function","function":{"name":"product_description"}},"tools":[{"type":"function","function":{"name":"product_description","description":"Generate
-        product descriptions","parameters":{"type":"object","properties":{"product_description":{"type":"object","description":"Generate
+        for this product\n"}],"response_format":{"type":"json_schema","json_schema":{"name":"response","strict":true,"schema":{"type":"object","additionalProperties":false,"properties":{"product_description":{"type":"object","description":"Generate
         product descriptions","properties":{"short_description":{"type":"string","description":"A
         brief one-sentence description of the product"},"long_description":{"type":"string","description":"A
         detailed paragraph describing the product"},"key_features":{"type":"string","description":"A
         comma-separated list of key product features"},"target_audience":{"type":"string","description":"A
-        brief description of the target audience for this product"}}}}},"required":["product_description"]}}]}'
+        brief description of the target audience for this product"}},"additionalProperties":false,"required":["short_description","long_description","key_features","target_audience"]}},"required":["product_description"]}}}}'
     headers:
       Content-Type:
       - application/json
@@ -35,7 +34,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Tue, 13 Aug 2024 16:57:16 GMT
+      - Mon, 19 Aug 2024 02:55:14 GMT
       Content-Type:
       - application/json
       Transfer-Encoding:
@@ -45,7 +44,7 @@ http_interactions:
       Openai-Organization:
       - sublayer
       Openai-Processing-Ms:
-      - '5135'
+      - '3695'
       Openai-Version:
       - '2020-10-01'
       Strict-Transport-Security:
@@ -63,47 +62,37 @@ http_interactions:
       X-Ratelimit-Reset-Tokens:
       - 3ms
       X-Request-Id:
-      - req_a2609d47efd3d93efb4b49f732f80cf3
+      - req_759de2f5794a4391076cebeb325c39e3
       Cf-Cache-Status:
       - DYNAMIC
       Set-Cookie:
-      - __cf_bm=7Ica4pVcKjtC87CDqFWe9ACh5nnru2ZtPKDEzgZu07I-1723568236-1.0.1.1-vNRQTKeJjVisZPMxaiPnk4CttN79OHcvpiiAEs0nbPUM3aV.kgYdSe76scUSoX76JqCnq2gOKKLTZmbpLJWIyw;
-        path=/; expires=Tue, 13-Aug-24 17:27:16 GMT; domain=.api.openai.com; HttpOnly;
+      - __cf_bm=jOmdvV_CaBSZe7aBJvloBHPKMcFWnx3yZML4xZyWOAU-1724036114-1.0.1.1-AqCg7xhqj5kq_MYnD2BOdzaLQt5tVDeZyyJuxKlzTaUkmSlpz1.JdcL1GvNhwSBmmjxqi.Fx_0LukwVoIo99CA;
+        path=/; expires=Mon, 19-Aug-24 03:25:14 GMT; domain=.api.openai.com; HttpOnly;
         Secure; SameSite=None
-      - _cfuvid=LmqaMgx9YJL8j2hpt5srCyNGXHA75S9A6YHD9mlWYjU-1723568236196-0.0.1.1-604800000;
+      - _cfuvid=UdUmFEzR96nEJXrdctdU6B6d0cvFoU1HZOZoEW9iL_M-1724036114480-0.0.1.1-604800000;
         path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None
       X-Content-Type-Options:
       - nosniff
       Server:
       - cloudflare
       Cf-Ray:
-      - 8b2a3e22cd2b41d3-EWR
+      - 8b56dcfa688ec111-ICN
       Alt-Svc:
       - h3=":443"; ma=86400
     body:
       encoding: ASCII-8BIT
       string: |
         {
-          "id": "chatcmpl-9vp7XvcmCFU7p7BOOHiSrMJEowJJh",
+          "id": "chatcmpl-9xmpzrQjBS7DhAgq1zwpmM2C2vJZW",
           "object": "chat.completion",
-          "created": 1723568231,
-          "model": "gpt-4o-2024-05-13",
+          "created": 1724036111,
+          "model": "gpt-4o-2024-08-06",
           "choices": [
             {
               "index": 0,
               "message": {
                 "role": "assistant",
-                "content": null,
-                "tool_calls": [
-                  {
-                    "id": "call_drxKY5ciXdx4F9glwtn9qk2I",
-                    "type": "function",
-                    "function": {
-                      "name": "product_description",
-                      "arguments": "{\"product_description\":{\"short_description\":\"Revolutionize your daily tasks with the cutting-edge Super Gadget.\",\"long_description\":\"The Super Gadget is the ultimate electronic companion designed to make your life easier, more efficient, and enjoyable. Whether you need it for work, leisure, or staying connected, this all-in-one device combines advanced technology with user-friendly features. Boasting a sleek design and robust performance, the Super Gadget seamlessly integrates with your daily routine, offering unparalleled functionality at your fingertips. With its long battery life, high-definition display, and intuitive interface, this gadget is perfect for tech enthusiasts and casual users alike. Embrace the future of convenience with the Super Gadget and transform the way you interact with technology.\",\"key_features\":\"sleek design, robust performance, long battery life, high-definition display, intuitive interface, all-in-one functionality\",\"target_audience\":\"tech enthusiasts, casual users, busy professionals, students, gadget lovers\"}}"
-                    }
-                  }
-                ],
+                "content": "{\"product_description\":{\"short_description\":\"The Super Gadget is your all-in-one solution for modernizing your digital lifestyle.\",\"long_description\":\"Transform your tech experience with the cutting-edge Super Gadget, designed for those who demand more from their everyday electronics. Seamlessly integrating with your existing devices, this innovative gadget offers unrivaled versatility, combining the power, speed, and convenience of a multi-functional device into a sleek, portable design. Whether you're streaming, gaming, or navigating productivity apps, the Super Gadget delivers consistent performance with its high-speed processor and intuitive user interface. It's not just a gadget; it's your gateway to endless possibilities and effortless connectivity, ensuring you stay ahead in a fast-paced digital world.\",\"key_features\":\"high-speed processor, intuitive user interface, multi-functional design, seamless device integration, sleek and portable, wireless connectivity, long battery life\",\"target_audience\":\"Tech-savvy individuals seeking a versatile, high-performance electronic solution to enhance their digital lifestyle.\"}}",
                 "refusal": null
               },
               "logprobs": null,
@@ -111,11 +100,11 @@ http_interactions:
             }
           ],
           "usage": {
-            "prompt_tokens": 203,
-            "completion_tokens": 186,
-            "total_tokens": 389
+            "prompt_tokens": 99,
+            "completion_tokens": 191,
+            "total_tokens": 290
           },
-          "system_fingerprint": "fp_3aa7262c27"
+          "system_fingerprint": "fp_2a322c9ffc"
         }
-  recorded_at: Tue, 13 Aug 2024 16:57:16 GMT
+  recorded_at: Mon, 19 Aug 2024 02:55:14 GMT
 recorded_with: VCR 6.2.0
