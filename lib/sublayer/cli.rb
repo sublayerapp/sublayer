@@ -11,6 +11,9 @@ require_relative "cli/commands/new_project"
 require_relative "cli/commands/generator"
 require_relative "cli/commands/agent"
 require_relative "cli/commands/action"
+require_relative "cli/commands/cli_project"
+require_relative "cli/commands/github_action_project"
+require_relative "cli/commands/quick_script_project"
 
 module Sublayer
   class CLI < Thor
