@@ -1,0 +1,30 @@
+name: <%= project_name %>
+
+
+# Add a definition of when you want this workflow to trigger here
+#
+# For example, for it to run on every pull request that contains changes to .rb files, use:
+#
+# on:
+#   pull_request:
+#     paths:
+#       - "**/*.rb"
+
+jobs:
+  <%= project_name.gsub("-", "_") %>:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.2
+      - name: Install dependencies
+        run: |
+          gem install sublayer octokit
+      - name: Run <%= project_name.gsub("-", "_") %>
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          <%= ai_provider_key %>: ${{ secrets.<%= ai_provider_key %> }}
+
+        run: ruby .github/workflows/<%= project_name %>/<%= project_name %>.rb
