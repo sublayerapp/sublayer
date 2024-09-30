@@ -27,7 +27,6 @@ RSpec.describe "Github Action Project Creation" do
 
     output, status = Open3.capture2e(command, chdir: TMP_DIR, stdin_data: input)
 
-    puts output
     expect(status.success?).to be true
     expect(output).to include("Sublayer Github Action Project '#{project_name}' created successfully!")
     expect(Dir.exist?(project_path)).to be true
