@@ -1,0 +1,15 @@
+.git/**/*
+.github/**/*
+.ruby-lsp/**/*
+.contextignore
+.cursorignore
+.gitignore
+.rspec_status
+
+bin/**/*
+Gemfile.lock
+LICENSE
+Rakefile
+sublayer.gemspec
+spec/vcr_cassettes
+spec/spec_helper.rb
