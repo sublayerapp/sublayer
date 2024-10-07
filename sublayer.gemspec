@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.license = "MIT"
 
   spec.summary = "A model-agnostic Ruby GenerativeAI DSL and Framework"
-  spec.description = "A DSL and framework for building AI powered applications through the use of Generators, Actions, Tasks, and Agents"
+  spec.description = "A DSL and framework for building AI powered applications through the use of Generators, Actions, and Agents"
   spec.homepage = "https://docs.sublayer.com"
   spec.required_ruby_version = ">= 2.6.0"
 
