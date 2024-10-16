@@ -17,7 +17,7 @@ pr_number = ENV['PR_NUMBER']
 repo = ENV['GITHUB_REPOSITORY']
 
 puts "Getting pull request diff for PR ##{pr_number}"
-diff = GetDiffAction.new(repo: repo, pr_number: pr_number).call
+diff = GithubGetDiffAction.new(repo: repo, pr_number: pr_number).call
 
 puts "diff is: #{diff}"
 
@@ -75,8 +75,14 @@ if result.needs_update.downcase == 'true' && result.confidence.to_f >= 0.7
 
   stamp = Time.now.strftime('%Y-%m-%d-%H-%M-%S')
   branch_name = "doc-updates-pr-#{pr_number}-#{stamp}"
-  CreateBranchAction.new(repo_path: doc_repo_path, branch_name: branch_name).call
+  CreateLocalBranchAction.new(repo_path: doc_repo_path, branch_name: branch_name).call
   PushChangesAction.new(repo_path: doc_repo_path, commit_message: "Update docs based on PR ##{pr_number}", branch_name: branch_name).call
 
-  CreatePullRequestAction.new(branch_name: branch_name, pr_number: pr_number).call
+  GithubCreatePullRequestAction.new(
+    repo: 'sublayerapp/sublayer_documentation',
+    base: 'main',
+    head: branch_name,
+    title: "Doc Updates from Sublayer PR ##{@pr_number}",
+    body: "This PR contains documentation updates based on changes in https://github.com/sublayerapp/sublayer/pull/#{@pr_number}."
+  ).call
 end

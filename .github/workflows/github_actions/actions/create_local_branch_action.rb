@@ -1,4 +1,4 @@
-class CreateBranchAction < Sublayer::Actions::Base
+class CreateLocalBranchAction < Sublayer::Actions::Base
   def initialize(repo_path:, branch_name:)
     @repo_path = repo_path
     @branch_name = branch_name
