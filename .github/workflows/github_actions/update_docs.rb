@@ -45,7 +45,7 @@ if result.needs_update.downcase == 'true' && result.confidence.to_f >= 0.7
                                                                   .join(", ")
 
   puts "generating suggestions"
-  doc_update_suggestions = DailyDocUpdateSuggestionGenerator.new(
+  doc_update_suggestions = DocUpdateSuggestionGenerator.new(
     code_context: code_context,
     doc_context: doc_context,
     context_ignore_list: context_ignore_list,
