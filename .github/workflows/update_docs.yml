@@ -1,0 +1,41 @@
+name: Doc Updater
+on:
+  pull_request:
+    types: [closed]
+
+jobs:
+  update-docs:
+    if: github.event.pull_request.merged == true && github.event.pull_request.base.ref == 'main'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - name: Checkout Code Repository
+        uses: actions/checkout@v3
+        with:
+          repository: sublayerapp/sublayer
+          path: sublayer
+          fetch-depth: 0
+          token: ${{ secrets.ACCESS_TOKEN }}
+      - name: Checkout Documentation Repository
+        uses: actions/checkout@v3
+        with:
+          repository: sublayerapp/sublayer_documentation
+          path: sublayer_documentation
+          ref: main
+          fetch-depth: 0
+          token: ${{ secrets.ACCESS_TOKEN }}
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.2
+      - name: Install dependencies
+        run: |
+          gem install sublayer octokit
+      - name: Update the docs
+        env:
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: ruby sublayer/.github/workflows/github_actions/update_docs.rb
