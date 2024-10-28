@@ -28,14 +28,14 @@ class DocUpdateGenerator < Sublayer::Generators::Base
 
       Use the following information to guide both tasks:
 
-      1. Documentation update suggestions:
-      #{@suggestions}
+      1. Code repository structure:
+      #{@code_context}
 
       2. Documentation repository structure:
       #{@doc_context}
 
-      3. Code repository structure:
-      #{@code_context}
+      3. Documentation update suggestions:
+      #{@suggestions}
 
       4. Files excluded from updates (do not modify these files):
       #{@context_ignore_list}
@@ -43,14 +43,14 @@ class DocUpdateGenerator < Sublayer::Generators::Base
       5. Example of doc format:
       #{TEMPLATE_CONTENT}
 
-      Your task:
-      Generate the full updated content for each file that should be changed according to the suggestions.
-
       Guidelines:
       1. Do not make updates to any files excluded from updates
       2. Follow the format given in the example as a template for the structure of your file
       3. If a new page is added make sure to add them to the navigation as well
       3. If a link is added make sure it leads to an existing page, or create the new page being referenced
+
+      Your task:
+      Generate the full updated content for each file in the documentation repository that should be changed according to the suggestions.
     PROMPT
   end
 end

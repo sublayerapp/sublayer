@@ -1,6 +1,7 @@
-class GithubCreatePullRequestAction < GithubBase
+class GithubCreatePullRequestAction < Sublayer::Actions::Base
   def initialize(repo:, base:, head:, title:, body:)
-    super(repo: repo)
+    @client = Octokit::Client.new(access_token: ENV["ACCESS_TOKEN"])
+    @repo = repo
     @base = base
     @head = head
     @title = title

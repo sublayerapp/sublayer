@@ -1,6 +1,7 @@
-class GithubGetDiffAction < GithubBase
+class GithubGetDiffAction < Sublayer::Actions::Base
   def initialize(repo:, pr_number:)
-    super(repo: repo)
+    @client = Octokit::Client.new(access_token: ENV['ACCESS_TOKEN'])
+    @repo = repo
     @pr_number = pr_number
   end
 

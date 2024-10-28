@@ -20,13 +20,6 @@ class DocUpdateNecessityGenerator < Sublayer::Generators::Base
 
   def prompt
     <<~PROMPT
-      Given the following code diff and context, determine if documentation updates are necessary.
-      Consider the following factors:
-      1. The significance of the changes
-      2. Whether the changes affect public APIs or user-facing features
-      3. If the changes introduce new concepts or modify existing ones
-      4. Whether the current documentation accurately reflects the changes
-
       Code diff:
       #{@diff}
 
@@ -35,6 +28,13 @@ class DocUpdateNecessityGenerator < Sublayer::Generators::Base
 
       Documentation context:
       #{@doc_context}
+
+      Given the above code diff and context, determine if documentation updates are necessary.
+      Consider the following factors:
+      1. The significance of the changes
+      2. Whether the changes affect public APIs or user-facing features
+      3. If the changes introduce new concepts or modify existing ones
+      4. Whether the current documentation accurately reflects the changes
 
       Based on this information, are documentation updates necessary?
     PROMPT

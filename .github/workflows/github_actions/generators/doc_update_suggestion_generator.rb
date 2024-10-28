@@ -23,12 +23,12 @@ class DocUpdateSuggestionGenerator < Sublayer::Generators::Base
 
   def prompt
     <<~PROMPT
-      As an expert in documentation with a focus on concise and hierarchical organization, you are tasked with generating detailed and specific suggestions for updating a documentation repository based on the newest changes to a code repository. Consider the following:
+      As an expert in documentation with a focus on concise and hierarchical organization. Consider the following:
 
       1. Newest changes:
       #{@diff}
 
-      1. Existing documentation context:
+      1. Documentation repository context:
       #{@doc_context}
 
       2. Code repository context:
@@ -37,20 +37,23 @@ class DocUpdateSuggestionGenerator < Sublayer::Generators::Base
       3. Files excluded from updates (do not modify these files):
       #{@context_ignore_list}
 
+      You are tasked with generating detailed and specific suggestions for updating a documentation repository based on the newest changes to the code repository.
+
       Generate documentation update suggestions, considering:
       1. The appropriate level in the documentation hierarchy for each change (high-level concepts vs. specific details)
       2. The impact of the changes on existing documentation (updates, additions, or removals)
-      3. The importance of each change for user understanding and API usage
+      3. The importance of each change for user understanding and API use
       4. The need for examples or clarifications of new or modified functionality
 
       For each suggestion
-      - Describe the suggestion and the detailed reasoning behind it. Be specific.
-      - describe, meticulously, the files and the respective detailed changes that should be made in them.
+      - Describe the suggestion and the reasoning behind it. Be specific.
+      - Meticulously describe the files and the changes that should be made in them.
       - Indicate its usefulness, 10 being most useful and 1 being least, as a way of prioritizing which suggestion should be done first
-      - Give the suggestion a succinct title that encapsulates the spirit of the suggestion
+      - A succinct title that encapsulates the spirit of the suggestion
 
       Guidelines:
       1. Do not suggest changes to any files excluded from updates
+      2. Make the fewest number of suggestions possible to achieve the desired outcome
     PROMPT
   end
 end
