@@ -86,7 +86,7 @@ if result.needs_update.downcase == 'true' && result.confidence.to_f >= 0.7
         suggestions: suggestions,
         doc_context: doc_context,
         context_ignore_list: context_ignore_list
-      ).generate.gsub!(/%%%(\w+)?\n/, '```\1\n').gsub!(/\n%%%/, "\n```")
+      ).generate
     end
   end
 
@@ -104,7 +104,7 @@ if result.needs_update.downcase == 'true' && result.confidence.to_f >= 0.7
   # Now write the file updates to disk
   file_updates.each do |file_update|
     file_path = file_update["file_path"]
-    file_content = file_update["file_content"]
+    file_content = file_update["file_content"].gsub!(/%%%(\w+)?\n/, '```\1\n').gsub!(/\n%%%/, "\n```")
 
     puts "Updating file: #{file_path}"
     puts "file content: #{file_content}"
