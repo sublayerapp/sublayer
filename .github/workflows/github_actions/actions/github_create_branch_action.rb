@@ -1,4 +1,4 @@
-class GithubCreateBranchAction
+class GithubCreateBranchAction < Sublayer::Actions::Base
   def initialize(repo:, base_branch:, new_branch:)
     @client = Octokit::Client.new(access_token: ENV['ACCESS_TOKEN'])
     @repo = repo

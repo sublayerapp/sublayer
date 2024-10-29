@@ -1,4 +1,4 @@
-class GithubAddOrModifyFileAction
+class GithubAddOrModifyFileAction < Sublayer::Actions::Base
   def initialize(repo:, branch:, file_path:, file_content:)
     @client = Octokit::Client.new(access_token: ENV['ACCESS_TOKEN'])
     @repo = repo
