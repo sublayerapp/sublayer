@@ -86,7 +86,7 @@ if result.needs_update.downcase == 'true' && result.confidence.to_f >= 0.7
         suggestions: suggestions,
         doc_context: doc_context,
         context_ignore_list: context_ignore_list
-      ).generate
+      ).generate.gsub!(/%%%(\w+)?\n/, '```\1\n').gsub!(/\n%%%/, "\n```")
     end
   end
 
@@ -122,7 +122,7 @@ if result.needs_update.downcase == 'true' && result.confidence.to_f >= 0.7
     repo: doc_repo_full_name,
     base: 'main',
     head: branch_name,
-    title: "Doc Updates from Sublayer PR ##{@pr_number}",
-    body: "This PR contains documentation updates based on changes in https://github.com/sublayerapp/sublayer/pull/#{@pr_number}."
+    title: "Doc Updates from Sublayer PR ##{pr_number}",
+    body: "This PR contains documentation updates based on changes in https://github.com/sublayerapp/sublayer/pull/#{pr_number}."
   ).call
 end
