@@ -1,5 +1,5 @@
 # Sublayer.configuration.ai_provider = Sublayer::Providers::OpenAI
-# Sublayer.configuration.ai_model = "gpt-4o"
+# Sublayer.configuration.ai_model = "gpt-4o-2024-08-06"
 
 module Sublayer
   module Providers
@@ -26,22 +26,21 @@ module Sublayer
                 "content": prompt
               }
             ],
-            tool_choice: { type: "function", function: { name: output_adapter.name }},
-            tools: [
-              {
-                type: "function",
-                function: {
-                  name: output_adapter.name,
-                  description: output_adapter.description,
-                  parameters: {
-                    type: "object",
-                    properties: output_adapter.format_properties
-                  },
+            response_format: {
+              type: "json_schema",
+              json_schema: {
+                name: "response",
+                strict: true,
+                schema: {
+                  type: "object",
+                  additionalProperties: false,
+                  properties: output_adapter.format_properties,
                   required: output_adapter.format_required
                 }
               }
-            ]
-          })
+            }
+          }
+        )
 
         after_request = Time.now
         response_time = after_request - before_request
@@ -58,14 +57,7 @@ module Sublayer
 
         message = response.dig("choices", 0, "message")
 
-        raise "No function called" unless message["tool_calls"]
-
-        function_body = message.dig("tool_calls", 0, "function", "arguments")
-
-        raise "Error generating with OpenAI. Empty response. Try rewording your output adapter params to be from the perspective of the model. Full Response: #{response}" if function_body == "{}"
-        raise "Error generating with OpenAI. Error: Max tokens exceeded. Try breaking your problem up into smaller pieces." if response["choices"][0]["finish_reason"] == "length"
-
-        results = JSON.parse(function_body)[output_adapter.name]
+        JSON.parse(message["content"])[output_adapter.name]
       end
     end
   end
