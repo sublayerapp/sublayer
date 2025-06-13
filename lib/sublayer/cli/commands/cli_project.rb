@@ -17,6 +17,7 @@ module Sublayer
       end
 
       def ask_for_project_details
+        @project_name = project_name
         @ai_provider = options[:provider] || ask("Select an AI provider:", default: "OpenAI", limited_to: %w[OpenAI Claude Gemini])
         @ai_model = options[:model] || select_ai_model
       end
@@ -37,10 +38,10 @@ module Sublayer
         say "Generating configuration", :green
 
         config = {
-          project_name: @project_name,
+          project_name: @project_name, 
           project_template: "CLI",
-          ai_provider: @provider,
-          ai_model: @model
+          ai_provider: @ai_provider,
+          ai_model: @ai_model
         }
 
         create_file File.join(project_name, "lib", project_name, "config", "sublayer.yml"), YAML.dump(config)

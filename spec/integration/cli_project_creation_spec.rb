@@ -55,4 +55,23 @@ RSpec.describe "CLI Project Creation" do
       expect(File.exist?(File.join(project_path, file))).to be true
     end
   end
+
+  it "properly sets config values for ai_provider and ai_model" do
+    command = "ruby -I lib #{File.dirname(__FILE__)}/../../bin/sublayer new #{project_name}"
+    input = "CLI\nOpenAI\ngpt-4o\nn\n\n"
+
+    output, status = Open3.capture2e(command, chdir: TMP_DIR, stdin_data: input)
+    expect(status.success?).to be true
+
+    # Check the config file was created
+    config_file_path = File.join(project_path, "lib", project_name, "config", "sublayer.yml")
+    expect(File.exist?(config_file_path)).to be true
+
+    # Parse the YAML config and check values
+    config = YAML.load_file(config_file_path)
+    expect(config[:ai_provider]).to eq("OpenAI")
+    expect(config[:ai_model]).to eq("gpt-4o")
+    expect(config[:project_name]).to eq(project_name)
+    expect(config[:project_template]).to eq("CLI")
+  end
 end
