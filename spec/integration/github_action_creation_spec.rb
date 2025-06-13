@@ -47,4 +47,27 @@ RSpec.describe "Github Action Project Creation" do
       expect(File.exist?(File.join(project_path, file))).to be true
     end
   end
+
+  it "correctly configures AI provider and model in the generated files" do
+    command = "ruby -I lib #{File.dirname(__FILE__)}/../../bin/sublayer new #{project_name}"
+    input = "GithubAction\nOpenAI\ngpt-4o\nn\n\n"
+
+    output, status = Open3.capture2e(command, chdir: TMP_DIR, stdin_data: input)
+    expect(status.success?).to be true
+    
+    # Check the Ruby file has the correct AI configuration
+    rb_file_path = File.join(project_path, project_name, "#{project_name}.rb")
+    expect(File.exist?(rb_file_path)).to be true
+    
+    file_content = File.read(rb_file_path)
+    expect(file_content).to include('Sublayer.configuration.ai_provider = Sublayer::Providers::OpenAI')
+    expect(file_content).to include('Sublayer.configuration.ai_model = "gpt-4o"')
+    
+    # Check the YAML file has the correct API key reference
+    yml_file_path = File.join(project_path, "#{project_name}.yml")
+    expect(File.exist?(yml_file_path)).to be true
+    
+    yml_content = File.read(yml_file_path)
+    expect(yml_content).to include('OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}')
+  end
 end

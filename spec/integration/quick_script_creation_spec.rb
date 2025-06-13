@@ -42,4 +42,20 @@ RSpec.describe "Quick Script Project Creation" do
       expect(File.exist?(File.join(project_path, file))).to be true
     end
   end
+
+  it "correctly configures AI provider and model in the generated files" do
+    command = "ruby -I lib #{File.dirname(__FILE__)}/../../bin/sublayer new #{project_name} --template quick_script"
+    input = "OpenAI\ngpt-4o\nn\n\n"
+
+    output, status = Open3.capture2e(command, chdir: TMP_DIR, stdin_data: input)
+    expect(status.success?).to be true
+    
+    # Check the Ruby file has the correct AI configuration
+    rb_file_path = File.join(project_path, "#{project_name}.rb")
+    expect(File.exist?(rb_file_path)).to be true
+    
+    file_content = File.read(rb_file_path)
+    expect(file_content).to include('Sublayer.configuration.ai_provider = Sublayer::Providers::OpenAI')
+    expect(file_content).to include('Sublayer.configuration.ai_model = "gpt-4o"')
+  end
 end
