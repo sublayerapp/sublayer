@@ -5,6 +5,7 @@ PATH
       activesupport
       httparty
       listen
+      ostruct
       ruby-openai
       thor
       zeitwerk
@@ -59,6 +60,7 @@ GEM
     multi_xml (0.6.0)
     multipart-post (2.3.0)
     mutex_m (0.1.2)
+    ostruct (0.6.1)
     pry (0.14.1)
       coderay (~> 1.1)
       method_source (~> 1.0)
@@ -100,6 +102,7 @@ GEM
 PLATFORMS
   arm64-darwin-22
   arm64-darwin-23
+  arm64-darwin-24
   x86_64-linux
 
 DEPENDENCIES
@@ -110,4 +113,4 @@ DEPENDENCIES
   webmock (~> 3)
 
 BUNDLED WITH
-   2.4.17
+   2.6.9
