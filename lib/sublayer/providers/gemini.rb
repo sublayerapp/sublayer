@@ -40,6 +40,8 @@ module Sublayer
         after_request = Time.now
         response_time = after_request - before_request
 
+        raise "Error generating with Gemini, error: #{response.body}" unless response.success?
+
         Sublayer.configuration.logger.log(:info, "Gemini API response", {
           request_id: request_id,
           response_time: response_time,
@@ -49,8 +51,6 @@ module Sublayer
             total_tokens: response["usageMetadata"]["totalTokenCount"]
           }
         })
-
-        raise "Error generating with Gemini, error: #{response.body}" unless response.success?
 
         output = response.dig("candidates", 0, "content", "parts", 0, "text")
 
