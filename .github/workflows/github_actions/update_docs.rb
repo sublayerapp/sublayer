@@ -104,7 +104,7 @@ if result.needs_update.downcase == 'true' && result.confidence.to_f >= 0.7
   # Now write the file updates to disk
   file_updates.each do |file_update|
     file_path = file_update["file_path"]
-    file_content = file_update["file_content"]
+    file_content = file_update["file_content"].gsub(/%%%(\w+)?\n/, '```\1\n').gsub(/\n%%%/, "\n```")
 
     puts "Updating file: #{file_path}"
     puts "file content: #{file_content}"
@@ -122,7 +122,7 @@ if result.needs_update.downcase == 'true' && result.confidence.to_f >= 0.7
     repo: doc_repo_full_name,
     base: 'main',
     head: branch_name,
-    title: "Doc Updates from Sublayer PR ##{@pr_number}",
-    body: "This PR contains documentation updates based on changes in https://github.com/sublayerapp/sublayer/pull/#{@pr_number}."
+    title: "Doc Updates from Sublayer PR ##{pr_number}",
+    body: "This PR contains documentation updates based on changes in https://github.com/sublayerapp/sublayer/pull/#{pr_number}."
   ).call
 end
