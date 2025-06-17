@@ -1,7 +1,7 @@
 # Sublayer
 
 A model-agnostic Ruby AI Agent framework. Provides base classes for
-building Generators, Actions, Tasks, and Agents that can be used to build AI
+building Generators, Actions, and Agents that can be used to build AI
 powered applications in Ruby.
 
 For more detailed documentation visit our documentation site: [https://docs.sublayer.com](https://docs.sublayer.com).
