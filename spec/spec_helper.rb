@@ -1,5 +1,16 @@
 # frozen_string_literal: true
 
+require "dotenv/load"
+
+unless ENV["OPENAI_API_KEY"] && ENV["ANTHROPIC_API_KEY"] && ENV["GEMINI_API_KEY"]
+  puts <<~EOS
+    Some API keys are missing from the environment.
+    You can run `bin/setup` to configure dummy API keys.
+    If you need to add or update any VCR cassettes then you will need to use real keys.
+  EOS
+  exit(1)
+end
+
 require "sublayer"
 require "pry"
 require "vcr"
