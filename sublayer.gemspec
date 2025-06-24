@@ -12,7 +12,7 @@ Gem::Specification.new do |spec|
   spec.summary = "A model-agnostic Ruby GenerativeAI DSL and Framework"
   spec.description = "A DSL and framework for building AI powered applications through the use of Generators, Actions, Tasks, and Agents"
   spec.homepage = "https://docs.sublayer.com"
-  spec.required_ruby_version = ">= 2.6.0"
+  spec.required_ruby_version = ">= 3.2.0"
 
   spec.metadata["homepage_uri"] = "https://docs.sublayer.com"
   spec.metadata["documentation_uri"] = "https://docs.sublayer.com"
