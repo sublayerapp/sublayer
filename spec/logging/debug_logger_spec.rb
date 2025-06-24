@@ -12,8 +12,14 @@ RSpec.describe Sublayer::Logging::DebugLogger do
   end
 
   it "pretty prints the data" do
+    expected = if Gem::Version.new(RUBY_VERSION) >= Gem::Version.new("3.4")
+      /\{key: "value"\}/
+    else
+      /\{:key=>"value"\}/
+    end
+
     expect {
       logger.log(:info, message, data)
-    }.to output(/\{:key=>"value"\}/).to_stdout
+    }.to output(expected).to_stdout
   end
 end
