@@ -18,3 +18,4 @@
 /TAGS
 
 *.DS_Store
+.env
