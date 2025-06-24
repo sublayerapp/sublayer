@@ -33,6 +33,7 @@ GEM
     crack (1.0.0)
       bigdecimal
       rexml
+    csv (3.3.5)
     diff-lcs (1.5.0)
     drb (2.1.1)
       ruby2_keywords
@@ -46,7 +47,8 @@ GEM
     faraday-net_http (3.0.2)
     ffi (1.16.3)
     hashdiff (1.1.0)
-    httparty (0.21.0)
+    httparty (0.23.1)
+      csv
       mini_mime (>= 1.0.0)
       multi_xml (>= 0.5.2)
     i18n (1.14.1)
@@ -57,7 +59,8 @@ GEM
     method_source (1.0.0)
     mini_mime (1.1.5)
     minitest (5.20.0)
-    multi_xml (0.6.0)
+    multi_xml (0.7.2)
+      bigdecimal (~> 3.1)
     multipart-post (2.3.0)
     mutex_m (0.1.2)
     ostruct (0.6.1)
