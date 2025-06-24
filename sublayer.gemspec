@@ -41,6 +41,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "thor"
 
   spec.add_development_dependency "dotenv", "~> 3.1"
+  spec.add_development_dependency "rake"
   spec.add_development_dependency "rspec", "~> 3.12"
   spec.add_development_dependency "pry", "~> 0.14"
   spec.add_development_dependency "vcr", "~> 6.0"

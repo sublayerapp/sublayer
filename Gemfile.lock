@@ -69,6 +69,7 @@ GEM
       coderay (~> 1.1)
       method_source (~> 1.0)
     public_suffix (6.0.0)
+    rake (13.3.0)
     rb-fsevent (0.11.2)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
@@ -112,6 +113,7 @@ PLATFORMS
 DEPENDENCIES
   dotenv (~> 3.1)
   pry (~> 0.14)
+  rake
   rspec (~> 3.12)
   sublayer!
   vcr (~> 6.0)
