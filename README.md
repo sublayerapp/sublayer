@@ -132,6 +132,9 @@ Examples:
 
 ## Usage Examples
 
+For a runnable custom Action that searches the web and fetches pages without an
+API key, see the [Parallel Search MCP example](examples/parallel_search).
+
 There are sample Generators in the /examples/ directory that demonstrate how to
 build generators using the Sublayer framework. Alternatively below are links to
 open source projects that are using generators in different ways:

@@ -18,6 +18,19 @@ permissions:
   contents: read
 
 jobs:
+  parallel-search-example:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: '3.4'
+        working-directory: examples/parallel_search
+        bundler-cache: true
+    - name: Test Parallel Search MCP example
+      working-directory: examples/parallel_search
+      run: bundle exec rspec spec
+
   test:
 
     runs-on: ubuntu-latest
